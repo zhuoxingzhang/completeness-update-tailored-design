@@ -1,0 +1,232 @@
+{
+ "routes:nulluc": {
+  "rules": 24,
+  "candidates": 1,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 1
+ },
+ "claims:nulluc": {
+  "rules": 28,
+  "candidates": 0,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 0
+ },
+ "breast:nulleq": {
+  "rules": 46,
+  "candidates": 2,
+  "capped": false,
+  "separations": 1,
+  "best": {
+   "rule": "[0, 1, 5]->3",
+   "3nf": 10,
+   "so": 10,
+   "ha": 1
+  },
+  "so_uniform_hmax": 1
+ },
+ "breast:nulluc": {
+  "rules": 47,
+  "candidates": 2,
+  "capped": false,
+  "separations": 1,
+  "best": {
+   "rule": "[0, 1, 5]->3",
+   "3nf": 10,
+   "so": 10,
+   "ha": 1
+  },
+  "so_uniform_hmax": 1
+ },
+ "t_biocase_identification_r91800_c38:nulluc": {
+  "rules": 47,
+  "candidates": 0,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 0
+ },
+ "pdbx:nulleq": {
+  "rules": 68,
+  "candidates": 0,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 0
+ },
+ "hospital:nulluc": {
+  "rules": 83,
+  "candidates": 0,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 0
+ },
+ "pdbx:nulluc": {
+  "rules": 101,
+  "candidates": 2,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 1
+ },
+ "bridges:nulluc": {
+  "rules": 128,
+  "candidates": 6,
+  "capped": false,
+  "separations": 1,
+  "best": {
+   "rule": "[1, 5, 9]->12",
+   "3nf": 10,
+   "so": 10,
+   "ha": 1
+  },
+  "so_uniform_hmax": 1
+ },
+ "bridges:nulleq": {
+  "rules": 142,
+  "candidates": 14,
+  "capped": false,
+  "separations": 3,
+  "best": {
+   "rule": "[1, 5, 8, 10, 12]->7",
+   "3nf": 10,
+   "so": 10,
+   "ha": 3
+  },
+  "so_uniform_hmax": 3
+ },
+ "echo:nulluc": {
+  "rules": 355,
+  "candidates": 7,
+  "capped": false,
+  "separations": 3,
+  "best": {
+   "rule": "[8, 12]->1",
+   "3nf": 10,
+   "so": 10,
+   "ha": 2
+  },
+  "so_uniform_hmax": 2
+ },
+ "echo:nulleq": {
+  "rules": 527,
+  "candidates": 12,
+  "capped": false,
+  "separations": 3,
+  "best": {
+   "rule": "[2, 4, 5]->3",
+   "3nf": 3,
+   "so": 10,
+   "ha": 2
+  },
+  "so_uniform_hmax": 2
+ },
+ "ncvoter:nulleq": {
+  "rules": 758,
+  "candidates": 33,
+  "capped": false,
+  "separations": 10,
+  "best": {
+   "rule": "[3, 12, 17]->6",
+   "3nf": 12,
+   "so": 12,
+   "ha": 3
+  },
+  "so_uniform_hmax": 3
+ },
+ "china_weather:nulleq": {
+  "rules": 918,
+  "candidates": 94,
+  "capped": false,
+  "separations": 11,
+  "best": {
+   "rule": "[0, 7, 9, 11, 12]->6",
+   "3nf": 12,
+   "so": 12,
+   "ha": 6
+  },
+  "so_uniform_hmax": 6
+ },
+ "ncvoter:nulluc": {
+  "rules": 1249,
+  "candidates": 21,
+  "capped": false,
+  "separations": 9,
+  "best": {
+   "rule": "[2, 3]->10",
+   "3nf": 5,
+   "so": 13,
+   "ha": 5
+  },
+  "so_uniform_hmax": 4
+ },
+ "dblp10k:nulluc": {
+  "rules": 1377,
+  "candidates": 39,
+  "capped": false,
+  "separations": 2,
+  "best": {
+   "rule": "[9, 14]->6",
+   "3nf": 10,
+   "so": 10,
+   "ha": 4
+  },
+  "so_uniform_hmax": 4
+ },
+ "uniprot:nulleq": {
+  "rules": 3703,
+  "candidates": 111,
+  "capped": false,
+  "separations": 29,
+  "best": {
+   "rule": "[2, 17, 20, 23]->15",
+   "3nf": 14,
+   "so": 14,
+   "ha": 5
+  },
+  "so_uniform_hmax": 5
+ },
+ "hepatitis:nulluc": {
+  "rules": 4513,
+  "candidates": 263,
+  "capped": false,
+  "separations": 39,
+  "best": {
+   "rule": "[15, 16]->8",
+   "3nf": 15,
+   "so": 15,
+   "ha": 10
+  },
+  "so_uniform_hmax": 10
+ },
+ "china_weather:nulluc": {
+  "rules": 6582,
+  "candidates": 382,
+  "capped": true,
+  "separations": 54,
+  "best": {
+   "rule": "[2, 3, 6, 7, 8, 14, 15]->17",
+   "3nf": 16,
+   "so": 16,
+   "ha": 7
+  },
+  "so_uniform_hmax": 7
+ },
+ "hepatitis:nulleq": {
+  "rules": 8250,
+  "candidates": 353,
+  "capped": true,
+  "separations": 54,
+  "best": {
+   "rule": "[7, 15, 16, 17, 19]->3",
+   "3nf": 17,
+   "so": 17,
+   "ha": 11
+  },
+  "so_uniform_hmax": 11
+ }
+}

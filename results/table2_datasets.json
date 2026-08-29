@@ -1,0 +1,128 @@
+{
+ "routes": {
+  "attrs": 10,
+  "rows": 67663,
+  "null": 7.8,
+  "fds_eq": null,
+  "fds_un": 15,
+  "R_eq": null,
+  "R_un": 9
+ },
+ "claims": {
+  "attrs": 14,
+  "rows": 96131,
+  "null": 5.9,
+  "fds_eq": null,
+  "fds_un": 17,
+  "R_eq": null,
+  "R_un": 13
+ },
+ "breast": {
+  "attrs": 12,
+  "rows": 699,
+  "null": 0.2,
+  "fds_eq": 42,
+  "fds_un": 43,
+  "R_eq": 11,
+  "R_un": 11
+ },
+ "biocase": {
+  "attrs": 38,
+  "rows": 91799,
+  "null": 76.2,
+  "fds_eq": null,
+  "fds_un": 8,
+  "R_eq": null,
+  "R_un": 38
+ },
+ "pdbx": {
+  "attrs": 14,
+  "rows": 17305799,
+  "null": 0.8,
+  "fds_eq": 27,
+  "fds_un": 37,
+  "R_eq": 13,
+  "R_un": 13
+ },
+ "hospital": {
+  "attrs": 16,
+  "rows": 114919,
+  "null": 0.8,
+  "fds_eq": null,
+  "fds_un": 42,
+  "R_eq": null,
+  "R_un": 15
+ },
+ "bridges": {
+  "attrs": 14,
+  "rows": 108,
+  "null": 5.1,
+  "fds_eq": 88,
+  "fds_un": 67,
+  "R_eq": 13,
+  "R_un": 13
+ },
+ "echo": {
+  "attrs": 14,
+  "rows": 132,
+  "null": 7.1,
+  "fds_eq": 153,
+  "fds_un": 91,
+  "R_eq": 13,
+  "R_un": 13
+ },
+ "ncvoter": {
+  "attrs": 20,
+  "rows": 1000,
+  "null": 14.3,
+  "fds_eq": 316,
+  "fds_un": 271,
+  "R_eq": 19,
+  "R_un": 19
+ },
+ "weather": {
+  "attrs": 19,
+  "rows": 262920,
+  "null": 8.4,
+  "fds_eq": 840,
+  "fds_un": 2955,
+  "R_eq": 18,
+  "R_un": 18
+ },
+ "dblp10k": {
+  "attrs": 35,
+  "rows": 4837,
+  "null": 38.2,
+  "fds_eq": null,
+  "fds_un": 708,
+  "R_eq": null,
+  "R_un": 34
+ },
+ "uniprot": {
+  "attrs": 31,
+  "rows": 96996,
+  "null": 23.7,
+  "fds_eq": 3036,
+  "fds_un": 5794,
+  "R_eq": 30,
+  "R_un": 30
+ },
+ "hepatitis": {
+  "attrs": 21,
+  "rows": 155,
+  "null": 5.1,
+  "fds_eq": 5372,
+  "fds_un": 2995,
+  "R_eq": 20,
+  "R_un": 20
+ },
+ "diabetic": {
+  "attrs": 31,
+  "rows": 101766,
+  "null": 6.1,
+  "fds_eq": 38037,
+  "fds_un": 97341,
+  "R_eq": 30,
+  "R_un": 30
+ }
+}

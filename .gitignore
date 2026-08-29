@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.scratch/
+*.bak
+# experiment outputs are regenerated; the committed copies live in results/
+experiments/*.json
+experiments/*.md
+!experiments/README.md
