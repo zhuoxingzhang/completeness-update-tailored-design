@@ -84,19 +84,19 @@ inflated by parallel contention; the synthesis times quoted in the paper were me
 | `experiments/delivery_example.py` | Table 1 and Figure 1 |
 | `experiments/delivery_trace.py` | Examples "Heat of the delivery subschemata" and "Synthesis on the delivery reduct": the eliminations each objective performs, the number it ranks by, and the heat of the reduct and of every subschema a design keeps |
 | `experiments/delivery_schema.py` | the schema, the instance generator and the offline cost model the other delivery scripts import; `--orders` for the order study above, `--costs` for the rows one update of each kind rewrites, `--window` for `results/rq7_window_model.json` |
-| `experiments/delivery_live.py --ops` | Figure 2 (RQ1, one update of each kind over group depths; `results/rq1_operations.json`) † |
-| `experiments/delivery_live.py --mixed` | Figure 4 and the first row of Table 6 (RQ3, refreshes with a growing completion share; `results/rq3_mixed.json`) † |
-| `experiments/delivery_live.py --reads` | Table 6 (RQ3, reconstruction, key lookups, history, storage; `results/rq3_reads.json`) † |
-| `experiments/delivery_live.py` | Table 9 and Figure 8 (RQ7, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
-| `experiments/delivery_curves.py` | Figure 5 and Table 7 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
+| `experiments/delivery_live.py --ops` | Figure 2 and Table 3 (RQ1, one update of each kind over group depths; `results/rq1_operations.json`) † |
+| `experiments/delivery_live.py --mixed` | Figure 4 and the first row of Table 7 (RQ3, refreshes with a growing completion share; `results/rq3_mixed.json`) † |
+| `experiments/delivery_live.py --reads` | Table 7 (RQ3, reconstruction, key lookups, history, storage; `results/rq3_reads.json`) † |
+| `experiments/delivery_live.py` | Table 10 and Figure 8 (RQ7, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
+| `experiments/delivery_curves.py` | Figure 5 and Table 8 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
 | `experiments/delivery_tables.py` | every figure and table of the delivery study as LaTeX, from the result files above |
-| `experiments/reduct_frontend.py` | Table 3 (RQ2, maximal and total design heat at `p = 0.5`) and Table 4 (the sweep over `p`); `results/rq2_reducts.json` |
+| `experiments/reduct_frontend.py` | Table 4 (RQ2, maximal and total design heat at `p = 0.5`) and Table 5 (the sweep over `p`); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
-| `experiments/redundancy_study.py` | Table 5 (RQ2, redundant value occurrences) † |
+| `experiments/redundancy_study.py` | Table 6 (RQ2, redundant value occurrences) † |
 | `experiments/real_workload.py` | RQ6 null control on routes and the heat-channel runs on ncvoter (`results/rq6_end_to_end.json`) † |
 | `experiments/weather_census.py` | Figure 6 (RQ6, counting census over the fat rules of weather; `results/rq6_weather_census.json`) † |
-| `experiments/weather_rules.py` | Table 8 (RQ6, live runs of the five separating weather rules on their storing subschemata; `results/rq6_weather_rules_*.json`) † |
-| `experiments/weather_rows.py` | Table 8, rows column: rows one refresh of the 20 deepest groups rewrites, counted offline on the storing subschemata (`results/rq6_weather_rows.json`) |
+| `experiments/weather_rules.py` | Table 9 (RQ6, live runs of the five separating weather rules on their storing subschemata; `results/rq6_weather_rules_*.json`) † |
+| `experiments/weather_rows.py` | Table 9, rows column: rows one refresh of the 20 deepest groups rewrites, counted offline on the storing subschemata (`results/rq6_weather_rows.json`) |
 | `experiments/weather_full.py` | Figure 7 (RQ6, full materialization and whole workload on the widest-gap rule; `results/rq6_weather_full.json`) † |
 | `experiments/weather_recon.py` | Figure 7, reconstruction re-measured on the designs `weather_full.py` leaves in place (`results/rq6_weather_reconstruction.json`) † |
 | `experiments/dataset_stats.py` | Table 2 (dataset dimensions) † |

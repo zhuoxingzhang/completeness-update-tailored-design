@@ -341,7 +341,7 @@
    "rows": 7291,
    "rows_max": 127817,
    "hmax": 30,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -351,7 +351,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 320,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -361,7 +361,7 @@
    "rows": 7291,
    "rows_max": 7346,
    "hmax": 30,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -371,7 +371,7 @@
    "rows": 7291,
    "rows_max": 127817,
    "hmax": 2,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -381,7 +381,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -391,7 +391,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -401,7 +401,7 @@
    "rows": 7291,
    "rows_max": 127817,
    "hmax": 192,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -411,7 +411,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 384,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -421,7 +421,7 @@
    "rows": 7291,
    "rows_max": 7346,
    "hmax": 192,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -431,7 +431,7 @@
    "rows": 7291,
    "rows_max": 127817,
    "hmax": 330,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -441,7 +441,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 20,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -451,7 +451,7 @@
    "rows": 127294,
    "rows_max": 127817,
    "hmax": 20,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -461,7 +461,7 @@
    "rows": 10722,
    "rows_max": 37604,
    "hmax": 20,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -471,7 +471,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 20,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -481,7 +481,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 20,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -491,7 +491,7 @@
    "rows": 10722,
    "rows_max": 37604,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -501,7 +501,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -511,7 +511,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -521,7 +521,7 @@
    "rows": 10722,
    "rows_max": 37604,
    "hmax": 384,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -531,7 +531,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 384,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -541,7 +541,7 @@
    "rows": 36282,
    "rows_max": 37604,
    "hmax": 192,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -551,7 +551,7 @@
    "rows": 10722,
    "rows_max": 37604,
    "hmax": 320,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -561,7 +561,7 @@
    "rows": 10722,
    "rows_max": 13777,
    "hmax": 320,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -571,7 +571,7 @@
    "rows": 36282,
    "rows_max": 37604,
    "hmax": 30,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -581,7 +581,7 @@
    "rows": 20141,
    "rows_max": 74701,
    "hmax": 170,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -591,7 +591,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 180,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -601,7 +601,7 @@
    "rows": 20141,
    "rows_max": 20737,
    "hmax": 170,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -611,7 +611,7 @@
    "rows": 20141,
    "rows_max": 74701,
    "hmax": 2,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -621,7 +621,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -631,7 +631,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 1,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -641,7 +641,7 @@
    "rows": 20141,
    "rows_max": 74701,
    "hmax": 192,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -651,7 +651,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 384,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -661,7 +661,7 @@
    "rows": 20141,
    "rows_max": 20737,
    "hmax": 192,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -671,7 +671,7 @@
    "rows": 20141,
    "rows_max": 74701,
    "hmax": 190,
-   "designs": "bcv bdr bdvy cd crv gv"
+   "designs": "bcv bdvz brz crv cz gv"
   },
   {
    "depth": 192,
@@ -681,7 +681,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 160,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   },
   {
    "depth": 192,
@@ -691,7 +691,7 @@
    "rows": 73099,
    "rows_max": 74701,
    "hmax": 160,
-   "designs": "bcdy bcv bdr crv gv"
+   "designs": "bcdz bcv brz crv gv"
   }
  ]
 }

@@ -77,7 +77,7 @@ def fig_kappa():
   title style={{font=\scriptsize, yshift=-3pt}},
   legend style={{font=\tiny, fill=none, draw=none}},
   every axis plot/.append style={{line width=0.7pt, mark size=1.1pt}},
-  xlabel={{group of one district $k$}},
+  xlabel={{group of one zone $k$}},
   xtick={{{ticks}}}, xticklabels={{{','.join(names[p] for p in depths)}}},
 ]
 \nextgroupplot[
@@ -105,7 +105,7 @@ def fig_kappa():
 \end{{groupplot}}
 \end{{tikzpicture}}\\[2pt]
 \ref{{leg:kappa}}
-\caption{{Scaling the group $k$ of one district on the delivery designs (\ref{{rq:op}}): (a) one reassignment (solid) and one van swap (dashed), (b) one entering tuple, conflicting (solid) and clean (dashed); labels give the time on \Dstr{{}} as a multiple of the time on \Dupd{{}}.}}
+\caption{{Scaling the group $k$ of one zone on the delivery designs (\ref{{rq:op}}): (a) one reassignment (solid) and one van swap (dashed), (b) one entering tuple, conflicting (solid) and clean (dashed); labels give the time on \Dstr{{}} as a multiple of the time on \Dupd{{}}.}}
 \label{{fig:kappa}}
 \end{{figure}}"""
 
@@ -345,7 +345,7 @@ def fig_window():
 \begin{{axis}}[
   height=3.3cm, width=0.93\columnwidth,
   xmode=log, log basis x=2, ymode=log,
-  xlabel={{deliveries a district carries}}, ylabel={{window (s)}},
+  xlabel={{deliveries a zone carries}}, ylabel={{window (s)}},
   label style={{font=\scriptsize}}, tick label style={{font=\scriptsize}},
   legend style={{font=\scriptsize, draw=none, fill=none, at={{(0.02,0.97)}},
                 anchor=north west, row sep=-1pt,

@@ -410,8 +410,8 @@ def _check_projection(name="breast"):
 
 def delivery_example():
     """The delivery running example of the paper, over
-    R = {b, c, d, g, r, v, y} = branch, courier, district, gps, round, van, day,
-    encoded as b=0, c=1, d=2, g=3, r=4, v=5, y=6.
+    R = {b, c, d, g, r, v, z} = branch, courier, day, gps, round, van, zone,
+    encoded as b=0, c=1, d=2, g=3, r=4, v=5, z=6.
 
     Returns (R, atomic closure of the reduct, minimal keys, heat map), the heat
     map declaring the two modes that a reassignment refreshes hot at level 8 and
@@ -420,12 +420,12 @@ def delivery_example():
     import itertools
     R = frozenset(range(7))
     declared = [
-        ({2},       {1}),   # d   -> c   the hot rule, from the eFD (cdg; d->c)
-        ({0, 1, 6}, {2}),   # bcy -> d
+        ({6},       {1}),   # z   -> c   the hot rule, from the eFD (cgz; z->c)
+        ({0, 1, 2}, {6}),   # bcd -> z
         ({0, 1},    {5}),   # bc  -> v
         ({0, 5},    {1}),   # bv  -> c   refreshed by the same reassignment
         ({1, 5},    {4}),   # cv  -> r
-        ({2, 4},    {0}),   # dr  -> b
+        ({4, 6},    {0}),   # rz  -> b
         ({5},       {3}),   # v   -> g
     ]
     sigma0 = [(frozenset(l), frozenset(r)) for l, r in declared]
@@ -440,7 +440,7 @@ def delivery_example():
                 if minimal:
                     atomic.append((Xs, frozenset({a})))
     keys = minimal_keys(R, atomic)
-    hot = {(frozenset({2}), frozenset({1})): 8,
+    hot = {(frozenset({6}), frozenset({1})): 8,
            (frozenset({0, 5}), frozenset({1})): 8}
     return R, atomic, keys, hot
 
@@ -459,10 +459,10 @@ def _selfcheck():
         print(f"  {mode:10s} schemata={len(D)} lossless=OK dep_preserving=OK")
 
     # Regression for the separation of the paper's Figure 1. The two designs part on the
-    # rule that determines the district: the structure-optimal objective orders critical
-    # schemata by the NUMBER of non-key FDs, so it drops bvy->d and keeps bcdy, which stores
+    # rule that determines the zone: the structure-optimal objective orders critical
+    # schemata by the NUMBER of non-key FDs, so it drops bdv->z and keeps bcdz, which stores
     # the hot rule and has maximal E-heat 8; the heat-aware objective orders them by heat, so
-    # it drops bcy->d, keeps bdvy and gives the district its own key subschema cd, for a
+    # it drops bcd->z, keeps bdvz and gives the zone its own key subschema cz, for a
     # maximal E-heat of 2, which is the floor h* of the selection lower bound.
     mx_ha = decomp_max_hot(synthesize(R, sigma, keys, "ha", hot=hot), hot)
     mx_so = decomp_max_hot(synthesize(R, sigma, keys, "so", hot=hot), hot)

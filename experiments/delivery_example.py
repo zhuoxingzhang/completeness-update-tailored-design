@@ -2,8 +2,8 @@
 """The snapshot the paper prints, checked against the rules it is supposed to illustrate.
 
 Six deliveries, five of them complete and one still pending because its van has not reported
-in.  District D1 is covered by Maggie on three of the complete tuples, which is the redundancy
-the hot rule carries, and the pending tuple claims Ravi for D1, which is a conflict no
+in.  Zone Z1 is covered by Maggie on three of the complete tuples, which is the redundancy
+the hot rule carries, and the pending tuple claims Ravi for Z1, which is a conflict no
 constraint can see while the tuple sits outside the scope.  The script checks that the five
 complete tuples satisfy every rule, that the pending one violates the hot rule and nothing
 else, and prints what each design stores.
@@ -21,12 +21,12 @@ import delivery_curves as C
 
 NUL = "-"
 ROWS = [
-    ("t1", "North", "Maggie", "D1", "Telco-A", "R1", "V7", "Mon"),
-    ("t2", "South", "Maggie", "D1", "Telco-B", "R2", "V9", "Mon"),
-    ("t3", "North", "Maggie", "D1", "Telco-A", "R1", "V7", "Wed"),
-    ("t4", "North", "Maggie", "D2", "Telco-A", "R1", "V7", "Tue"),
-    ("t5", "North", "Ravi", "D3", "Telco-B", "R2", "V4", "Mon"),
-    ("t6", "South", "Ravi", "D1", NUL, "R2", "V4", "Tue"),
+    ("t1", "North", "Maggie", "Mon", "Telco-A", "R1", "V7", "Z1"),
+    ("t2", "South", "Maggie", "Mon", "Telco-B", "R2", "V9", "Z1"),
+    ("t3", "North", "Maggie", "Wed", "Telco-A", "R1", "V7", "Z1"),
+    ("t4", "North", "Maggie", "Tue", "Telco-A", "R1", "V7", "Z2"),
+    ("t5", "North", "Ravi", "Mon", "Telco-B", "R2", "V4", "Z3"),
+    ("t6", "South", "Ravi", "Tue", NUL, "R2", "V4", "Z1"),
 ]
 SCOPE = [r[1:] for r in ROWS if NUL not in r]
 PENDING = [r[1:] for r in ROWS if NUL in r]

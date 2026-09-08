@@ -2,22 +2,22 @@
 """An exact, parameterised instance of the schema the running example is to be built on.
 
 The relation records deliveries: on a day, a courier works out of a branch, drives a van on
-a round, and covers a district.  A van reports through one GPS network, which is recorded only
+a round, and covers a zone.  A van reports through one GPS network, which is recorded only
 once its unit has first reported in, so a tuple can stay pending until then.
 
-    d -> c      a district is covered by one courier on duty
-    bcy -> d    a courier covers one district per branch and day
+    z -> c      a zone is covered by one courier on duty
+    bcd -> z    a courier covers one zone per branch and day
     bc -> v     at a branch a courier drives one van
     bv -> c     at a branch a van is driven by one courier
     cv -> r     a courier and a van work one round
-    dr -> b     a round covering a district belongs to one branch
+    rz -> b     a round covering a zone belongs to one branch
     v -> g      a van reports through one GPS network
 
 What none of them says matters as much.  Branches share their route numbering and neighbouring
-districts are served from either branch, so neither the district nor the van alone fixes the branch or
+zones are served from either branch, so neither the zone nor the van alone fixes the branch or
 the courier, and round numbers are reused, so a round identifies nobody by itself.  The
 closure admits four designs in two families, and the families part in opposite directions:
-one keeps the district's courier under a key, the other keeps the branch's van under one, and
+one keeps the zone's courier under a key, the other keeps the branch's van under one, and
 which is cheaper is decided by which of the two reassignments the window carries.  Two designs
 in one family differ by 0.4% over a window, so it is the family a criterion has to reach.
 
@@ -51,10 +51,10 @@ def result(name):
     return os.path.join(CFG.RESULTS, name)
 
 
-ATTRS = "bcdgrvy"          # branch, courier, district, gps, round, van, day
+ATTRS = "bcdgrvz"          # branch, courier, day, gps, round, van, zone
 AID = {a: i for i, a in enumerate(ATTRS)}
 INV = {i: a for a, i in AID.items()}
-RULES = ["d>c", "bcy>d", "bc>v", "bv>c", "cv>r", "dr>b", "v>g"]
+RULES = ["z>c", "bcd>z", "bc>v", "bv>c", "cv>r", "rz>b", "v>g"]
 ORDER = ["3NF", "SO", "HA"]
 MODE = {"3NF": "3nf", "SO": "so", "HA": "ha"}
 
@@ -108,46 +108,46 @@ def designs(heat, atom=None):
 
 
 class Instance:
-    """The delivery relation, with the depth of the district's group given.
+    """The delivery relation, with the depth of the zone's group given.
 
-    A courier covers `districts` of them and works one at each branch and day, chosen
-    by the branch and the day together, so a courier does not determine a district and a
-    district is worked at more than one branch.  Vans are numbered across the whole company
+    A courier covers `zones` of them and works one at each branch and day, chosen
+    by the branch and the day together, so a courier does not determine a zone and a
+    zone is worked at more than one branch.  Vans are numbered across the whole company
     and rotate between branches, so a van names its courier only together with a branch;
     round numbers are reused the same way.  Every group a rule ranges over then scales with
-    the branches and the days, and the district's group holds `branches * days / districts`
+    the branches and the days, and the zone's group holds `branches * days / zones`
     tuples.
     """
 
-    def __init__(self, couriers=6, branches=3, districts=2, days=8):
-        assert districts >= 2, "a courier covers more than one district, or a courier is one"
+    def __init__(self, couriers=6, branches=3, zones=2, days=8):
+        assert zones >= 2, "a courier covers more than one zone, or a courier is one"
         assert branches >= 2 and days >= 2 and couriers >= branches
-        assert (branches * days) % districts == 0, "every district needs as many tuples"
-        self.A, self.Bn, self.m, self.E = couriers, branches, districts, days
+        assert (branches * days) % zones == 0, "every zone needs as many tuples"
+        self.A, self.Bn, self.m, self.E = couriers, branches, zones, days
         self.n = couriers * branches * days
-        self.depth = branches * days // districts
+        self.depth = branches * days // zones
 
-    def tup(self, c, b, y):
-        d = c * self.m + (b + y) % self.m
+    def tup(self, c, b, d):
+        z = c * self.m + (b + d) % self.m
         v = (c + b) % self.A
         r = (2 * c + b) % self.Bn
-        return (200 + b, 100 + c, 400 + d, 700 + v % 3, 300 + r, 600 + v, 500 + y)
+        return (200 + b, 100 + c, 500 + d, 700 + v % 3, 300 + r, 600 + v, 400 + z)
 
     def rows(self):
         for c in range(self.A):
             for b in range(self.Bn):
-                for y in range(self.E):
-                    yield self.tup(c, b, y)
+                for d in range(self.E):
+                    yield self.tup(c, b, d)
 
     def fresh_tuple(self, c, b, k):
-        """A delivery a courier makes on a new day, covering a district opened for it.
+        """A delivery a courier makes on a new day, covering a zone opened for it.
 
-        The day and the district are new and the rest is the courier's own, so the tuple
+        The day and the zone are new and the rest is the courier's own, so the tuple
         satisfies every rule on arrival; `k` numbers the arrivals, so a window that adds two
         deliveries adds two rows rather than writing the same row twice.
         """
         t = list(self.tup(c, b, 0))
-        t[AID["d"]], t[AID["y"]] = 900_000 + k, 800_000 + k
+        t[AID["z"]], t[AID["d"]] = 900_000 + k, 800_000 + k
         return tuple(t)
 
 
@@ -321,26 +321,26 @@ def entry_cost(D, tup, sup, sign, remainder=0):
 # ---- the window -------------------------------------------------------------
 # One refresh per attribute the schema lets an update touch, so the window leaves out no
 # operation the rules admit, plus the operations that move a tuple across the scope.
-REFRESH = {"reassign": "c", "transfer": "b", "reroute": "r", "redistrict": "d",
+REFRESH = {"reassign": "c", "transfer": "b", "reroute": "r", "rezone": "z",
            "swap": "v", "retag": "g"}
 OPS = list(REFRESH) + ["completion_clean", "completion_conflict", "retraction",
                        "insert_total", "insert_partial", "delete"]
 
 # Rates per window of 1,000 updates.  The first is a delivery desk, where the courier on duty
-# for a district is reassigned all day and the fleet stands still; the second is the same company
+# for a zone is reassigned all day and the fleet stands still; the second is the same company
 # read from the workshop, where vans go in and out of service and the rounds keep their
 # couriers.  The third splits the difference.  Everything outside the two hot operations is
 # held fixed across the three, so what moves between them is the mix, not the volume.
 MIXES = {
-    "desk": {"reassign": 0.30, "swap": 0.02, "reroute": 0.03, "redistrict": 0.05,
+    "desk": {"reassign": 0.30, "swap": 0.02, "reroute": 0.03, "rezone": 0.05,
              "transfer": 0.01, "retag": 0.01, "completion_clean": 0.12,
              "completion_conflict": 0.02, "retraction": 0.05, "insert_total": 0.20,
              "insert_partial": 0.10, "delete": 0.09},
-    "fleet": {"reassign": 0.02, "swap": 0.30, "reroute": 0.03, "redistrict": 0.05,
+    "fleet": {"reassign": 0.02, "swap": 0.30, "reroute": 0.03, "rezone": 0.05,
               "transfer": 0.01, "retag": 0.01, "completion_clean": 0.12,
               "completion_conflict": 0.02, "retraction": 0.05, "insert_total": 0.20,
               "insert_partial": 0.10, "delete": 0.09},
-    "mixed": {"reassign": 0.16, "swap": 0.16, "reroute": 0.03, "redistrict": 0.05,
+    "mixed": {"reassign": 0.16, "swap": 0.16, "reroute": 0.03, "rezone": 0.05,
               "transfer": 0.01, "retag": 0.01, "completion_clean": 0.12,
               "completion_conflict": 0.02, "retraction": 0.05, "insert_total": 0.20,
               "insert_partial": 0.10, "delete": 0.09},
@@ -437,7 +437,7 @@ def resolve(rel, ref):
 
     A position names a tuple the instance already held.  A `new` reference names a delivery
     that has still to arrive: the courier of that tuple, out of the same branch and in the
-    same van, covering a district opened for it on a date it has not worked.  Deriving it from
+    same van, covering a zone opened for it on a date it has not worked.  Deriving it from
     the tuple as the window has left it rather than as the instance built it is what keeps it
     consistent, since a courier the window has already replaced no longer drives that van.
     """
@@ -450,7 +450,7 @@ def resolve(rel, ref):
         if base is None:
             return None
         t = list(base)
-        t[AID["d"]], t[AID["y"]] = 900_000 + ref[2], 800_000 + ref[2]
+        t[AID["z"]], t[AID["d"]] = 900_000 + ref[2], 800_000 + ref[2]
         return tuple(t)
     return ref
 
@@ -664,11 +664,11 @@ def run_window(inst, comp, mix, reps, channel, cache=None, name=""):
 
 
 def main_window(out=result("rq7_window_model.json")):
-    """The window on each criterion, over the district's group, the mix and the declaration."""
+    """The window on each criterion, over the zone's group, the mix and the declaration."""
     res, days = [], (16, 32, 64, 128)
     depths = []
     for d in days:
-        inst = Instance(couriers=6, branches=3, districts=2, days=d)
+        inst = Instance(couriers=6, branches=3, zones=2, days=d)
         rows = list(inst.rows())
         comp = {a: components(rows, AID[a]) for a in REFRESH.values()}
         cache = {}
@@ -708,7 +708,7 @@ def main_orders(reps=200):
     their input arrives in, so a design that a criterion reaches on one listing of the closure
     is only evidence if it reaches it on every listing.
     """
-    inst = Instance(couriers=6, branches=3, districts=2, days=16)
+    inst = Instance(couriers=6, branches=3, zones=2, days=16)
     rows = list(inst.rows())
     comp = {a: components(rows, AID[a]) for a in REFRESH.values()}
     rng = random.Random(0)
@@ -730,7 +730,7 @@ def main_orders(reps=200):
 
 
 def main_costs():
-    """What each reassignment costs on each design, as the district's group grows."""
+    """What each reassignment costs on each design, as the zone's group grows."""
     ops = {}
     for X, A in ATOM:
         ops.setdefault(nm(A), []).append((X, A))
@@ -747,7 +747,7 @@ def main_costs():
     print()
     print(f"  {head:<26}" + "".join(f"{'change ' + a:>26}" for a in ("c", "v", "b")))
     for days in (4, 8, 16, 32):
-        inst = Instance(couriers=6, branches=3, districts=2, days=days)
+        inst = Instance(couriers=6, branches=3, zones=2, days=days)
         rows = list(inst.rows())
         sup = {k: support(rows, D) for k, D in named.items()}
         line = f"  {inst.n:>6,} tuples, group {inst.depth:<3} "
@@ -779,11 +779,11 @@ def main_check():
             print(f"    {lab:<4} {' '.join(nm(XA) for XA, _, _ in D[lab])}  "
                   f"({len(D[lab])} subschemata, {cols} columns)")
 
-    small = Instance(couriers=4, branches=2, districts=2, days=4)
+    small = Instance(couriers=4, branches=2, zones=2, days=4)
     rows = list(small.rows())
     extra, missing = verify_exact(rows + core_rows())
     print(f"\n  instance {small.n:,} tuples ({len(set(rows))} distinct) + "
-          f"{len(core_rows())} witnesses, district group {small.depth}: "
+          f"{len(core_rows())} witnesses, zone group {small.depth}: "
           f"extra {extra or 'none'}, missing {missing or 'none'}")
 
 

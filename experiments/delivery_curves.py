@@ -35,8 +35,8 @@ OPS = ["reassign", "swap", "completion_clean", "completion_conflict", "insert_to
 
 
 def inst_of(depth):
-    """The instance whose district holds `depth` deliveries."""
-    return S.Instance(couriers=6, branches=3, districts=2, days=depth * 2 // 3)
+    """The instance whose zone holds `depth` deliveries."""
+    return S.Instance(couriers=6, branches=3, zones=2, days=depth * 2 // 3)
 
 
 def two_designs():
@@ -117,14 +117,14 @@ def drift(depth=192, reps=1000, fracs=(0.25, 0.5, 0.75, 1.0)):
 
     A tuple whose tracker is not yet registered sits outside the scope, so it is neither
     stored by the design nor counted by any rule; the sweep takes the first `frac` of each
-    district into the scope and prices the window on what is left.
+    zone into the scope and prices the window on what is left.
     """
     res = []
     for frac in fracs:
         inst = inst_of(depth)
         seen, rows, cap = {}, [], max(1, int(round(frac * inst.depth)))
         for t in inst.rows():
-            k = t[S.AID["d"]]
+            k = t[S.AID["z"]]
             seen[k] = seen.get(k, 0) + 1
             rows.append(t if seen[k] <= cap else None)
         named = two_designs()

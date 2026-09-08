@@ -126,7 +126,7 @@ def build(inst, D, rel):
         defs += [f"UNIQUE KEY u{i}({','.join(k)})" for i, k in enumerate(ks[1:])]
         stmts.append(f"CREATE TABLE {t}({', '.join(defs)}) ENGINE=InnoDB;")
     stmts.append(f"CREATE TABLE {REST}(" + ", ".join(f"{a} BIGINT" for a in S.ATTRS)
-                 + ", PRIMARY KEY(" + ",".join(sorted("bcy")) + ")) ENGINE=InnoDB;")
+                 + ", PRIMARY KEY(" + ",".join(sorted("bcd")) + ")) ENGINE=InnoDB;")
     sh("\n".join(stmts))
     for t in tabs:
         idx = [S.AID[c] for c in t]
@@ -232,9 +232,9 @@ class Live:
             elif sign < 0 and have == 1:
                 out.append((f"DELETE FROM {cols} WHERE {where(cols, [row])};", 1))
         if rem:
-            key = [tuple(t[S.AID[c]] for c in "bcy")]
+            key = [tuple(t[S.AID[c]] for c in "bcd")]
             if sign > 0:
-                out.append((f"DELETE FROM {REST} WHERE {where('bcy', key)};", 1))
+                out.append((f"DELETE FROM {REST} WHERE {where('bcd', key)};", 1))
             else:
                 out.append((f"INSERT IGNORE INTO {REST}({','.join(S.ATTRS)}) VALUES "
                             + "(" + ",".join(map(str, t)) + ");", 1))
@@ -305,7 +305,7 @@ def reads(inst, D, rel, floor=0.05, cap=512):
     and the difference of two batches cancels whatever the call itself costs.
     """
     t = rel[len(rel) // 2]
-    key = " AND ".join(f"{c}={t[S.AID[c]]}" for c in "bdy")
+    key = " AND ".join(f"{c}={t[S.AID[c]]}" for c in "bdz")
     q = reconstruct(D)
     out = {}
 
