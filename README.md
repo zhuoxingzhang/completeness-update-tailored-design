@@ -90,7 +90,7 @@ inflated by parallel contention; the synthesis times quoted in the paper were me
 | `experiments/delivery_live.py` | Table 10 and Figure 8 (RQ7, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
 | `experiments/delivery_curves.py` | Figure 5 and Table 8 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
 | `experiments/delivery_tables.py` | every figure and table of the delivery study as LaTeX, from the result files above |
-| `experiments/reduct_frontend.py` | Table 4 (RQ2, maximal and total design heat at `p = 0.5`) and Table 5 (the sweep over `p`); `results/rq2_reducts.json` |
+| `experiments/reduct_frontend.py` | Table 4 (RQ2, maximal and total design heat at `p = 0.5`), Table 5 (the sweep over `p`) and Figure 3(a); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
 | `experiments/redundancy_study.py` | Table 6 (RQ2, redundant value occurrences) † |
 | `experiments/real_workload.py` | RQ6 null control on routes and the heat-channel runs on ncvoter (`results/rq6_end_to_end.json`) † |
