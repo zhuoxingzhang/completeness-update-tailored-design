@@ -180,7 +180,7 @@ def fig_curves():
   xmode=log, log basis x=2,
   xlabel={{reassignments per van swap}}, ylabel={{rows written}},
   xtick={{0.0625,0.25,1,4,16}},
-  xticklabels={{$\frac{{1}}{{16}}$,$\frac{{1}}{{4}}$,1,4,16}},
+  xticklabels={{$1/16$,$1/4$,1,4,16}},
   ytick={{10000,30000,100000}}, yticklabels={{10k,30k,100k}},
   legend to name=leg:curves, legend columns=2,
 ]
