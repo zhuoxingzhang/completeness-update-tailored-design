@@ -5,6 +5,7 @@ Every figure and table of the delivery study is emitted here rather than typed i
 paper, so that a rerun of a study changes the paper by regenerating this output and never by
 hand.  Blocks are written one file each under `blocks/`, and the paper splices them in.
 
+    tab_mix      what one window of each profile holds                the rates below
     fig_kappa    one update of each kind, over group depths          rq1_operations.json
     fig_curves   the window as the traffic and the scope move        rq4_rq5_curves.json
     tab_decl     what each way of declaring heat costs                rq4_rq5_curves.json
@@ -236,6 +237,48 @@ heat declared & {" & ".join(names[m] for m in mixes)}\\
 \end{{table}}"""
 
 
+# ---- the workload -----------------------------------------------------------
+LABEL = {"reassign": "courier of a zone", "swap": "van of a courier",
+         "rezone": "zone of a delivery", "reroute": "round of a van",
+         "transfer": "branch of a round", "retag": "network of a van",
+         "completion_clean": "completion, clean",
+         "completion_conflict": "completion, conflicting",
+         "retraction": "retraction", "insert_total": r"insertion, $E$-total",
+         "insert_partial": "insertion, pending", "delete": "deletion"}
+
+
+def tab_mix(reps=1000):
+    """What one window holds, read off the rates the window generator declares."""
+    import delivery_schema as S
+    mixes = ("desk", "mixed", "fleet")
+    names = {"desk": "delivery desk", "mixed": "split", "fleet": "fleet office"}
+    n = lambda op, m: int(round(S.MIXES[m][op] * reps))
+    for m in mixes:
+        assert sum(n(op, m) for op in S.OPS) == reps, (m, reps)
+    assert set(S.REFRESH.values()) == {S.INV[next(iter(A))] for _, A in S.SIGMA}, \
+        "a rule determines an attribute the window never refreshes"
+    hot = sorted(S.REFRESH, key=lambda op: -max(n(op, m) for m in mixes))
+    rest = [op for op in S.OPS if op not in S.REFRESH]
+    rows = lambda ops: "\n".join(
+        LABEL[op] + "".join(f" & {n(op, m)}" for m in mixes) + r"\\" for op in ops)
+    return rf"""\begin{{table}}
+\caption{{The three declared workloads (\ref{{rq:skew}}, \ref{{rq:robust}}, \ref{{rq:window}}): the updates of one window of ${reps // 1000}{{,}}{reps % 1000:03d}$, by kind.
+Above the line, one refresh per attribute that a rule of Ex.~\ref{{ex:courier}} determines; below it, the completions, retractions, insertions, and deletions.}}
+\label{{tab:mix}}
+\scriptsize
+\setlength{{\tabcolsep}}{{4pt}}
+\begin{{tabular}}{{@{{}}l rrr@{{}}}}
+\toprule
+update & {" & ".join(names[m] for m in mixes)}\\
+\midrule
+{rows(hot)}
+\midrule
+{rows(rest)}
+\bottomrule
+\end{{tabular}}
+\end{{table}}"""
+
+
 # ---- RQ3 --------------------------------------------------------------------
 def tab_side():
     r = load("rq3_reads.json")
@@ -378,7 +421,7 @@ def fig_window():
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for name, fn in (("fig_kappa", fig_kappa), ("tab_ops", tab_ops),
+    for name, fn in (("tab_mix", tab_mix), ("fig_kappa", fig_kappa), ("tab_ops", tab_ops),
                      ("fig_mixed", fig_mixed),
                      ("tab_side", tab_side), ("fig_curves", fig_curves),
                      ("tab_decl", tab_decl),
