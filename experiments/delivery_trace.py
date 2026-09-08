@@ -46,6 +46,13 @@ def order_of(mode, heat, prep):
             lambda fd: f"heat={hotness(fd)}")
 
 
+def heat_of(XA, heat, prep):
+    """The heat of one schema: its non-key atomic FDs, summed."""
+    proj = prep["proj"].get(XA) or S.ATOM
+    keys = prep["mkeys"].get(XA) or B.minimal_keys(XA, S.ATOM)
+    return sum(B.fd_hot(g, heat) for g in B.schema_nonkey(XA, proj, keys, heat))
+
+
 def trace(mode, heat, prep):
     """One elimination pass, reporting what it drops and what it keeps."""
     order, label = order_of(mode, heat, prep)
@@ -67,10 +74,12 @@ def main():
     crit = {S.nm(fd[0] | fd[1]) for fd in prep["crit"]}
     print(f"  R = {S.ATTRS}, {len(S.ATOM)} atomic FDs, hot operation: change {x}")
     print(f"  critical subschemata (they store non-key FDs): {' '.join(sorted(crit))}\n")
+    designs = {}
     for mode, lab in (("so", "SO, by non-key FD count"),
                       ("ha", "HA, by subschema heat"),
                       ("3nf", "3NF, in the order the closure arrives")):
         order, label, dropped, built, kept = trace(mode, heat, prep)
+        designs[mode] = kept
         print(f"  {lab}")
         for fd in order[:8]:
             mark = "dropped" if fd in dropped else "kept   "
@@ -81,6 +90,12 @@ def main():
                   f"{len([f for f in order[8:] if f in dropped])} dropped")
         print(f"    result {' '.join(sorted(S.nm(XA) for XA in kept))}"
               f"  ({len(kept)} subschemata, {sum(len(XA) for XA in kept)} columns)\n")
+
+    R = frozenset(range(len(S.ATTRS)))
+    every = sorted({XA for kept in designs.values() for XA in kept}, key=S.nm)
+    print(f"  heat of R: {heat_of(R, heat, prep)}")
+    print("  heat of each subschema a design keeps: "
+          + "  ".join(f"{S.nm(XA)} {heat_of(XA, heat, prep)}" for XA in every))
 
 
 if __name__ == "__main__":

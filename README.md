@@ -44,17 +44,26 @@ eliminated first. That line is what the experiments measure.
 python src/synthesis.py
 ```
 
-This runs the engine's self-check on the courier-dispatch running example of the
-paper. It verifies that every objective returns a lossless, dependency-preserving
+This runs the engine's self-check on the delivery running example of the paper.
+It verifies that every objective returns a lossless, dependency-preserving
 design, and reproduces the separation of Figure 1: the structure-optimal design
 has maximal subschema heat 8, the heat-aware design has 2.
 
 ```bash
-python experiments/courier_example.py
+python experiments/delivery_example.py
 ```
 
-prints both designs of Figure 1 subschema by subschema, with minimal keys,
-non-key FDs, and per-subschema heat.
+prints the six-tuple snapshot of Table 1 and both designs of Figure 1 subschema
+by subschema, with their minimal keys and the rows each one stores, and checks
+the snapshot against the rules it illustrates.
+
+```bash
+python experiments/delivery_schema.py --orders
+```
+
+shuffles the atomic closure 200 times and reports the design each objective
+returns on each listing. Both objectives break ties by input order, so this is
+what says whether a separation rests on the criterion or on the tie break.
 
 ```bash
 python experiments/reduct_frontend.py
@@ -72,24 +81,29 @@ inflated by parallel contention; the synthesis times quoted in the paper were me
 
 | Script | Produces |
 |---|---|
-| `experiments/courier_example.py` | Figure 1, Example "Heat of the courier subschemata" |
+| `experiments/delivery_example.py` | Table 1 and Figure 1 |
+| `experiments/delivery_trace.py` | Examples "Heat of the delivery subschemata" and "Synthesis on the delivery reduct": the eliminations each objective performs, the number it ranks by, and the heat of the reduct and of every subschema a design keeps |
+| `experiments/delivery_schema.py` | the schema, the instance generator and the offline cost model the other delivery scripts import; `--orders` for the order study above, `--costs` for the rows one update of each kind rewrites, `--window` for `results/rq7_window_model.json` |
+| `experiments/delivery_live.py --ops` | Figure 2 (RQ1, one update of each kind over group depths; `results/rq1_operations.json`) † |
+| `experiments/delivery_live.py --mixed` | Figure 4 and the first row of Table 6 (RQ3, refreshes with a growing completion share; `results/rq3_mixed.json`) † |
+| `experiments/delivery_live.py --reads` | Table 6 (RQ3, reconstruction, key lookups, history, storage; `results/rq3_reads.json`) † |
+| `experiments/delivery_live.py` | Table 9 and Figure 8 (RQ7, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
+| `experiments/delivery_curves.py` | Figure 5 and Table 7 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
+| `experiments/delivery_tables.py` | every figure and table of the delivery study as LaTeX, from the result files above |
 | `experiments/reduct_frontend.py` | Table 3 (RQ2, maximal and total design heat at `p = 0.5`) and Table 4 (the sweep over `p`); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
 | `experiments/redundancy_study.py` | Table 5 (RQ2, redundant value occurrences) † |
-| `experiments/mini_courier.py` | Figure 2 (RQ1, controlled-redundancy sweep) † |
-| `experiments/ext_courier.py` | Figure 4 (RQ3, mixed workloads), Figure 5 (RQ4/RQ5), Table 6 bottom (RQ5, misestimated declaration) † |
-| `experiments/ext_e4plus.py` | RQ4 and RQ5 robustness curves † |
-| `experiments/query_study.py` | Table 6 top (RQ3 read half: reconstruction, lookups, history, storage) † |
 | `experiments/real_workload.py` | RQ6 null control on routes and the heat-channel runs on ncvoter (`results/rq6_end_to_end.json`) † |
 | `experiments/weather_census.py` | Figure 6 (RQ6, counting census over the fat rules of weather; `results/rq6_weather_census.json`) † |
-| `experiments/weather_rules.py` | Table 7 (RQ6, live runs of the five separating weather rules on their storing subschemata; `results/rq6_weather_rules_*.json`) † |
-| `experiments/weather_rows.py` | Table 7, rows column: rows one refresh of the 20 deepest groups rewrites, counted offline on the storing subschemata (`results/rq6_weather_rows.json`) |
+| `experiments/weather_rules.py` | Table 8 (RQ6, live runs of the five separating weather rules on their storing subschemata; `results/rq6_weather_rules_*.json`) † |
+| `experiments/weather_rows.py` | Table 8, rows column: rows one refresh of the 20 deepest groups rewrites, counted offline on the storing subschemata (`results/rq6_weather_rows.json`) |
 | `experiments/weather_full.py` | Figure 7 (RQ6, full materialization and whole workload on the widest-gap rule; `results/rq6_weather_full.json`) † |
 | `experiments/weather_recon.py` | Figure 7, reconstruction re-measured on the designs `weather_full.py` leaves in place (`results/rq6_weather_reconstruction.json`) † |
 | `experiments/dataset_stats.py` | Table 2 (dataset dimensions) † |
 
 `weather_rules.py`, `weather_full.py` and `weather_recon.py` share the front end
-`weather_common.py`.
+`weather_common.py`; the four `delivery_live.py` studies share `delivery_schema.py`
+and `delivery_curves.py`.
 
 † needs a MySQL server; see below.
 
@@ -97,9 +111,10 @@ Scripts marked † build and populate MySQL databases of their own and drop them
 again. They assume a server they may create and drop schemas on; point them at a
 scratch instance rather than a production one.
 
-`mini_courier.py` accepts `--tiny` for a single small scale and
-`--scales 1000,10000` for an explicit list, which is the fastest way to see the
-mechanism without waiting for the full sweep to `10^6` rows.
+`delivery_live.py` accepts `--dry` for the row counts alone, which needs no
+server and is the fastest way to see the mechanism, `--verify` to run one window
+on both designs and compare the reconstructed relations by count and checksum,
+and `--tiny` for a single small scale.
 
 ## Setup
 
@@ -122,8 +137,10 @@ environment, with portable defaults:
 | `CUTD_MYSQL_USER` | `root` | user |
 | `CUTD_MYSQL_PASSWORD` | *(empty)* | password |
 | `CUTD_MYSQL_DB` | `benchmarks` | database holding the benchmark relations |
+| `CUTD_DELIVERY_DB` | `delivery_study` | database the delivery study builds its designs in |
 | `CUTD_MYSQL_CLIENT` | `mysql` | path to the command-line client |
 | `CUTD_FD_BASE` | `data/fd` | directory of the constraint sets |
+| `CUTD_SCRATCH` | `.scratch` | directory for bulk-load temporaries |
 
 For example:
 
@@ -131,6 +148,9 @@ For example:
 export CUTD_MYSQL_PASSWORD=secret
 export CUTD_MYSQL_DB=benchmarks
 ```
+
+The delivery study raises the buffer pool for a run and restores it afterwards,
+which needs a server the configured user may set global variables on.
 
 ### Benchmark relations
 
@@ -144,9 +164,12 @@ The operational studies expect the two NULL readings as separate tables, named
 directories. `experiments/redundancy_study.py` documents the calibration step
 that aligns a loaded table with its mined constraint set.
 
-The controlled studies (`mini_courier.py`, `ext_courier.py`, `query_study.py`)
-need no benchmark data at all: they generate Armstrong relations for the courier
-schema that satisfy exactly the declared constraints and nothing more.
+The delivery studies (`delivery_live.py`, `delivery_curves.py`) need no benchmark
+data at all: they generate an instance of the delivery schema that satisfies the
+declared rules and, by the Armstrong witnesses appended in a disjoint value
+range, nothing more. `delivery_schema.py` recomputes the instance's own
+dependencies over all seven attributes and compares them against the closure
+before every run.
 
 ## Data format
 

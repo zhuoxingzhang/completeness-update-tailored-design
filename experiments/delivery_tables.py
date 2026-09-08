@@ -6,11 +6,11 @@ paper, so that a rerun of a study changes the paper by regenerating this output 
 hand.  Blocks are written one file each under `blocks/`, and the paper splices them in.
 
     fig_kappa    one update of each kind, over group depths          rq1_operations.json
-    fig_curves   the window as the traffic and the scope move        delivery_curves.json
-    tab_decl     what each way of declaring heat costs                delivery_curves.json
+    fig_curves   the window as the traffic and the scope move        rq4_rq5_curves.json
+    tab_decl     what each way of declaring heat costs                rq4_rq5_curves.json
     tab_side     the read side and what it costs to store            rq3_reads.json
-    tab_window   one window under three rate profiles                delivery_live.json
-    fig_window   the window as the group grows                       delivery_live.json
+    tab_window   one window under three rate profiles                rq7_window.json
+    fig_window   the window as the group grows                       rq7_window.json
 
 Usage: python delivery_tables.py
 """
@@ -46,7 +46,7 @@ def coords(pairs, fmt="{:.6g}"):
 def decades(vals):
     """Tick positions from a decimal ladder that the given values span."""
     lo, hi = min(vals), max(vals)
-    rung = [x * 10 ** e for e in range(-3, 6) for x in (1, 2, 3, 5)]
+    rung = [x * 10 ** e for e in range(-3, 6) for x in (1, 2, 5)]
     keep = [t for t in rung if lo / 1.6 <= t <= hi * 1.6]
     return ",".join(f"{t:g}" for t in keep)
 
@@ -111,7 +111,7 @@ def fig_kappa():
 
 # ---- RQ4 and RQ5a -----------------------------------------------------------
 def fig_curves():
-    d = load("delivery_curves.json")
+    d = load("rq4_rq5_curves.json")
     sk, dr = d["skew"], d["drift"]
     return rf"""\begin{{figure}}
 \centering
@@ -156,7 +156,7 @@ def fig_curves():
 
 def tab_decl():
     """What heat-aware synthesis pays under each declaration, per profile."""
-    d = load("delivery_curves.json")["misestimate"]
+    d = load("rq4_rq5_curves.json")["misestimate"]
     mixes = ("desk", "mixed", "fleet")
     names = {"desk": "delivery desk", "mixed": "split", "fleet": "fleet office"}
     chans = [("rate", "by the measured rates"),
@@ -245,7 +245,7 @@ def fig_mixed():
 
 # ---- RQ7 --------------------------------------------------------------------
 def _win(depth):
-    d = load("delivery_live.json")
+    d = load("rq7_window.json")
     out = {}
     for mix in ("desk", "mixed", "fleet"):
         r = {x["design"]: x for x in d if x["depth"] == depth and x["mix"] == mix}
@@ -255,7 +255,7 @@ def _win(depth):
 
 
 def tab_window():
-    d = load("delivery_live.json")
+    d = load("rq7_window.json")
     depth = max(x["depth"] for x in d)
     n = max(x["n"] for x in d if x["depth"] == depth)
     w = _win(depth)
@@ -283,7 +283,7 @@ window & \Dstr{{}} & \Dupd{{}} & ratio & \Dstr{{}} & \Dupd{{}} & ratio\\
 
 
 def fig_window():
-    d = load("delivery_live.json")
+    d = load("rq7_window.json")
     depths = sorted({x["depth"] for x in d})
     pts = lambda mix, k: [(p, med([x["secs"] for x in d
                                    if x["depth"] == p and x["mix"] == mix
