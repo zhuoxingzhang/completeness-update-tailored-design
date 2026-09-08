@@ -192,16 +192,16 @@
  },
  "hepatitis:nulluc": {
   "rules": 4513,
-  "candidates": 263,
+  "candidates": 166,
   "capped": false,
-  "separations": 39,
+  "separations": 27,
   "best": {
-   "rule": "[15, 16]->8",
-   "3nf": 15,
-   "so": 15,
-   "ha": 10
+   "rule": "[10, 15, 16]->14",
+   "3nf": 18,
+   "so": 18,
+   "ha": 12
   },
-  "so_uniform_hmax": 10
+  "so_uniform_hmax": 12
  },
  "china_weather:nulluc": {
   "rules": 6582,
@@ -218,15 +218,10 @@
  },
  "hepatitis:nulleq": {
   "rules": 8250,
-  "candidates": 353,
-  "capped": true,
-  "separations": 54,
-  "best": {
-   "rule": "[7, 15, 16, 17, 19]->3",
-   "3nf": 17,
-   "so": 17,
-   "ha": 11
-  },
-  "so_uniform_hmax": 11
+  "candidates": 26,
+  "capped": false,
+  "separations": 0,
+  "best": null,
+  "so_uniform_hmax": 17
  }
 }

@@ -4,7 +4,7 @@ land strictly below the structure-optimal design.
 
 Pruning: 3NF and SO are frequency-blind, so their designs are synthesized once
 (uniform heat); under a single-hot theta only tables containing the hot rule
-can change their coolest-cover heat, so the swept SO hmax is recomputed
+can change their heat, so the swept SO hmax is recomputed
 incrementally per rule.  Rules that lift the SO hmax above its uniform level
 are candidates; only candidates trigger a fresh SO and HA synthesis (the SO
 resynthesis guards against theta-dependent tie-breaking).
@@ -26,7 +26,7 @@ OUT = os.path.join(HERE, "sweep_skew.json")
 
 
 def table_heat(XA, proj, mkeys, theta):
-    F = B.coolest_nonkey_fds(XA, proj, mkeys, theta)
+    F = B.schema_nonkey(XA, proj, mkeys, theta)
     return sum(theta[f] for f in F) if F else 0
 
 

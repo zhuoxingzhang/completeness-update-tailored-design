@@ -1,0 +1,91 @@
+{
+ "3NF": {
+  "size": 1186,
+  "attempts": [
+   {
+    "start": "d3nf_s201",
+    "why": "hot host",
+    "recon_s": 3358.784,
+    "tables": 1186,
+    "wall_s": 6427.2,
+    "anchor": [
+     105225,
+     3553931825
+    ]
+   }
+  ],
+  "recon_s": 3358.784,
+  "recon_start": "d3nf_s201",
+  "anchor": [
+   105225,
+   3553931825
+  ]
+ },
+ "SO": {
+  "size": 1217,
+  "attempts": [
+   {
+    "start": "dso_s8",
+    "why": "hot host",
+    "recon_s": 3465.266,
+    "tables": 1217,
+    "wall_s": 6886.0,
+    "anchor": [
+     105225,
+     3553931825
+    ]
+   }
+  ],
+  "recon_s": 3465.266,
+  "recon_start": "dso_s8",
+  "anchor": [
+   105225,
+   3553931825
+  ]
+ },
+ "HA": {
+  "size": 1218,
+  "attempts": [
+   {
+    "start": "dha_s643",
+    "why": "hot host",
+    "recon_s": null,
+    "tables": 1218,
+    "wall_s": 301.0,
+    "anchor": null
+   },
+   {
+    "start": "dha_s6",
+    "why": "widest",
+    "recon_s": 3546.854,
+    "tables": 1218,
+    "wall_s": 7073.3,
+    "anchor": [
+     105225,
+     3553931825
+    ]
+   }
+  ],
+  "recon_s": 3546.854,
+  "recon_start": "dha_s6",
+  "anchor": [
+   105225,
+   3553931825
+  ]
+ },
+ "anchors_agree": true,
+ "anchors": {
+  "3NF": [
+   105225,
+   3553931825
+  ],
+  "SO": [
+   105225,
+   3553931825
+  ],
+  "HA": [
+   105225,
+   3553931825
+  ]
+ }
+}

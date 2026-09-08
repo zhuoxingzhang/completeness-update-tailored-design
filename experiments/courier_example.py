@@ -51,7 +51,7 @@ prep = B.prepare(sigma_a)
 print("\ncritical generating FDs (subschema | greedy-f | hotness):")
 for fd in prep["crit"]:
     XA = fd[0] | fd[1]
-    cool = B.coolest_nonkey_fds(XA, prep["proj"][XA], prep["mkeys"][XA], HOT)
+    cool = B.schema_nonkey(XA, prep["proj"][XA], prep["mkeys"][XA], HOT)
     h = sum(B.fd_hot(g, HOT) for g in cool)
     print(f"  {nm(fd[0])}->{nm(fd[1])}  gen {nm(XA)} | f={len(prep['nonkey'][XA])} | H={h} | nonkey={[f'{nm(a)}->{nm(b)}' for a,b in cool]}")
 
@@ -61,7 +61,7 @@ for mode in ("so", "ha"):
     print(f"\n== {mode} ==")
     for XA, proj in sorted(D, key=lambda x: nm(x[0])):
         ks = B.minimal_keys(XA, proj)
-        cool = B.coolest_nonkey_fds(XA, proj, ks, HOT)
+        cool = B.schema_nonkey(XA, proj, ks, HOT)
         h = sum(B.fd_hot(g, HOT) for g in cool)
         tag = "BCNF" if not cool else f"critical H={h} nonkey={[f'{nm(a)}->{nm(b)}' for a,b in cool]}"
         print(f"  {nm(XA):6} keys={sorted(nm(k) for k in ks)}  {tag}")

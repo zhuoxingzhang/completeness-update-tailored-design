@@ -12,9 +12,9 @@ synthesis reaches. This repository lets you re-run every experiment.
 
 ```
 src/
-  synthesis.py     the synthesis engine: FD primitives, minimal keys, mixed
-                   covers, coolest covers, and one skeleton carrying every
-                   objective. Run it directly for a self-check.
+  synthesis.py     the synthesis engine: FD primitives, minimal keys, the
+                   non-key FDs and heat of a schema, and one skeleton carrying
+                   every objective. Run it directly for a self-check.
   config.py        paths and database credentials, all overridable by environment
                    variables. The only file you may need to touch.
 experiments/       one script per research question (table below)
@@ -54,30 +54,42 @@ python experiments/courier_example.py
 ```
 
 prints both designs of Figure 1 subschema by subschema, with minimal keys,
-coolest mixed covers, and per-subschema heat.
+non-key FDs, and per-subschema heat.
 
 ```bash
 python experiments/reduct_frontend.py
 ```
 
-reproduces Table 3 (schema-level heat on twenty reducts of real incomplete
-relations) from the shipped constraint sets. Takes a few minutes; writes
-`rq2_draft.json`.
+reproduces Tables 3 and 4 (maximal and total design heat on twenty reducts of
+real incomplete relations, and the sweep over `p`) from the shipped constraint
+sets, sweeping the graded declaration over ten values of `p`, from 0.1 to 1 in
+steps of 0.1, with twenty draws each. About two hours on 18 workers, dominated
+by hepatitis under equality; set `CUTD_WORKERS` to match your machine. The per-synthesis times it records are
+inflated by parallel contention; the synthesis times quoted in the paper were measured with
+`CUTD_WORKERS=1`. Writes `results/rq2_reducts.json`.
 
 ## Reproducing the experiments
 
 | Script | Produces |
 |---|---|
-| `experiments/courier_example.py` | Figure 1, Example "Coolest covers" |
-| `experiments/reduct_frontend.py` | Table 3 (RQ2, schema-level heat) |
+| `experiments/courier_example.py` | Figure 1, Example "Heat of the courier subschemata" |
+| `experiments/reduct_frontend.py` | Table 3 (RQ2, maximal and total design heat at `p = 0.5`) and Table 4 (the sweep over `p`); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
-| `experiments/redundancy_study.py` | Table 4 (RQ2, redundant value occurrences) † |
+| `experiments/redundancy_study.py` | Table 5 (RQ2, redundant value occurrences) † |
 | `experiments/mini_courier.py` | Figure 2 (RQ1, controlled-redundancy sweep) † |
-| `experiments/ext_courier.py` | Figure 4 (RQ3, mixed workloads), Figure 5 (RQ4/RQ5) † |
+| `experiments/ext_courier.py` | Figure 4 (RQ3, mixed workloads), Figure 5 (RQ4/RQ5), Table 6 bottom (RQ5, misestimated declaration) † |
 | `experiments/ext_e4plus.py` | RQ4 and RQ5 robustness curves † |
-| `experiments/query_study.py` | RQ3 read half: reconstruction, lookups, history † |
-| `experiments/real_workload.py` | Table 5 (RQ6, end-to-end replay) † |
+| `experiments/query_study.py` | Table 6 top (RQ3 read half: reconstruction, lookups, history, storage) † |
+| `experiments/real_workload.py` | RQ6 null control on routes and the heat-channel runs on ncvoter (`results/rq6_end_to_end.json`) † |
+| `experiments/weather_census.py` | Figure 6 (RQ6, counting census over the fat rules of weather; `results/rq6_weather_census.json`) † |
+| `experiments/weather_rules.py` | Table 7 (RQ6, live runs of the five separating weather rules on their storing subschemata; `results/rq6_weather_rules_*.json`) † |
+| `experiments/weather_rows.py` | Table 7, rows column: rows one refresh of the 20 deepest groups rewrites, counted offline on the storing subschemata (`results/rq6_weather_rows.json`) |
+| `experiments/weather_full.py` | Figure 7 (RQ6, full materialization and whole workload on the widest-gap rule; `results/rq6_weather_full.json`) † |
+| `experiments/weather_recon.py` | Figure 7, reconstruction re-measured on the designs `weather_full.py` leaves in place (`results/rq6_weather_reconstruction.json`) † |
 | `experiments/dataset_stats.py` | Table 2 (dataset dimensions) † |
+
+`weather_rules.py`, `weather_full.py` and `weather_recon.py` share the front end
+`weather_common.py`.
 
 † needs a MySQL server; see below.
 

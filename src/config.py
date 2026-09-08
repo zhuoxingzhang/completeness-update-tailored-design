@@ -11,7 +11,10 @@ artifact runs unmodified on a fresh checkout.
     CUTD_MYSQL_USER  MySQL user      (default: root)
     CUTD_MYSQL_PASSWORD  MySQL password (default: empty)
     CUTD_MYSQL_DB    database holding the benchmark relations (default: benchmarks)
+    CUTD_DELIVERY_DB database the delivery study builds its designs in
+                     (default: delivery_study)
     CUTD_MYSQL_CLIENT  path to the mysql command-line client (default: mysql)
+    CUTD_SCRATCH     directory for bulk-load temporaries (default: <repo>/.scratch)
 
 The operational studies need a MySQL 8 server. Set the password before running
 them, for example
@@ -39,6 +42,10 @@ MYSQL_USER = os.environ.get("CUTD_MYSQL_USER", "root")
 MYSQL_PASSWORD = os.environ.get("CUTD_MYSQL_PASSWORD", "")
 MYSQL_DB = os.environ.get("CUTD_MYSQL_DB", "benchmarks")
 MYSQL_CLIENT = os.environ.get("CUTD_MYSQL_CLIENT", "mysql")
+
+# The delivery study builds and drops its own tables, so it is kept away from the
+# benchmark relations.
+DELIVERY_DB = os.environ.get("CUTD_DELIVERY_DB", "delivery_study")
 
 
 def connect(database=None, **kw):

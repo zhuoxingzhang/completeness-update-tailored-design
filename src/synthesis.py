@@ -24,7 +24,7 @@ scope. A schema is (R, Sigma_a, keys), Sigma_a a set of single-RHS atomic FDs.
 Representation: attribute = int, attribute set = frozenset,
 FD = (lhs frozenset, rhs frozenset holding a single attribute).
 """
-import json, sys, time, random
+import json, sys, time, random, os
 
 # ---------- FD primitives ----------
 
@@ -94,10 +94,16 @@ def is_bcnf(XA, proj):
 
 SCALE = 10            # heat is a 10-level ordinal scale {1,...,10}
 
+# Heat reading of a schema.  "all" (the paper): sum over every non-key atomic FD of the schema,
+# since a refresh of any non-key FD rewrites a multi-row group and fires a trigger, whether or not
+# the FD is in the cover.  "cover": sum over the FD part of a coolest mixed cover, kept for the
+# comparison in the paper's discussion.  Override with the HEAT_READING environment variable.
+HEAT = os.environ.get("HEAT_READING", "all")
+
 def fd_hot(fd, hot):
     # heat of an atomic FD = the declared update frequency of its MODE X->A, bound to the FD
     # itself and NOT to its RHS attribute: two FDs with the same RHS but different determinants
-    # (e.g. sz->c and ot->c in the courier example) may carry different heat. `fd` is the
+    # (e.g. bd->v and dv->b need not be refreshed alike) may carry different heat. `fd` is the
     # (lhs, rhs) pair; `hot` maps an FD (lhs, rhs) -> level in {1..SCALE}, or is None (every mode
     # at the cold baseline, level 1).
     if hot is None:
@@ -118,6 +124,23 @@ def mixed_nonkey_fds(XA, proj_XA, keys_XA):
         if not fd[1] <= closure(fd[0], sigma_k + sigma_f):   # keys + others do NOT imply fd
             sigma_f.append(fd)
     return sigma_f
+
+def nonkey_atomic(XA, proj_XA):
+    # every atomic FD of the schema whose determinant is not a superkey of it
+    xp, F = {}, []
+    for fd in proj_XA:
+        lhs = fd[0]
+        if lhs not in xp:
+            xp[lhs] = closure(lhs, proj_XA)
+        if not xp[lhs] >= XA:
+            F.append(fd)
+    return F
+
+def schema_nonkey(XA, proj_XA, keys_XA, hot=None):
+    # the non-key FDs a schema is charged for, under the active heat reading
+    if HEAT == "all":
+        return nonkey_atomic(XA, proj_XA)
+    return coolest_nonkey_fds(XA, proj_XA, keys_XA, hot)
 
 def coolest_nonkey_fds(XA, proj_XA, keys_XA, hot=None, cap=1 << 18):
     # Non-key FDs of a COOLEST mixed cover (Def. "Mixed cover, heat, coolest" and the classwise
@@ -173,7 +196,7 @@ def schema_hot(XA, proj_XA, hot, nonkey=None):
     # E-heat of a schema = SUM of heat over the non-key FDs of a COOLEST mixed cover
     # (= the structure-optimal parameter f when every FD is cold). E-BCNF -> 0 (empty sum).
     if nonkey is None:
-        nonkey = coolest_nonkey_fds(XA, proj_XA, minimal_keys(XA, proj_XA), hot)
+        nonkey = schema_nonkey(XA, proj_XA, minimal_keys(XA, proj_XA), hot)
     return sum(fd_hot(fd, hot) for fd in nonkey)
 
 def decomp_max_hot(D, hot):
@@ -185,7 +208,7 @@ def decomp_metrics(D, hot):
     keyc_b, keyc_c, fdc, shot = [], [], [], []
     for XA, proj in D:
         ks = minimal_keys(XA, proj)
-        nk = coolest_nonkey_fds(XA, proj, ks, hot)   # coolest-mixed-cover non-key FDs (len = f*)
+        nk = schema_nonkey(XA, proj, ks, hot)        # non-key FDs charged under the heat reading
         if nk:                                        # critical schema
             ncrit += 1
             fdc.append(len(nk))
@@ -242,7 +265,7 @@ def synthesize(R, sigma_a, keys, mode, hot=None, prep=None):
     def hotness(fd):                                  # schema E-heat on the coolest mixed cover
         XA = fd[0] | fd[1]
         if XA not in cool_memo:
-            cool_memo[XA] = coolest_nonkey_fds(XA, proj[XA], mkeys[XA], hot)
+            cool_memo[XA] = schema_nonkey(XA, proj[XA], mkeys[XA], hot)
         return sum(fd_hot(g, hot) for g in cool_memo[XA])
 
     if mode == "3nf":
@@ -385,25 +408,25 @@ def _check_projection(name="breast"):
         assert set(mixed_nonkey_fds(XA, proj, ck)) == set(mixed_nonkey_fds(XA, proj, tk)), \
             f"{name}: projection non-key FD mismatch on {sorted(XA)}"
 
-def courier_example():
-    """The courier-dispatch running example of the paper, over
-    R = {o, c, s, z, t, p} = order, courier, status, zone, timeslot, phone,
-    encoded as o=0, c=1, s=2, z=3, t=4, p=5.
+def delivery_example():
+    """The delivery running example of the paper, over
+    R = {b, c, d, g, r, v, y} = branch, courier, district, gps, round, van, day,
+    encoded as b=0, c=1, d=2, g=3, r=4, v=5, y=6.
 
     Returns (R, atomic closure of the reduct, minimal keys, heat map), the heat
-    map declaring the mode sz->c hot at level 8 and every other mode cold.
+    map declaring the two modes that a reassignment refreshes hot at level 8 and
+    every other mode cold.
     """
     import itertools
-    R = frozenset(range(6))
+    R = frozenset(range(7))
     declared = [
-        ({0, 2, 3}, {4}),   # osz -> t
-        ({0, 2, 4}, {3}),   # ost -> z
-        ({0, 1, 2}, {3}),   # ocs -> z
-        ({2, 3},    {1}),   # sz  -> c   the hot rule, from the eFD (pszc; sz->c)
-        ({0, 1, 2}, {4}),   # ocs -> t
-        ({1, 4},    {0}),   # ct  -> o
-        ({0, 4},    {1}),   # ot  -> c
-        ({0},       {5}),   # o   -> p
+        ({2},       {1}),   # d   -> c   the hot rule, from the eFD (cdg; d->c)
+        ({0, 1, 6}, {2}),   # bcy -> d
+        ({0, 1},    {5}),   # bc  -> v
+        ({0, 5},    {1}),   # bv  -> c   refreshed by the same reassignment
+        ({1, 5},    {4}),   # cv  -> r
+        ({2, 4},    {0}),   # dr  -> b
+        ({5},       {3}),   # v   -> g
     ]
     sigma0 = [(frozenset(l), frozenset(r)) for l, r in declared]
     atomic = []                                   # all X->a implied with X minimal
@@ -417,13 +440,14 @@ def courier_example():
                 if minimal:
                     atomic.append((Xs, frozenset({a})))
     keys = minimal_keys(R, atomic)
-    hot = {(frozenset({2, 3}), frozenset({1})): 8}
+    hot = {(frozenset({2}), frozenset({1})): 8,
+           (frozenset({0, 5}), frozenset({1})): 8}
     return R, atomic, keys, hot
 
 
 def _selfcheck():
-    R, sigma, keys, hot = courier_example()
-    print("courier minimal keys:", sorted(sorted(k) for k in keys))
+    R, sigma, keys, hot = delivery_example()
+    print("delivery minimal keys:", sorted(sorted(k) for k in keys))
     for mode in MODES:
         D = synthesize(R, sigma, keys, mode)
         lossless = any(any(k <= XA for k in keys) for XA, _ in D)
@@ -434,17 +458,17 @@ def _selfcheck():
         assert dep_pres, f"{mode}: not dependency-preserving"
         print(f"  {mode:10s} schemata={len(D)} lossless=OK dep_preserving=OK")
 
-    # Regression for the separation of the paper's Figure 1. Heat is bound to the mode
-    # sz->c, not to the attribute c, so it does not transfer to ot->c. The structure-optimal
-    # objective, ordering critical schemata by the NUMBER of non-key FDs, keeps the hot
-    # subschema ocsz and returns a design of maximal E-heat 8; the heat-aware objective
-    # rehosts the hot rule onto the key subschema csz and returns one of maximal E-heat 2,
-    # matching the floor h* = 2 of the selection lower bound.
+    # Regression for the separation of the paper's Figure 1. The two designs part on the
+    # rule that determines the district: the structure-optimal objective orders critical
+    # schemata by the NUMBER of non-key FDs, so it drops bvy->d and keeps bcdy, which stores
+    # the hot rule and has maximal E-heat 8; the heat-aware objective orders them by heat, so
+    # it drops bcy->d, keeps bdvy and gives the district its own key subschema cd, for a
+    # maximal E-heat of 2, which is the floor h* of the selection lower bound.
     mx_ha = decomp_max_hot(synthesize(R, sigma, keys, "ha", hot=hot), hot)
     mx_so = decomp_max_hot(synthesize(R, sigma, keys, "so", hot=hot), hot)
     assert mx_ha == 2, f"heat-aware max E-heat expected 2, got {mx_ha}"
     assert mx_so == 8, f"structure-optimal max E-heat expected 8, got {mx_so}"
-    print(f"  courier separation  HA maxHeat={mx_ha}  SO maxHeat={mx_so}  OK")
+    print(f"  delivery separation  HA maxHeat={mx_ha}  SO maxHeat={mx_so}  OK")
 
     # projection exactness on a real atomic-closure dataset (guards load()'s inputs are closures)
     try:

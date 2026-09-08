@@ -1,4 +1,4 @@
-"""Main operational study: replay an update workload on REAL incomplete
+"""Main operational study: run an update workload on REAL incomplete
 relations, materialized under all three syntheses (3NF / SO / HA).
 
 Per (dataset, semantics) run:
@@ -12,7 +12,7 @@ Per (dataset, semantics) run:
       subschema; every minimal key a UNIQUE index, every procedurally
       maintained determinant a secondary index; rows with NULLs remain
       pending outside the designs.
-  4.  One workload, replayed identically on every design:
+  4.  One workload, executed identically on every design:
         refresh     every rule of Sigma_x fires on theta(sigma) distinct
                     largest X-groups (heat = declared frequency); each firing
                     rewrites the group's RHS value wherever the rule's
@@ -143,7 +143,7 @@ def materialize(cur, tag, D, hot, scope, lens):
         cols = sorted(XA)
         tbl = f"{tag}_s{i}"
         mkeys = B.minimal_keys(XA, proj)
-        F = B.coolest_nonkey_fds(XA, proj, mkeys, hot)
+        F = B.schema_nonkey(XA, proj, mkeys, hot)
         defs = [f"c{a} VARCHAR({min(2000, lens[a] + 8)}) NOT NULL" for a in cols]
         idx_ok = lambda ats: all(lens[a] <= 190 for a in ats)   # InnoDB key-length cap
         for j, k in enumerate(sorted((k for k in mkeys if k and idx_ok(k)), key=sorted)):

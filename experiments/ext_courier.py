@@ -10,14 +10,14 @@ E3 (RQ3)  Mixed refresh-completion workloads.  T=100 operation units, a share
           interleaved sequence is timed in-server, the inverse restores state,
           counts and SUM(c) checksums are asserted unchanged.
 E4 (RQ4)  Skew sensitivity.  Whole-workload time as a function of the hot heat
-          w in {1,2,4,8,16,32}: every cold mode replayed once at 1% coverage,
+          w in {1,2,4,8,16,32}: every cold mode run once at 1% coverage,
           the hot mode w times on rotated 1% samples.
 E5a (RQ5) Completeness drift.  Instances with scope fraction {25,50,75,100}%
           (held-out layers pending in rest, p NULL); hot refresh pass and
-          conflicting-completion batch replayed per fraction.
+          conflicting-completion batch issued per fraction.
 E5b (RQ5) Misestimated heat.  Variant instance (timeslot reuse: t = e*G + j%20)
           in which the groups of ct->o and ot->c carry redundancy 5; the
-          declared-hot and the actually-hot mode are replayed at 1% coverage on
+          declared-hot and the actually-hot mode are run at 1% coverage on
           both designs, giving the cost of an adversarial hot-rule swap.
 
 Run:  python ext_courier.py --check     # instance checks only, no MySQL
