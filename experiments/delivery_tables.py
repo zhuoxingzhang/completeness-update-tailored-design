@@ -170,6 +170,8 @@ def fig_curves():
   height=2.8cm, width=0.545\columnwidth,
   ymode=log,
   label style={{font=\scriptsize}}, tick label style={{font=\scriptsize}},
+  xticklabel style={{text height=0.72em, text depth=0.28em}},
+  xlabel style={{text height=0.72em, text depth=0.28em}},
   title style={{font=\scriptsize, yshift=-3pt}},
   legend style={{font=\tiny, fill=none, draw=none}},
   every axis plot/.append style={{line width=0.7pt, mark size=1.1pt}},
