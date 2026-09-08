@@ -109,6 +109,54 @@ def fig_kappa():
 \end{{figure}}"""
 
 
+def tab_ops():
+    """The rows one update writes, which Fig. kappa cannot show because it plots time."""
+    d = load("rq1_operations.json")
+    k = max(x["depth"] for x in d)
+    at = {(x["op"], x["depth"]): x for x in d}
+    names = [("reassignment", "reassign"), ("van swap", "swap"),
+             ("completion, conflicting", "completion_conflict"),
+             ("completion, clean", "completion_clean"), ("insert", "insert_total")]
+
+    def cnt(v):
+        """A row count, averaged over the operations of a run where they differ."""
+        s = f"{v:,.0f}" if abs(v - round(v)) < 0.05 else f"{v:,.1f}"
+        return s.replace(",", "{,}")
+
+    def rat(r):
+        if r >= 10:
+            return f"{r:,.0f}".replace(",", "{,}")
+        return f"{r:.2f}" if r >= 1 else f"{r:.2g}"
+
+    def ms(v):
+        """A time in milliseconds, at three significant digits with the zero kept."""
+        return f"{v:.0f}" if v >= 100 else (f"{v:.1f}" if v >= 10 else f"{v:.2f}")
+
+    body = "\n".join(
+        f"{lab} & {cnt(x['rows'][B])} & {cnt(x['rows'][A])} & "
+        f"${rat(x['rows'][B] / x['rows'][A])}\\times$ & "
+        f"{ms(x['secs'][B] * 1000)} & {ms(x['secs'][A] * 1000)} & "
+        f"${rat(x['secs'][B] / x['secs'][A])}\\times$\\\\"
+        for lab, op in names for x in [at[(op, k)]])
+    kk = f"{k:,}".replace(",", "{,}")
+    return rf"""\begin{{table}}
+\caption{{One update of each kind at a group of $k={kk}$ (\ref{{rq:op}}): the rows each design rewrites and the time it takes.
+Fig.~\ref{{fig:kappa}} plots the same times as $k$ grows.}}
+\label{{tab:ops}}
+\scriptsize
+\setlength{{\tabcolsep}}{{4pt}}
+\begin{{tabular}}{{@{{}}l rrr rrr@{{}}}}
+\toprule
+ & \multicolumn{{3}}{{c}}{{rows written}} & \multicolumn{{3}}{{c}}{{time (ms)}}\\
+\cmidrule(lr){{2-4}}\cmidrule(l){{5-7}}
+update & \Dstr{{}} & \Dupd{{}} & \Dstr{{}}/\Dupd{{}} & \Dstr{{}} & \Dupd{{}} & \Dstr{{}}/\Dupd{{}}\\
+\midrule
+{body}
+\bottomrule
+\end{{tabular}}
+\end{{table}}"""
+
+
 # ---- RQ4 and RQ5a -----------------------------------------------------------
 def fig_curves():
     d = load("rq4_rq5_curves.json")
@@ -325,7 +373,8 @@ def fig_window():
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for name, fn in (("fig_kappa", fig_kappa), ("fig_mixed", fig_mixed),
+    for name, fn in (("fig_kappa", fig_kappa), ("tab_ops", tab_ops),
+                     ("fig_mixed", fig_mixed),
                      ("tab_side", tab_side), ("fig_curves", fig_curves),
                      ("tab_decl", tab_decl),
                      ("tab_window", tab_window), ("fig_window", fig_window)):
