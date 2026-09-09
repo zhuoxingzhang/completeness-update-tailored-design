@@ -238,13 +238,17 @@ heat declared & {" & ".join(names[m] for m in mixes)}\\
 
 
 # ---- the workload -----------------------------------------------------------
-LABEL = {"reassign": "courier of a zone", "swap": "van of a courier",
-         "rezone": "zone of a delivery", "reroute": "round of a van",
-         "transfer": "branch of a round", "retag": "network of a van",
-         "completion_clean": "completion, clean",
-         "completion_conflict": "completion, conflicting",
-         "retraction": "retraction", "insert_total": r"insertion, $E$-total",
-         "insert_partial": "insertion, pending", "delete": "deletion"}
+KIND = {"reassign": "refresh", "swap": "refresh", "rezone": "refresh",
+        "reroute": "refresh", "transfer": "refresh", "retag": "refresh",
+        "completion_clean": "completion", "completion_conflict": "completion",
+        "retraction": "retraction", "insert_total": "insertion",
+        "insert_partial": "insertion", "delete": "deletion"}
+WHAT = {"reassign": "courier of a zone", "swap": "van of a courier",
+        "rezone": "zone of a delivery", "reroute": "round of a van",
+        "transfer": "branch of a round", "retag": "network of a van",
+        "completion_clean": "clean", "completion_conflict": "conflicting",
+        "retraction": "", "insert_total": r"$E$-total",
+        "insert_partial": "pending", "delete": ""}
 
 
 def tab_mix(reps=1000):
@@ -259,17 +263,24 @@ def tab_mix(reps=1000):
         "a rule determines an attribute the window never refreshes"
     hot = sorted(S.REFRESH, key=lambda op: -max(n(op, m) for m in mixes))
     rest = [op for op in S.OPS if op not in S.REFRESH]
-    rows = lambda ops: "\n".join(
-        LABEL[op] + "".join(f" & {n(op, m)}" for m in mixes) + r"\\" for op in ops)
+
+    def rows(ops):
+        out, seen = [], None
+        for op in ops:
+            kind, seen = ("" if KIND[op] == seen else KIND[op]), KIND[op]
+            out.append(f"{kind} & {WHAT[op]}"
+                       + "".join(f" & {n(op, m)}" for m in mixes) + r"\\")
+        return "\n".join(out)
+
     return rf"""\begin{{table}}
 \caption{{The three declared workloads (\ref{{rq:skew}}, \ref{{rq:robust}}, \ref{{rq:window}}): the updates of one window of ${reps // 1000}{{,}}{reps % 1000:03d}$, by kind.
-Above the line, one refresh per attribute that a rule of Ex.~\ref{{ex:courier}} determines; below it, the completions, retractions, insertions, and deletions.}}
+The six refreshes are one per attribute that a rule of Ex.~\ref{{ex:courier}} determines.}}
 \label{{tab:mix}}
 \scriptsize
 \setlength{{\tabcolsep}}{{4pt}}
-\begin{{tabular}}{{@{{}}l rrr@{{}}}}
+\begin{{tabular}}{{@{{}}ll rrr@{{}}}}
 \toprule
-update & {" & ".join(names[m] for m in mixes)}\\
+\multicolumn{{2}}{{@{{}}l}}{{update}} & {" & ".join(names[m] for m in mixes)}\\
 \midrule
 {rows(hot)}
 \midrule
