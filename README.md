@@ -116,6 +116,52 @@ server and is the fastest way to see the mechanism, `--verify` to run one window
 on both designs and compare the reconstructed relations by count and checksum,
 and `--tiny` for a single small scale.
 
+## Measurement protocol
+
+The paper's setup names the datasets, the baselines and the three heat
+declarations; the protocol behind the reported numbers is here.
+
+**Instances.** The delivery studies generate an instance of the schema of the
+running example: the zones rotate through the branches and the vans through the
+zones, and Armstrong witnesses for the independencies are appended in a disjoint
+value range (Beeri, Dowd, Fagin and Statman, *JACM* 31(1), 1984; Langeveldt and
+Link, *Inf. Syst.* 35(3), 2010). `delivery_schema.py` recomputes the instance's
+own dependencies over all seven attributes before every run and compares them
+against the declared closure, so the instance satisfies the declared rules and no
+others. Each design is materialized as deduplicated subschema projections, with
+every minimal key a unique index; non-key FDs are maintained by the workload's
+own statements rather than by triggers, so that the two designs differ only in
+what they store. Heat values are verified against brute force.
+
+**Workloads.** `delivery_live.py --ops` issues one update of each kind at a time;
+`--mixed` interleaves refreshes with completions drawn from an all-clean or an
+all-conflicting pool at a share `gamma`; the default run issues whole maintenance
+windows of 1,000 updates under the three rate profiles of Table 3. Every window
+is drawn once and then priced offline and issued against each design, so the two
+designs run the same window.
+
+**Timing.** The buffer pool is raised for a run and restored afterwards. Inside
+each repetition the designs are rebuilt, analyzed, timed and dropped round-robin,
+and every reported time is the median of three repetitions; running one design to
+completion before the next lets checkpoint activity dominate. Rows reported by
+the server agree with the offline cost model within 1%, and after a window both
+designs reconstruct to the same tuple count and checksum (`--verify`).
+
+**Heat declarations.** Under the graded declaration, modes that are not drawn hot
+stay at the baseline heat of 1. The adversarial declaration searches up to 300
+candidate rules per reduct and keeps the one on which the two optimizing designs
+differ most.
+
+**The weather study.** `E` takes the attributes in ascending order of their null
+counts, for as long as at least a third of the tuples stay `E`-complete. Every
+rule of the reduct carries unit heat and the one rule under study carries 10, so
+no declaration is fitted to the data. Each sequence starts from a quiesced buffer
+pool and is undone by its exact inverse, with row counts and checksums asserted
+equal across designs. Refresh passes are timed in 15 rounds that visit the designs
+round-robin, and every refresh comparison is a two-sided rank test over those
+rounds. Reported size is the engine's table and index size summed over a design's
+subschemata.
+
 ## Setup
 
 ```bash
