@@ -238,17 +238,19 @@ heat declared & {" & ".join(names[m] for m in mixes)}\\
 
 
 # ---- the workload -----------------------------------------------------------
-KIND = {"reassign": "refresh", "swap": "refresh", "rezone": "refresh",
-        "reroute": "refresh", "transfer": "refresh", "retag": "refresh",
-        "completion_clean": "completion", "completion_conflict": "completion",
-        "retraction": "retraction", "insert_total": "insertion",
-        "insert_partial": "insertion", "delete": "deletion"}
-WHAT = {"reassign": "courier of a zone", "swap": "van of a courier",
-        "rezone": "zone of a delivery", "reroute": "round of a van",
-        "transfer": "branch of a round", "retag": "network of a van",
-        "completion_clean": "clean", "completion_conflict": "conflicting",
-        "retraction": "", "insert_total": r"$E$-total",
-        "insert_partial": "pending", "delete": ""}
+# One phrase per row, so that a row says what its update is without the caption.
+LABEL = {"reassign": "refresh the courier of a zone",
+         "swap": "refresh the van of a courier",
+         "rezone": "refresh the zone of a delivery",
+         "reroute": "refresh the round of a van",
+         "transfer": "refresh the branch of a round",
+         "retag": "refresh the network of a van",
+         "completion_clean": "complete a delivery, clean",
+         "completion_conflict": "complete a delivery, conflicting",
+         "retraction": "retract a value",
+         "insert_total": r"insert an $E$-total delivery",
+         "insert_partial": "insert a pending delivery",
+         "delete": "delete a delivery"}
 
 
 def tab_mix(reps=1000):
@@ -264,13 +266,8 @@ def tab_mix(reps=1000):
     hot = sorted(S.REFRESH, key=lambda op: -max(n(op, m) for m in mixes))
     rest = [op for op in S.OPS if op not in S.REFRESH]
 
-    def rows(ops):
-        out, seen = [], None
-        for op in ops:
-            kind, seen = ("" if KIND[op] == seen else KIND[op]), KIND[op]
-            out.append(f"{kind} & {WHAT[op]}"
-                       + "".join(f" & {n(op, m)}" for m in mixes) + r"\\")
-        return "\n".join(out)
+    rows = lambda ops: "\n".join(
+        LABEL[op] + "".join(f" & {n(op, m)}" for m in mixes) + r"\\" for op in ops)
 
     return rf"""\begin{{table}}
 \caption{{The three declared workloads (\ref{{rq:skew}}, \ref{{rq:robust}}, \ref{{rq:window}}): the updates of one window of ${reps // 1000}{{,}}{reps % 1000:03d}$, by kind.
@@ -278,9 +275,11 @@ The six refreshes are one per attribute that a rule of Ex.~\ref{{ex:courier}} de
 \label{{tab:mix}}
 \scriptsize
 \setlength{{\tabcolsep}}{{4pt}}
-\begin{{tabular}}{{@{{}}ll rrr@{{}}}}
+\begin{{tabular}}{{@{{}}l rrr@{{}}}}
 \toprule
-\multicolumn{{2}}{{@{{}}l}}{{update}} & {" & ".join(names[m] for m in mixes)}\\
+ & \multicolumn{{3}}{{c}}{{declared workload}}\\
+\cmidrule(l){{2-4}}
+update & {" & ".join(names[m] for m in mixes)}\\
 \midrule
 {rows(hot)}
 \midrule
