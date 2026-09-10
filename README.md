@@ -69,13 +69,16 @@ what says whether a separation rests on the criterion or on the tie break.
 python experiments/reduct_frontend.py
 ```
 
-reproduces Tables 3 and 4 (maximal and total design heat on twenty reducts of
+reproduces Tables 3 and 4 (maximal and total design heat on the reducts of
 real incomplete relations, and the sweep over `p`) from the shipped constraint
 sets, sweeping the graded declaration over ten values of `p`, from 0.1 to 1 in
 steps of 0.1, with twenty draws each. About two hours on 18 workers, dominated
 by hepatitis under equality; set `CUTD_WORKERS` to match your machine. The per-synthesis times it records are
 inflated by parallel contention; the synthesis times quoted in the paper were measured with
-`CUTD_WORKERS=1`. Writes `results/rq2_reducts.json`.
+`CUTD_WORKERS=1`. Writes `results/rq2_reducts.json`. The paper reports the
+uncertainty reading (`nulluc`) of the fourteen relations only; the shipped
+constraint sets, the scripts, and the result files carry both readings, so the
+equality rows can be restored without a rerun.
 
 ## Reproducing the experiments
 
