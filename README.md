@@ -160,7 +160,7 @@ pool and is undone by its exact inverse, with row counts and checksums asserted
 equal across designs. Refresh passes are timed in 15 rounds that visit the designs
 round-robin, and every refresh comparison is a two-sided rank test over those
 rounds. Reported size is the engine's table and index size summed over a design's
-subschemata.
+subschemata. Rules with more than four determinant attributes were sampled, 300 of them, and none averaged above 1.3 tuples per group, so the enumeration stops at four. A null control on routes, whose three designs coincide, returns every pairwise rank test above p = 0.48, while timing the designs in build order separates the identical designs by 3% at p < 0.01, which is why every comparison is round-robin and gaps of a few percent are read as noise. Reconstruction joins are anchored at the widest subschema; anchoring them at the narrow key subschema breaches the bound on intermediate growth.
 
 ## Setup
 
