@@ -100,7 +100,7 @@ equality rows can be restored without a rerun.
 | `experiments/redundancy_study.py` | Table 4 (RQ2, redundant value occurrences; `results/rq2_redundant_occurrences.json`) † |
 | `experiments/release_build.py` | the relation and the workload of the real release, read from a clone of the publisher's repository (RQ7; see below) |
 | `experiments/release_mine.py` | the constraint set of the real release, `data/release/owid_fds.json`, mined on that relation |
-| `experiments/release_classes.py` | the class of designs each criterion may return on the real release, every member priced offline, and the three members the paper times (`results/rq7_real_classes.json`, `results/rq7_real_picks.json`) |
+| `experiments/release_classes.py` | the designs the elimination orders of the atomic closure give each criterion on the real release, priced offline, and the three orders the paper runs (`results/rq7_real_classes.json`, `results/rq7_real_picks.json`) |
 | `experiments/release_rules.py` | the rules each timed design stores away from a key, and the total heat row of Table 8 (`results/rq7_real_rules.json`) |
 | `experiments/release_live.py` | the whole window run live on the three designs, every subschema indexed on its minimal keys and on the determinants of its non-key FDs; the window statistics of Table 8 (`results/rq7_real_live.json`) † |
 | `experiments/release_maps.py` | the timed runs of Table 8 and Figure 8: the priced updates under the observed and the re-numbered levels, keys indexed alone and non-key FDs refreshed through trigger tables (`results/rq7_real_maps.json`) † |
@@ -201,45 +201,22 @@ earlier one, so that its frequency follows the new level and the window still
 ends in the released edition. The designs stay those of Table 8 of the paper,
 and under each map every design runs the window once. They are synthesized from
 the elimination orders `keep7_3` (3NF), `h+c+` (SO) and `haswap164` (HA), which
-`results/rq7_real_picks.json` holds.
-
-**Which member of each class the paper times.** A criterion fixes a design only
-up to the order in which the atomic closure is eliminated, so each of the three
-returns a class of designs rather than one design. `release_classes.py` searches
-those classes and prices every member offline, with `POOL=250 SWAPS=300
-HA_SWAPS=300 TARGET=priced` (`results/rq7_real_classes.json`). On this window:
-
-| criterion | designs found | offline price of the priced updates (s), min / median / max | total heat | the design timed in Table 8 |
-|---|---:|---|---|---|
-| 3NF | 41 | 40.00 / 108.60 / 191.40 | 4 to 319,969 | `keep7_3`, 191.40, the most expensive member of the class |
-| SO | 256 | 33.83 / 54.03 / 88.27 | 4 to 1,979 | `h+c+`, 81.39, the hottest member, and the 78th percentile by price |
-| HA | 273 | 40.65 / 53.51 / 88.27 | 4 throughout | `haswap164`, 41.26, 1.5 per cent above the cheapest member |
+`results/rq7_real_picks.json` holds. A criterion fixes a design only up to the
+order in which the atomic closure is eliminated; `release_classes.py` searches
+those orders and prices offline what they return, with `POOL=250 SWAPS=300
+HA_SWAPS=300 TARGET=priced` (`results/rq7_real_classes.json`).
 
 The offline price is the linear model of `release_cost.py`, and it ranks the
-three timed designs as the server does. Their prices are 191.40, 81.39 and
-40.71 s (`results/rq7_real_picks.json`; the HA design timed is the twin of
-`haswap164` described below, which the search prices at 41.26 under the heat
-floor), so the model predicts 4.70 and 2.00 times the price of HA for 3NF and
-SO, against the 4.75 and 1.83 the runs of Table 8 measure.
+three timed designs as the server does: at 191.40, 81.39 and 40.71 s it predicts
+4.70 and 2.00 times the price of HA for 3NF and SO, against the 4.75 and 1.83
+the runs of Table 8 measure.
 
-Two readings follow, and both belong next to Table 8. Every member of the
-heat-aware class attains the least total heat the reduct allows, 4, while the
-structure-optimal class spans 4 to 1,979 and the classical one 4 to 319,969:
-that is what Theorem 4.3 guarantees, and it holds for every member of the class.
-The price of the priced updates, on the other hand, is not decided by the heat
-within a class. 119 of the 256 structure-optimal designs already sit at heat 4,
-every heat-aware design here also attains the structure-optimal optimum, and the
-cheapest design of all three classes is a structure-optimal one at heat 1,979.
-The factors of Table 8 are therefore the factors between the three timed
-members, one of which is the most expensive of its class and one of which prices
-within 0.2 per cent of the cheapest member the search finds.
-
-The timed runs predate the heat floor of 1, and the class search above was run
-under it, which is why its heats start at 4 rather than 0. Under the floor the
-search returns the same designs for 3NF and SO, and for HA the cheapest member
-is the order `haswap239`, 0.15 per cent below the 40.71 s the timed design
-prices; the order `haswap164` itself exchanges two cold subschemata under the
-floor, and no priced update touches either, so the priced statements and rows of
+The timed runs predate the heat floor of 1, and the shipped search was run under
+it, which is why its heats start at 4 rather than 0. Under the floor the search
+returns the same designs for 3NF and SO, and for HA the order `haswap239` prices
+0.15 per cent below the 40.71 s of the timed design; the order `haswap164`
+itself exchanges two cold subschemata under the floor, and no priced update
+touches either, so the priced statements and rows of
 Table 8 hold for both twins, while the whole-window statements differ from
 `results/rq7_real_live.json` by 1.2 per cent. `HEAT_FLOOR=0` rebuilds the timed
 designs exactly.
@@ -367,7 +344,7 @@ above. The real release has seven: `rq7_real_live.json` (the whole window run
 live, with the window statistics and the wall clock of the whole window),
 `rq7_real_maps.json` (the timed runs under the four numberings of the levels),
 `rq7_real_rules.json` (the designs' non-key rules and heats),
-`rq7_real_classes.json` (every member of every class, priced offline),
+`rq7_real_classes.json` (the designs the order search returns, priced offline),
 `rq7_real_picks.json` (the three elimination orders the timed designs are
 synthesized from), `rq7_real_visit.json` (the visiting orders of the single
 passes under the re-numbered levels) and `rq7_real_summary.json` (the numbers of
