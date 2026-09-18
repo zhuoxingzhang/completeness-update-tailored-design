@@ -183,7 +183,9 @@ an attribute at level `l` is issued `1 + 2 floor(g / 2)` times, where
 `g = phi(l) / (l phi(1))`, alternating between the released value and the
 earlier one, so that its frequency follows the new level and the window still
 ends in the released edition. The designs stay those of Table 8 of the paper,
-and under each map every design runs the window once.
+and under each map every design runs the window once. The scripts and result
+files behind Table 8 and Figures 7 and 8 are being ported and follow in a later
+commit; the protocol above is complete.
 
 **The weather study**, an end-to-end study on the weather relation that the
 submitted paper no longer reports, is kept here with its scripts and results.
