@@ -69,9 +69,9 @@ what says whether a separation rests on the criterion or on the tie break.
 python experiments/reduct_frontend.py
 ```
 
-reproduces Tables 3 and 4 (maximal and total design heat on the reducts of
-real incomplete relations, and the sweep over `p`) from the shipped constraint
-sets, sweeping the graded declaration over ten values of `p`, from 0.1 to 1 in
+reproduces Table 3 (maximal and total design heat on the reducts of
+real incomplete relations) and the sweep over `p` below from the shipped
+constraint sets, sweeping the graded declaration over ten values of `p`, from 0.1 to 1 in
 steps of 0.1, with twenty draws each. About two hours on 18 workers, dominated
 by hepatitis under equality; set `CUTD_WORKERS` to match your machine. The per-synthesis times it records are
 inflated by parallel contention; the synthesis times quoted in the paper were measured with
@@ -86,16 +86,16 @@ equality rows can be restored without a rerun.
 |---|---|
 | `experiments/delivery_example.py` | Table 1 and Figure 1 |
 | `experiments/delivery_trace.py` | Examples "Heat of the delivery subschemata" and "Synthesis on the delivery reduct": the eliminations each objective performs, the number it ranks by, and the heat of the reduct and of every subschema a design keeps |
-| `experiments/delivery_schema.py` | the schema, the instance generator and the offline cost model the other delivery scripts import; `--orders` for the order study above, `--costs` for the rows one update of each kind rewrites, `--window` for `results/rq7_window_model.json`; its rates are Table 3 |
-| `experiments/delivery_live.py --ops` | Figure 2 and Table 3 (RQ1, one update of each kind over group depths; `results/rq1_operations.json`) † |
-| `experiments/delivery_live.py --mixed` | Figure 4 and the first row of Table 6 (RQ3, refreshes with a growing completion share; `results/rq3_mixed.json`) † |
-| `experiments/delivery_live.py --reads` | Table 6 (RQ3, reconstruction, key lookups, history, storage; `results/rq3_reads.json`) † |
-| `experiments/delivery_live.py` | Table 8 and Figure 6 (RQ6, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
-| `experiments/delivery_curves.py` | Figure 5 and Table 7 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
+| `experiments/delivery_schema.py` | the schema, the instance generator and the offline cost model the other delivery scripts import; `--orders` for the order study above, `--costs` for the rows one update of each kind rewrites, `--window` for `results/rq7_window_model.json`; its rates are Table 2 |
+| `experiments/delivery_live.py --ops` | Figure 2 and the table of one update of each kind below (RQ1, over group depths; `results/rq1_operations.json`) † |
+| `experiments/delivery_live.py --mixed` | Figure 4 and the first row of Table 5 (RQ3, refreshes with a growing completion share; `results/rq3_mixed.json`) † |
+| `experiments/delivery_live.py --reads` | Table 5 (RQ3, reconstruction, key lookups, history, storage; `results/rq3_reads.json`) † |
+| `experiments/delivery_live.py` | Table 7 and Figure 6 (RQ6, one maintenance window under three rate profiles; `results/rq7_window.json`) † |
+| `experiments/delivery_curves.py` | Figure 5 and Table 6 (RQ4 and RQ5, skew, completeness drift, and the four declarations; `results/rq4_rq5_curves.json`) |
 | `experiments/delivery_tables.py` | every figure and table of the delivery study as LaTeX, from the result files above |
-| `experiments/reduct_frontend.py` | Table 4 (RQ2, maximal and total design heat at `p = 0.5`), the sweep over `p` below, and Figure 3(a); `results/rq2_reducts.json` |
+| `experiments/reduct_frontend.py` | Table 3 (RQ2, maximal and total design heat at `p = 0.5`), the sweep over `p` below, and Figure 3(a); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
-| `experiments/redundancy_study.py` | Table 5 (RQ2, redundant value occurrences) † |
+| `experiments/redundancy_study.py` | Table 4 (RQ2, redundant value occurrences) † |
 | `experiments/real_workload.py` | null control on routes and the heat-channel runs on ncvoter, from the weather study that the submitted paper no longer reports (`results/rq6_end_to_end.json`) † |
 | `experiments/weather_census.py` | counting census over the fat rules of weather, weather study (`results/rq6_weather_census.json`) † |
 | `experiments/weather_rules.py` | live runs of the five separating weather rules on their storing subschemata, weather study (`results/rq6_weather_rules_*.json`) † |
@@ -142,7 +142,7 @@ what they store. Heat values are verified against brute force.
 **Workloads.** `delivery_live.py --ops` issues one update of each kind at a time;
 `--mixed` interleaves refreshes with completions drawn from an all-clean or an
 all-conflicting pool at a share `gamma`; the default run issues whole maintenance
-windows of 1,000 updates under the three rate profiles of Table 3. Every window
+windows of 1,000 updates under the three rate profiles of Table 2. Every window
 is drawn once and then priced offline and issued against each design, so the two
 designs run the same window.
 
@@ -178,7 +178,7 @@ largest such count. To multiply the priced updates, one of the maps `l^2`,
 an attribute at level `l` is issued `1 + 2 floor(g / 2)` times, where
 `g = phi(l) / (l phi(1))`, alternating between the released value and the
 earlier one, so that its frequency follows the new level and the window still
-ends in the released edition. The designs stay those of Table 9 of the paper,
+ends in the released edition. The designs stay those of Table 8 of the paper,
 and under each map every design runs the window once.
 
 **The weather study**, an end-to-end study on the weather relation that the
@@ -288,6 +288,22 @@ files: rules are identified by attribute index throughout, in the paper as well.
 `results/` holds the JSON output behind each table and figure, so the numbers in
 the paper can be checked without re-running anything. File names match the table
 above.
+
+### One update of each kind at a group of 3,000 (RQ1)
+
+The rows each delivery design rewrites for one update of each kind at a group of
+`k = 3,000`, a mean over the operations issued where fractional, and the time it
+takes, medians of three round-robin repetitions (`delivery_live.py --ops`,
+`results/rq1_operations.json`); Figure 2 of the paper plots the times over `k`.
+SO is the structure-optimal design and HA the heat-aware one:
+
+| update | rows SO | rows HA | SO / HA | time SO (ms) | time HA (ms) | SO / HA |
+|---|---:|---:|---:|---:|---:|---:|
+| reassignment | 6,006 | 8 | 751× | 164 | 5.76 | 29× |
+| van swap | 7 | 2,005 | 0.0035× | 7.86 | 36.6 | 0.21× |
+| completion, conflicting | 6,011.6 | 13.6 | 444× | 167 | 8.92 | 19× |
+| completion, clean | 4 | 4 | 1.00× | 5.46 | 5.53 | 0.99× |
+| insert | 3 | 3 | 1.00× | 5.32 | 5.50 | 0.97× |
 
 ### The sweep over the share `p` of hot rules (RQ2)
 
