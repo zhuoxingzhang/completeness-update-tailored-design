@@ -1,0 +1,550 @@
+{
+ "tag": "owid",
+ "pickvar": "3NF=priced_worst,SO=hottest,HA=priced_best",
+ "maps": {
+  "obs": {
+   "priced_updates": 409,
+   "passes": 3,
+   "complete": true,
+   "quiet_pause": 600,
+   "visit_plan": [],
+   "levels": {
+    "location": {
+     "refreshes": 626,
+     "level": 1,
+     "issues": 1,
+     "updates": 1
+    },
+    "population_density": {
+     "refreshes": 53498,
+     "level": 9,
+     "issues": 1,
+     "updates": 81
+    },
+    "aged_65_older": {
+     "refreshes": 55183,
+     "level": 10,
+     "issues": 1,
+     "updates": 83
+    },
+    "gdp_per_capita": {
+     "refreshes": 53515,
+     "level": 9,
+     "issues": 1,
+     "updates": 81
+    },
+    "cardiovasc_death_rate": {
+     "refreshes": 54120,
+     "level": 9,
+     "issues": 1,
+     "updates": 82
+    },
+    "hospital_beds_per_thousand": {
+     "refreshes": 1976,
+     "level": 1,
+     "issues": 1,
+     "updates": 3
+    },
+    "human_development_index": {
+     "refreshes": 52006,
+     "level": 9,
+     "issues": 1,
+     "updates": 78
+    }
+   },
+   "designs": {
+    "3NF": {
+     "positions": [
+      1,
+      3,
+      2
+     ],
+     "priced_s": [
+      301.057,
+      280.079,
+      298.493
+     ],
+     "mean_s": 293.2096666666667,
+     "statements": 9546,
+     "rows": 1667938,
+     "group_rows": 170655,
+     "g_refreshes": 1340,
+     "g_admissions": 3,
+     "g_resets": 0,
+     "g_rules": 4,
+     "plain_rules": 6,
+     "pass_s": [
+      1388.5,
+      1320.0,
+      1352.8
+     ]
+    },
+    "SO": {
+     "positions": [
+      2,
+      1,
+      3
+     ],
+     "priced_s": [
+      110.485,
+      109.308,
+      119.413
+     ],
+     "mean_s": 113.06866666666667,
+     "statements": 5804,
+     "rows": 880116,
+     "group_rows": 1830,
+     "g_refreshes": 3,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 1,
+     "plain_rules": 0,
+     "pass_s": [
+      1000.1,
+      997.0,
+      1038.3
+     ]
+    },
+    "HA": {
+     "positions": [
+      3,
+      2,
+      1
+     ],
+     "priced_s": [
+      57.05,
+      64.89,
+      63.073
+     ],
+     "mean_s": 61.671,
+     "statements": 2056,
+     "rows": 369080,
+     "group_rows": 0,
+     "g_refreshes": 0,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 0,
+     "plain_rules": 0,
+     "pass_s": [
+      898.2,
+      899.9,
+      897.6
+     ]
+    }
+   },
+   "over_ha": {
+    "3NF": 4.754417257165713,
+    "SO": 1.8334171112300217
+   },
+   "round_over_ha": {
+    "3NF": [
+     5.277072743207713,
+     4.316212051163507,
+     4.732500436002727
+    ],
+    "SO": [
+     1.9366345311130588,
+     1.6845122515025428,
+     1.8932506777860574
+    ]
+   },
+   "ha_fastest_every_round": true
+  },
+  "sq": {
+   "priced_updates": 3815,
+   "passes": 1,
+   "complete": true,
+   "quiet_pause": 600,
+   "visit_plan": [
+    [
+     "SO",
+     "HA",
+     "3NF"
+    ]
+   ],
+   "levels": {
+    "location": {
+     "refreshes": 626,
+     "level": 1,
+     "issues": 1,
+     "updates": 1
+    },
+    "population_density": {
+     "refreshes": 53498,
+     "level": 9,
+     "issues": 9,
+     "updates": 81
+    },
+    "aged_65_older": {
+     "refreshes": 55183,
+     "level": 10,
+     "issues": 11,
+     "updates": 83
+    },
+    "gdp_per_capita": {
+     "refreshes": 53515,
+     "level": 9,
+     "issues": 9,
+     "updates": 81
+    },
+    "cardiovasc_death_rate": {
+     "refreshes": 54120,
+     "level": 9,
+     "issues": 9,
+     "updates": 82
+    },
+    "hospital_beds_per_thousand": {
+     "refreshes": 1976,
+     "level": 1,
+     "issues": 1,
+     "updates": 3
+    },
+    "human_development_index": {
+     "refreshes": 52006,
+     "level": 9,
+     "issues": 9,
+     "updates": 78
+    }
+   },
+   "designs": {
+    "3NF": {
+     "positions": [
+      3
+     ],
+     "priced_s": [
+      1852.988
+     ],
+     "mean_s": 1852.988,
+     "statements": 77068,
+     "rows": 15197958,
+     "group_rows": 1502399,
+     "g_refreshes": 1340,
+     "g_admissions": 3,
+     "g_resets": 0,
+     "g_rules": 4,
+     "plain_rules": 6,
+     "pass_s": [
+      2991.7
+     ]
+    },
+    "SO": {
+     "positions": [
+      1
+     ],
+     "priced_s": [
+      1149.935
+     ],
+     "mean_s": 1149.935,
+     "statements": 55142,
+     "rows": 8073492,
+     "group_rows": 1830,
+     "g_refreshes": 3,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 1,
+     "plain_rules": 0,
+     "pass_s": [
+      2100.4
+     ]
+    },
+    "HA": {
+     "positions": [
+      2
+     ],
+     "priced_s": [
+      587.215
+     ],
+     "mean_s": 587.215,
+     "statements": 18228,
+     "rows": 3143724,
+     "group_rows": 0,
+     "g_refreshes": 0,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 0,
+     "plain_rules": 0,
+     "pass_s": [
+      1451.5
+     ]
+    }
+   },
+   "over_ha": {
+    "3NF": 3.1555529065163523,
+    "SO": 1.9582861473225308
+   },
+   "round_over_ha": {
+    "3NF": [
+     3.1555529065163523
+    ],
+    "SO": [
+     1.9582861473225308
+    ]
+   },
+   "ha_fastest_every_round": true
+  },
+  "exp2": {
+   "priced_updates": 13575,
+   "passes": 1,
+   "complete": true,
+   "quiet_pause": 600,
+   "visit_plan": [
+    [
+     "HA",
+     "SO",
+     "3NF"
+    ]
+   ],
+   "levels": {
+    "location": {
+     "refreshes": 626,
+     "level": 1,
+     "issues": 1,
+     "updates": 1
+    },
+    "population_density": {
+     "refreshes": 53498,
+     "level": 9,
+     "issues": 29,
+     "updates": 81
+    },
+    "aged_65_older": {
+     "refreshes": 55183,
+     "level": 10,
+     "issues": 51,
+     "updates": 83
+    },
+    "gdp_per_capita": {
+     "refreshes": 53515,
+     "level": 9,
+     "issues": 29,
+     "updates": 81
+    },
+    "cardiovasc_death_rate": {
+     "refreshes": 54120,
+     "level": 9,
+     "issues": 29,
+     "updates": 82
+    },
+    "hospital_beds_per_thousand": {
+     "refreshes": 1976,
+     "level": 1,
+     "issues": 1,
+     "updates": 3
+    },
+    "human_development_index": {
+     "refreshes": 52006,
+     "level": 9,
+     "issues": 29,
+     "updates": 78
+    }
+   },
+   "designs": {
+    "3NF": {
+     "positions": [
+      3
+     ],
+     "priced_s": [
+      5703.335
+     ],
+     "mean_s": 5703.335,
+     "statements": 264548,
+     "rows": 51643658,
+     "group_rows": 4831759,
+     "g_refreshes": 1340,
+     "g_admissions": 3,
+     "g_resets": 0,
+     "g_rules": 4,
+     "plain_rules": 6,
+     "pass_s": [
+      6308.3
+     ]
+    },
+    "SO": {
+     "positions": [
+      2
+     ],
+     "priced_s": [
+      3072.886
+     ],
+     "mean_s": 3072.886,
+     "statements": 207122,
+     "rows": 29260632,
+     "group_rows": 1830,
+     "g_refreshes": 3,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 1,
+     "plain_rules": 0,
+     "pass_s": [
+      3878.2
+     ]
+    },
+    "HA": {
+     "positions": [
+      1
+     ],
+     "priced_s": [
+      1722.966
+     ],
+     "mean_s": 1722.966,
+     "statements": 61148,
+     "rows": 10082824,
+     "group_rows": 0,
+     "g_refreshes": 0,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 0,
+     "plain_rules": 0,
+     "pass_s": [
+      2506.9
+     ]
+    }
+   },
+   "over_ha": {
+    "3NF": 3.310184298471357,
+    "SO": 1.7834861512066984
+   },
+   "round_over_ha": {
+    "3NF": [
+     3.310184298471357
+    ],
+    "SO": [
+     1.7834861512066984
+    ]
+   },
+   "ha_fastest_every_round": true
+  },
+  "cube": {
+   "priced_updates": 34469,
+   "passes": 1,
+   "complete": true,
+   "quiet_pause": 600,
+   "visit_plan": [
+    [
+     "SO",
+     "HA",
+     "3NF"
+    ]
+   ],
+   "levels": {
+    "location": {
+     "refreshes": 626,
+     "level": 1,
+     "issues": 1,
+     "updates": 1
+    },
+    "population_density": {
+     "refreshes": 53498,
+     "level": 9,
+     "issues": 81,
+     "updates": 81
+    },
+    "aged_65_older": {
+     "refreshes": 55183,
+     "level": 10,
+     "issues": 101,
+     "updates": 83
+    },
+    "gdp_per_capita": {
+     "refreshes": 53515,
+     "level": 9,
+     "issues": 81,
+     "updates": 81
+    },
+    "cardiovasc_death_rate": {
+     "refreshes": 54120,
+     "level": 9,
+     "issues": 81,
+     "updates": 82
+    },
+    "hospital_beds_per_thousand": {
+     "refreshes": 1976,
+     "level": 1,
+     "issues": 1,
+     "updates": 3
+    },
+    "human_development_index": {
+     "refreshes": 52006,
+     "level": 9,
+     "issues": 81,
+     "updates": 78
+    }
+   },
+   "designs": {
+    "3NF": {
+     "positions": [
+      3
+     ],
+     "priced_s": [
+      13033.831
+     ],
+     "mean_s": 13033.831,
+     "statements": 684766,
+     "rows": 136968138,
+     "group_rows": 13488095,
+     "g_refreshes": 1340,
+     "g_admissions": 3,
+     "g_resets": 0,
+     "g_rules": 4,
+     "plain_rules": 6,
+     "pass_s": [
+      13733.0
+     ]
+    },
+    "SO": {
+     "positions": [
+      1
+     ],
+     "priced_s": [
+      6944.99
+     ],
+     "mean_s": 6944.99,
+     "statements": 499184,
+     "rows": 72813876,
+     "group_rows": 1830,
+     "g_refreshes": 3,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 1,
+     "plain_rules": 0,
+     "pass_s": [
+      7499.3
+     ]
+    },
+    "HA": {
+     "positions": [
+      2
+     ],
+     "priced_s": [
+      4187.403
+     ],
+     "mean_s": 4187.403,
+     "statements": 163776,
+     "rows": 28115520,
+     "group_rows": 0,
+     "g_refreshes": 0,
+     "g_admissions": 0,
+     "g_resets": 0,
+     "g_rules": 0,
+     "plain_rules": 0,
+     "pass_s": [
+      4788.8
+     ]
+    }
+   },
+   "over_ha": {
+    "3NF": 3.1126287582064585,
+    "SO": 1.6585434934253998
+   },
+   "round_over_ha": {
+    "3NF": [
+     3.1126287582064585
+    ],
+    "SO": [
+     1.6585434934253998
+    ]
+   },
+   "ha_fastest_every_round": true
+  }
+ }
+}

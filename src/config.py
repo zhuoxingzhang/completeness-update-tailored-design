@@ -13,8 +13,13 @@ artifact runs unmodified on a fresh checkout.
     CUTD_MYSQL_DB    database holding the benchmark relations (default: benchmarks)
     CUTD_DELIVERY_DB database the delivery study builds its designs in
                      (default: delivery_study)
+    CUTD_RELEASE_DB  database the real-release study builds its designs in
+                     (default: release_study)
     CUTD_MYSQL_CLIENT  path to the mysql command-line client (default: mysql)
-    CUTD_SCRATCH     directory for bulk-load temporaries (default: <repo>/.scratch)
+    CUTD_SCRATCH     directory for bulk-load temporaries and the built relation of
+                     the real release (default: <repo>/.scratch)
+    CUTD_OWID_REPO   clone of github.com/owid/covid-19-data the real release is
+                     read from (default: <scratch>/owid)
 
 The operational studies need a MySQL 8 server. Set the password before running
 them, for example
@@ -47,6 +52,9 @@ MYSQL_CLIENT = os.environ.get("CUTD_MYSQL_CLIENT", "mysql")
 # benchmark relations.
 DELIVERY_DB = os.environ.get("CUTD_DELIVERY_DB", "delivery_study")
 
+# The real-release study (RQ7) does the same in a database of its own.
+RELEASE_DB = os.environ.get("CUTD_RELEASE_DB", "release_study")
+
 
 def connect(database=None, **kw):
     """A pymysql connection to the benchmark server."""
@@ -76,3 +84,8 @@ def scratch_dir():
     d = os.environ.get("CUTD_SCRATCH", os.path.join(REPO, ".scratch"))
     os.makedirs(d, exist_ok=True)
     return d
+
+
+def owid_repo():
+    """The clone of the publisher's repository the real release is read from."""
+    return os.environ.get("CUTD_OWID_REPO", os.path.join(scratch_dir(), "owid"))

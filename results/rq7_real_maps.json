@@ -1,0 +1,980 @@
+{
+ "owid:obs:3NF=priced_worst,SO=hottest,HA=priced_best:keys+G": {
+  "dataset": "owid",
+  "map": "obs",
+  "slice": "refresh",
+  "reps": 3,
+  "batch": 1000,
+  "picked": {
+   "3NF": {
+    "variant": "priced_worst",
+    "order": "keep7_3"
+   },
+   "SO": {
+    "variant": "hottest",
+    "order": "h+c+"
+   },
+   "HA": {
+    "variant": "priced_best",
+    "order": "haswap164"
+   }
+  },
+  "rot": 0,
+  "visit_plan": [],
+  "multi": 200,
+  "quiet_history": 1000,
+  "quiet_pause": 600,
+  "purge_binlogs": true,
+  "levels": {
+   "location": {
+    "refreshes": 626,
+    "level": 1,
+    "issues": 1,
+    "updates": 1
+   },
+   "population_density": {
+    "refreshes": 53498,
+    "level": 9,
+    "issues": 1,
+    "updates": 81
+   },
+   "aged_65_older": {
+    "refreshes": 55183,
+    "level": 10,
+    "issues": 1,
+    "updates": 83
+   },
+   "gdp_per_capita": {
+    "refreshes": 53515,
+    "level": 9,
+    "issues": 1,
+    "updates": 81
+   },
+   "cardiovasc_death_rate": {
+    "refreshes": 54120,
+    "level": 9,
+    "issues": 1,
+    "updates": 82
+   },
+   "hospital_beds_per_thousand": {
+    "refreshes": 1976,
+    "level": 1,
+    "issues": 1,
+    "updates": 3
+   },
+   "human_development_index": {
+    "refreshes": 52006,
+    "level": 9,
+    "issues": 1,
+    "updates": 78
+   }
+  },
+  "priced_updates": 409,
+  "designs": {
+   "3NF": {
+    "size": 133,
+    "acct": {
+     "statements": 4087861,
+     "rows": 5746253,
+     "kind_i": 906253,
+     "kind_u": 2264944,
+     "priced_stmts": 9546,
+     "priced_rows": 1667938,
+     "priced_u": 8203,
+     "charged_stmts": 1811,
+     "charged_rows": 170655,
+     "kind_d": 915321,
+     "kind_gu": 1340,
+     "priced_gu": 1340,
+     "kind_ga": 3,
+     "priced_ga": 3
+    },
+    "g_rules": [
+     "s41 hospital_beds_per_thousand via ['total_deaths_per_million', 'male_smokers']",
+     "s117 hospital_beds_per_thousand via ['stringency_index', 'new_cases_smoothed_per_million', 'human_development_index']",
+     "s119 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']",
+     "s124 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']"
+    ],
+    "g_failed": {
+     "s115 human_development_index via ['aged_65_older']": 1,
+     "s123 human_development_index via ['aged_65_older']": 1,
+     "s125 human_development_index via ['aged_65_older']": 1,
+     "s129 human_development_index via ['aged_65_older']": 1,
+     "s130 human_development_index via ['aged_65_older']": 1,
+     "s131 human_development_index via ['aged_65_older']": 1
+    },
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     1388.5,
+     1320.0,
+     1352.8
+    ],
+    "priced_s": [
+     301.057,
+     280.079,
+     298.493
+    ],
+    "repair_s": [
+     41.306,
+     43.88,
+     43.099
+    ],
+    "position": [
+     1,
+     3,
+     2
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     77.1,
+     116.3,
+     116.8
+    ],
+    "release_broke": 20
+   },
+   "SO": {
+    "size": 141,
+    "acct": {
+     "statements": 4241936,
+     "rows": 5116248,
+     "kind_i": 937503,
+     "kind_u": 2358167,
+     "priced_stmts": 5804,
+     "priced_rows": 880116,
+     "priced_u": 5793,
+     "kind_d": 946263,
+     "kind_gu": 3,
+     "charged_stmts": 3,
+     "charged_rows": 1830,
+     "priced_gu": 3,
+     "priced_d": 7,
+     "priced_i": 1
+    },
+    "g_rules": [
+     "s3 hospital_beds_per_thousand via ['median_age', 'male_smokers']"
+    ],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     1000.1,
+     997.0,
+     1038.3
+    ],
+    "priced_s": [
+     110.485,
+     109.308,
+     119.413
+    ],
+    "repair_s": [
+     1.13,
+     0.794,
+     0.154
+    ],
+    "position": [
+     2,
+     1,
+     3
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     110.3,
+     109.6,
+     82.2
+    ],
+    "release_broke": 1
+   },
+   "HA": {
+    "size": 131,
+    "acct": {
+     "statements": 4138795,
+     "rows": 4505819,
+     "kind_i": 931470,
+     "kind_u": 2267477,
+     "priced_stmts": 2056,
+     "priced_rows": 369080,
+     "priced_u": 2049,
+     "kind_d": 939848,
+     "priced_d": 6,
+     "priced_i": 1
+    },
+    "g_rules": [],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     898.2,
+     899.9,
+     897.6
+    ],
+    "priced_s": [
+     57.05,
+     64.89,
+     63.073
+    ],
+    "repair_s": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "position": [
+     3,
+     2,
+     1
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ],
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     106.1,
+     106.0,
+     105.1
+    ],
+    "release_broke": 1
+   }
+  }
+ },
+ "owid:sq:3NF=priced_worst,SO=hottest,HA=priced_best:keys+G": {
+  "dataset": "owid",
+  "map": "sq",
+  "slice": "refresh",
+  "reps": 1,
+  "batch": 1000,
+  "picked": {
+   "3NF": {
+    "variant": "priced_worst",
+    "order": "keep7_3"
+   },
+   "SO": {
+    "variant": "hottest",
+    "order": "h+c+"
+   },
+   "HA": {
+    "variant": "priced_best",
+    "order": "haswap164"
+   }
+  },
+  "rot": 0,
+  "visit_plan": [
+   [
+    "SO",
+    "HA",
+    "3NF"
+   ]
+  ],
+  "multi": 200,
+  "quiet_history": 1000,
+  "quiet_pause": 600,
+  "purge_binlogs": true,
+  "levels": {
+   "location": {
+    "refreshes": 626,
+    "level": 1,
+    "issues": 1,
+    "updates": 1
+   },
+   "population_density": {
+    "refreshes": 53498,
+    "level": 9,
+    "issues": 9,
+    "updates": 81
+   },
+   "aged_65_older": {
+    "refreshes": 55183,
+    "level": 10,
+    "issues": 11,
+    "updates": 83
+   },
+   "gdp_per_capita": {
+    "refreshes": 53515,
+    "level": 9,
+    "issues": 9,
+    "updates": 81
+   },
+   "cardiovasc_death_rate": {
+    "refreshes": 54120,
+    "level": 9,
+    "issues": 9,
+    "updates": 82
+   },
+   "hospital_beds_per_thousand": {
+    "refreshes": 1976,
+    "level": 1,
+    "issues": 1,
+    "updates": 3
+   },
+   "human_development_index": {
+    "refreshes": 52006,
+    "level": 9,
+    "issues": 9,
+    "updates": 78
+   }
+  },
+  "priced_updates": 3815,
+  "designs": {
+   "3NF": {
+    "size": 133,
+    "acct": {
+     "statements": 4155383,
+     "rows": 19276273,
+     "kind_i": 906253,
+     "kind_u": 2332466,
+     "priced_stmts": 77068,
+     "priced_rows": 15197958,
+     "priced_u": 75725,
+     "charged_stmts": 5555,
+     "charged_rows": 1502399,
+     "kind_d": 915321,
+     "kind_gu": 1340,
+     "priced_gu": 1340,
+     "kind_ga": 3,
+     "priced_ga": 3
+    },
+    "g_rules": [
+     "s41 hospital_beds_per_thousand via ['total_deaths_per_million', 'male_smokers']",
+     "s117 hospital_beds_per_thousand via ['stringency_index', 'new_cases_smoothed_per_million', 'human_development_index']",
+     "s119 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']",
+     "s124 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']"
+    ],
+    "g_failed": {
+     "s115 human_development_index via ['aged_65_older']": 1,
+     "s123 human_development_index via ['aged_65_older']": 1,
+     "s125 human_development_index via ['aged_65_older']": 1,
+     "s129 human_development_index via ['aged_65_older']": 1,
+     "s130 human_development_index via ['aged_65_older']": 1,
+     "s131 human_development_index via ['aged_65_older']": 1
+    },
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     2991.7
+    ],
+    "priced_s": [
+     1852.988
+    ],
+    "repair_s": [
+     205.095
+    ],
+    "position": [
+     3
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     115.9
+    ],
+    "release_broke": 20
+   },
+   "SO": {
+    "size": 141,
+    "acct": {
+     "statements": 4291274,
+     "rows": 12309624,
+     "kind_i": 937535,
+     "kind_u": 2407441,
+     "priced_stmts": 55142,
+     "priced_rows": 8073492,
+     "priced_u": 55067,
+     "kind_d": 946295,
+     "kind_gu": 3,
+     "charged_stmts": 3,
+     "charged_rows": 1830,
+     "priced_gu": 3,
+     "priced_d": 39,
+     "priced_i": 33
+    },
+    "g_rules": [
+     "s3 hospital_beds_per_thousand via ['median_age', 'male_smokers']"
+    ],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     2100.4
+    ],
+    "priced_s": [
+     1149.935
+    ],
+    "repair_s": [
+     0.113
+    ],
+    "position": [
+     1
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     55.1
+    ],
+    "release_broke": 1
+   },
+   "HA": {
+    "size": 131,
+    "acct": {
+     "statements": 4154967,
+     "rows": 7280463,
+     "kind_i": 931498,
+     "kind_u": 2283593,
+     "priced_stmts": 18228,
+     "priced_rows": 3143724,
+     "priced_u": 18165,
+     "kind_d": 939876,
+     "priced_d": 34,
+     "priced_i": 29
+    },
+    "g_rules": [],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     1451.5
+    ],
+    "priced_s": [
+     587.215
+    ],
+    "repair_s": [
+     0.0
+    ],
+    "position": [
+     2
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     37.5
+    ],
+    "release_broke": 1
+   }
+  }
+ },
+ "owid:exp2:3NF=priced_worst,SO=hottest,HA=priced_best:keys+G": {
+  "dataset": "owid",
+  "map": "exp2",
+  "slice": "refresh",
+  "reps": 1,
+  "batch": 1000,
+  "picked": {
+   "3NF": {
+    "variant": "priced_worst",
+    "order": "keep7_3"
+   },
+   "SO": {
+    "variant": "hottest",
+    "order": "h+c+"
+   },
+   "HA": {
+    "variant": "priced_best",
+    "order": "haswap164"
+   }
+  },
+  "rot": 1,
+  "visit_plan": [
+   [
+    "HA",
+    "SO",
+    "3NF"
+   ]
+  ],
+  "multi": 200,
+  "quiet_history": 1000,
+  "quiet_pause": 600,
+  "purge_binlogs": true,
+  "levels": {
+   "location": {
+    "refreshes": 626,
+    "level": 1,
+    "issues": 1,
+    "updates": 1
+   },
+   "population_density": {
+    "refreshes": 53498,
+    "level": 9,
+    "issues": 29,
+    "updates": 81
+   },
+   "aged_65_older": {
+    "refreshes": 55183,
+    "level": 10,
+    "issues": 51,
+    "updates": 83
+   },
+   "gdp_per_capita": {
+    "refreshes": 53515,
+    "level": 9,
+    "issues": 29,
+    "updates": 81
+   },
+   "cardiovasc_death_rate": {
+    "refreshes": 54120,
+    "level": 9,
+    "issues": 29,
+    "updates": 82
+   },
+   "hospital_beds_per_thousand": {
+    "refreshes": 1976,
+    "level": 1,
+    "issues": 1,
+    "updates": 3
+   },
+   "human_development_index": {
+    "refreshes": 52006,
+    "level": 9,
+    "issues": 29,
+    "updates": 78
+   }
+  },
+  "priced_updates": 13575,
+  "designs": {
+   "3NF": {
+    "size": 133,
+    "acct": {
+     "statements": 4342863,
+     "rows": 55721973,
+     "kind_i": 906253,
+     "kind_u": 2519946,
+     "priced_stmts": 264548,
+     "priced_rows": 51643658,
+     "priced_u": 263205,
+     "charged_stmts": 14915,
+     "charged_rows": 4831759,
+     "kind_d": 915321,
+     "kind_gu": 1340,
+     "priced_gu": 1340,
+     "kind_ga": 3,
+     "priced_ga": 3
+    },
+    "g_rules": [
+     "s41 hospital_beds_per_thousand via ['total_deaths_per_million', 'male_smokers']",
+     "s117 hospital_beds_per_thousand via ['stringency_index', 'new_cases_smoothed_per_million', 'human_development_index']",
+     "s119 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']",
+     "s124 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']"
+    ],
+    "g_failed": {
+     "s115 human_development_index via ['aged_65_older']": 1,
+     "s123 human_development_index via ['aged_65_older']": 1,
+     "s125 human_development_index via ['aged_65_older']": 1,
+     "s129 human_development_index via ['aged_65_older']": 1,
+     "s130 human_development_index via ['aged_65_older']": 1,
+     "s131 human_development_index via ['aged_65_older']": 1
+    },
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     6308.3
+    ],
+    "priced_s": [
+     5703.335
+    ],
+    "repair_s": [
+     552.429
+    ],
+    "position": [
+     3
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     41.0
+    ],
+    "release_broke": 20
+   },
+   "SO": {
+    "size": 141,
+    "acct": {
+     "statements": 4443254,
+     "rows": 33496764,
+     "kind_i": 937615,
+     "kind_u": 2559261,
+     "priced_stmts": 207122,
+     "priced_rows": 29260632,
+     "priced_u": 206887,
+     "kind_d": 946375,
+     "kind_gu": 3,
+     "charged_stmts": 3,
+     "charged_rows": 1830,
+     "priced_gu": 3,
+     "priced_d": 119,
+     "priced_i": 113
+    },
+    "g_rules": [
+     "s3 hospital_beds_per_thousand via ['median_age', 'male_smokers']"
+    ],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     3878.2
+    ],
+    "priced_s": [
+     3072.886
+    ],
+    "repair_s": [
+     0.108
+    ],
+    "position": [
+     2
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     120.2
+    ],
+    "release_broke": 1
+   },
+   "HA": {
+    "size": 131,
+    "acct": {
+     "statements": 4197887,
+     "rows": 14219563,
+     "kind_i": 931568,
+     "kind_u": 2326373,
+     "priced_stmts": 61148,
+     "priced_rows": 10082824,
+     "priced_u": 60945,
+     "kind_d": 939946,
+     "priced_d": 104,
+     "priced_i": 99
+    },
+    "g_rules": [],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     2506.9
+    ],
+    "priced_s": [
+     1722.966
+    ],
+    "repair_s": [
+     0.0
+    ],
+    "position": [
+     1
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     90.7
+    ],
+    "release_broke": 1
+   }
+  }
+ },
+ "owid:cube:3NF=priced_worst,SO=hottest,HA=priced_best:keys+G": {
+  "dataset": "owid",
+  "map": "cube",
+  "slice": "refresh",
+  "reps": 1,
+  "batch": 1000,
+  "picked": {
+   "3NF": {
+    "variant": "priced_worst",
+    "order": "keep7_3"
+   },
+   "SO": {
+    "variant": "hottest",
+    "order": "h+c+"
+   },
+   "HA": {
+    "variant": "priced_best",
+    "order": "haswap164"
+   }
+  },
+  "rot": 2,
+  "visit_plan": [
+   [
+    "SO",
+    "HA",
+    "3NF"
+   ]
+  ],
+  "multi": 200,
+  "quiet_history": 1000,
+  "quiet_pause": 600,
+  "purge_binlogs": true,
+  "levels": {
+   "location": {
+    "refreshes": 626,
+    "level": 1,
+    "issues": 1,
+    "updates": 1
+   },
+   "population_density": {
+    "refreshes": 53498,
+    "level": 9,
+    "issues": 81,
+    "updates": 81
+   },
+   "aged_65_older": {
+    "refreshes": 55183,
+    "level": 10,
+    "issues": 101,
+    "updates": 83
+   },
+   "gdp_per_capita": {
+    "refreshes": 53515,
+    "level": 9,
+    "issues": 81,
+    "updates": 81
+   },
+   "cardiovasc_death_rate": {
+    "refreshes": 54120,
+    "level": 9,
+    "issues": 81,
+    "updates": 82
+   },
+   "hospital_beds_per_thousand": {
+    "refreshes": 1976,
+    "level": 1,
+    "issues": 1,
+    "updates": 3
+   },
+   "human_development_index": {
+    "refreshes": 52006,
+    "level": 9,
+    "issues": 81,
+    "updates": 78
+   }
+  },
+  "priced_updates": 34469,
+  "designs": {
+   "3NF": {
+    "size": 133,
+    "acct": {
+     "statements": 4763081,
+     "rows": 141046453,
+     "kind_i": 906253,
+     "kind_u": 2940164,
+     "priced_stmts": 684766,
+     "priced_rows": 136968138,
+     "priced_u": 683423,
+     "charged_stmts": 39251,
+     "charged_rows": 13488095,
+     "kind_d": 915321,
+     "kind_gu": 1340,
+     "priced_gu": 1340,
+     "kind_ga": 3,
+     "priced_ga": 3
+    },
+    "g_rules": [
+     "s41 hospital_beds_per_thousand via ['total_deaths_per_million', 'male_smokers']",
+     "s117 hospital_beds_per_thousand via ['stringency_index', 'new_cases_smoothed_per_million', 'human_development_index']",
+     "s119 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']",
+     "s124 hospital_beds_per_thousand via ['human_development_index', 'total_deaths_per_million']"
+    ],
+    "g_failed": {
+     "s115 human_development_index via ['aged_65_older']": 1,
+     "s123 human_development_index via ['aged_65_older']": 1,
+     "s125 human_development_index via ['aged_65_older']": 1,
+     "s129 human_development_index via ['aged_65_older']": 1,
+     "s130 human_development_index via ['aged_65_older']": 1,
+     "s131 human_development_index via ['aged_65_older']": 1
+    },
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     13733.0
+    ],
+    "priced_s": [
+     13033.831
+    ],
+    "repair_s": [
+     1269.804
+    ],
+    "position": [
+     3
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     40.9
+    ],
+    "release_broke": 20
+   },
+   "SO": {
+    "size": 141,
+    "acct": {
+     "statements": 4735316,
+     "rows": 77050008,
+     "kind_i": 937823,
+     "kind_u": 2850907,
+     "priced_stmts": 499184,
+     "priced_rows": 72813876,
+     "priced_u": 498533,
+     "kind_d": 946583,
+     "kind_gu": 3,
+     "charged_stmts": 3,
+     "charged_rows": 1830,
+     "priced_gu": 3,
+     "priced_d": 327,
+     "priced_i": 321
+    },
+    "g_rules": [
+     "s3 hospital_beds_per_thousand via ['median_age', 'male_smokers']"
+    ],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     7499.3
+    ],
+    "priced_s": [
+     6944.99
+    ],
+    "repair_s": [
+     0.107
+    ],
+    "position": [
+     1
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     72.7
+    ],
+    "release_broke": 1
+   },
+   "HA": {
+    "size": 131,
+    "acct": {
+     "statements": 4300515,
+     "rows": 32252259,
+     "kind_i": 931750,
+     "kind_u": 2428637,
+     "priced_stmts": 163776,
+     "priced_rows": 28115520,
+     "priced_u": 163209,
+     "kind_d": 940128,
+     "priced_d": 286,
+     "priced_i": 281
+    },
+    "g_rules": [],
+    "g_failed": {},
+    "keyless_subschemata": 0,
+    "rounds_s": [
+     4788.8
+    ],
+    "priced_s": [
+     4187.403
+    ],
+    "repair_s": [
+     0.0
+    ],
+    "position": [
+     2
+    ],
+    "violations": [
+     []
+    ],
+    "mismatch": [
+     [
+      0,
+      []
+     ]
+    ],
+    "build_s": [
+     70.1
+    ],
+    "release_broke": 1
+   }
+  }
+ }
+}

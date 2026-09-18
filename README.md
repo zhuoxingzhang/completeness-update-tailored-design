@@ -20,6 +20,8 @@ src/
 experiments/       one script per research question (table below)
 data/fd/           the declared constraint sets: atomic closures mined from the
                    benchmark relations under both NULL readings
+data/release/      the constraint set of the real release, mined on the edition
+                   of 30 June 2024 of the COVID table of Our World in Data
 results/           the result files behind the paper's tables and figures
 ```
 
@@ -96,6 +98,14 @@ equality rows can be restored without a rerun.
 | `experiments/reduct_frontend.py` | Table 3 (RQ2, maximal and total design heat at `p = 0.5`), the sweep over `p` below, and Figure 3(a); `results/rq2_reducts.json` |
 | `experiments/sweep_skew.py` | Figure 3(b) (RQ2, worst single hot rule) |
 | `experiments/redundancy_study.py` | Table 4 (RQ2, redundant value occurrences) † |
+| `experiments/release_build.py` | the relation and the workload of the real release, read from a clone of the publisher's repository (RQ7; see below) |
+| `experiments/release_mine.py` | the constraint set of the real release, `data/release/owid_fds.json`, mined on that relation |
+| `experiments/release_classes.py` | the class of designs each objective may return on the real release, priced offline, and the extremes the paper runs (`results/rq7_real_classes.json`, `results/rq7_real_orders.json`) |
+| `experiments/release_rules.py` | the rules each timed design stores away from a key, and the total heat row of Table 8 (`results/rq7_real_rules.json`) |
+| `experiments/release_live.py` | the whole window run live on the three designs, every subschema indexed on its minimal keys and on the determinants of its non-key FDs; the window statistics of Table 8 (`results/rq7_real_live.json`) † |
+| `experiments/release_maps.py` | the timed runs of Table 8 and Figure 8: the priced updates under the observed and the re-numbered levels, keys indexed alone and non-key FDs refreshed through trigger tables (`results/rq7_real_maps.json`) † |
+| `experiments/release_tables.py` | Table 8 and Figure 8 as LaTeX, from the three records above |
+| `experiments/release_skew.py` | Figure 7 (RQ7, the refreshes every rule of the reduct receives) |
 | `experiments/real_workload.py` | null control on routes and the heat-channel runs on ncvoter, from the weather study that the submitted paper no longer reports (`results/rq6_end_to_end.json`) † |
 | `experiments/weather_census.py` | counting census over the fat rules of weather, weather study (`results/rq6_weather_census.json`) † |
 | `experiments/weather_rules.py` | live runs of the five separating weather rules on their storing subschemata, weather study (`results/rq6_weather_rules_*.json`) † |
@@ -106,7 +116,11 @@ equality rows can be restored without a rerun.
 
 `weather_rules.py`, `weather_full.py` and `weather_recon.py` share the front end
 `weather_common.py`; the four `delivery_live.py` studies share `delivery_schema.py`
-and `delivery_curves.py`.
+and `delivery_curves.py`. The `release_*.py` scripts share `release_cost.py`, which
+holds the relation, the coalescing of the workload into updates and the offline
+price of a design, and `release_pool.py`, the pool of elimination orders the class
+search starts from; `release_diff.py` prices a window as the exact projection diff
+every subschema undergoes, rows updated, inserted and deleted.
 
 † needs a MySQL server; see below.
 
@@ -183,9 +197,19 @@ an attribute at level `l` is issued `1 + 2 floor(g / 2)` times, where
 `g = phi(l) / (l phi(1))`, alternating between the released value and the
 earlier one, so that its frequency follows the new level and the window still
 ends in the released edition. The designs stay those of Table 8 of the paper,
-and under each map every design runs the window once. The scripts and result
-files behind Table 8 and Figures 7 and 8 are being ported and follow in a later
-commit; the protocol above is complete.
+and under each map every design runs the window once. The designs are the
+extremes of the classes `release_classes.py` prices, with `POOL=250 SWAPS=300
+HA_SWAPS=300 TARGET=priced`: 3NF at its priced worst (order `keep7_3`), SO at its
+hottest (`h+c+`), HA at its priced best (`haswap164`); `results/rq7_real_picks.json`
+holds the three orders. The search that returned them ran before the heats were
+made positive, and so did the timed runs. Under the floor of 1 the search returns
+the same designs for 3NF and SO, and for HA the order `haswap239`, whose static
+price of the priced updates is 0.15 per cent below the timed design's
+(`results/rq7_real_classes.json`); the order `haswap164` itself exchanges two cold
+subschemata that no priced update touches, so its priced statements and rows are
+those of Table 8 either way, while its whole-window statements differ from
+`results/rq7_real_live.json` by 1.2 per cent. `HEAT_FLOOR=0` rebuilds the timed
+designs exactly.
 
 **The weather study**, an end-to-end study on the weather relation that the
 submitted paper no longer reports, is kept here with its scripts and results.
@@ -221,9 +245,11 @@ environment, with portable defaults:
 | `CUTD_MYSQL_PASSWORD` | *(empty)* | password |
 | `CUTD_MYSQL_DB` | `benchmarks` | database holding the benchmark relations |
 | `CUTD_DELIVERY_DB` | `delivery_study` | database the delivery study builds its designs in |
+| `CUTD_RELEASE_DB` | `release_study` | database the real-release study builds its designs in |
 | `CUTD_MYSQL_CLIENT` | `mysql` | path to the command-line client |
 | `CUTD_FD_BASE` | `data/fd` | directory of the constraint sets |
-| `CUTD_SCRATCH` | `.scratch` | directory for bulk-load temporaries |
+| `CUTD_SCRATCH` | `.scratch` | directory for bulk-load temporaries and the built relation of the real release |
+| `CUTD_OWID_REPO` | `.scratch/owid` | clone of the publisher's repository the real release is read from |
 
 For example:
 
@@ -276,6 +302,29 @@ range, nothing more. `delivery_schema.py` recomputes the instance's own
 dependencies over all seven attributes and compares them against the closure
 before every run.
 
+### The real release
+
+The relation of the real release is not redistributed either. `release_build.py`
+reads its two editions from a clone of the publisher's repository, which keeps
+every edition of the table in its history, and writes the relation and the
+workload to the scratch directory (about 90 MB):
+
+```bash
+git clone --filter=blob:none --no-checkout https://github.com/owid/covid-19-data .scratch/owid
+python experiments/release_build.py
+```
+
+The clone is 41 MB, and the two editions are fetched on demand. The constraint
+set is shipped in `data/release/`; `release_mine.py nulluc 4 .scratch/owid_relation.pkl
+data/release/owid_fds.json 14` mines it again. The offline scripts then run in
+the order `release_classes.py` (`POOL=250 SWAPS=300 HA_SWAPS=300 TARGET=priced`,
+about a quarter of an hour), `release_rules.py`, `release_skew.py` and
+`release_tables.py`; the last two read the shipped records and need no relation.
+With a server, `release_live.py owid 3` runs the whole window three times and
+`release_maps.py owid obs 3`, then `sq 1`, `exp2 1` and `cube 1` with
+`POOL=8589934592`, are the timed runs of Table 8; both accept `--dry` to build
+and price the statements without a server.
+
 ## Data format
 
 A constraint set is a JSON file
@@ -293,7 +342,14 @@ files: rules are identified by attribute index throughout, in the paper as well.
 
 `results/` holds the JSON output behind each table and figure, so the numbers in
 the paper can be checked without re-running anything. File names match the table
-above.
+above. The real release has five: `rq7_real_live.json` (the whole window run
+live, with the window statistics), `rq7_real_maps.json` (the timed runs under
+the four numberings of the levels), `rq7_real_rules.json` (the designs' non-key
+rules and heats), `rq7_real_classes.json` (the class search under the heat floor)
+and `rq7_real_picks.json` (the three elimination orders the timed designs are
+synthesized from); `rq7_real_visit.json` names the visiting orders of the
+single passes under the re-numbered levels, and `rq7_real_summary.json` holds the
+numbers of Table 8 and Figure 8 as `release_tables.py` assembles them.
 
 ### One update of each kind at a group of 3,000 (RQ1)
 

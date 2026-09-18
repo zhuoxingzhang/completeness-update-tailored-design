@@ -1,0 +1,1178 @@
+{
+ "tag": "owid",
+ "pick": "results/rq7_real_picks.json",
+ "pickvar": {
+  "3NF": "priced_worst",
+  "SO": "hottest",
+  "HA": "priced_best"
+ },
+ "designs": {
+  "3NF": {
+   "variant": "priced_worst",
+   "order": "keep7_3",
+   "size": 133,
+   "hmax": 52007,
+   "htot": 319969,
+   "hot_nonkey": [
+    {
+     "subschema": 115,
+     "schema": [
+      "reproduction_rate",
+      "new_vaccinations_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 123,
+     "schema": [
+      "new_deaths_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 125,
+     "schema": [
+      "reproduction_rate",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "aged_65_older",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 129,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "aged_65_older",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 130,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 131,
+     "schema": [
+      "aged_65_older",
+      "human_development_index",
+      "total_cases_per_million"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 119,
+     "schema": [
+      "stringency_index",
+      "hospital_beds_per_thousand",
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "lhs": [
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 8.2
+    },
+    {
+     "subschema": 124,
+     "schema": [
+      "new_deaths_smoothed_per_million",
+      "hospital_beds_per_thousand",
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "lhs": [
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 8.2
+    },
+    {
+     "subschema": 117,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 3.9
+    },
+    {
+     "subschema": 41,
+     "schema": [
+      "reproduction_rate",
+      "hospital_beds_per_thousand",
+      "total_deaths_per_million",
+      "male_smokers"
+     ],
+     "lhs": [
+      "total_deaths_per_million",
+      "male_smokers"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 8.2
+    },
+    {
+     "subschema": 122,
+     "schema": [
+      "continent",
+      "new_deaths_smoothed_per_million",
+      "human_development_index",
+      "total_cases_per_million"
+     ],
+     "lhs": [
+      "human_development_index",
+      "total_cases_per_million"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.1
+    },
+    {
+     "subschema": 17,
+     "schema": [
+      "continent",
+      "stringency_index",
+      "new_deaths_smoothed_per_million",
+      "life_expectancy",
+      "male_smokers"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "male_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 95,
+     "schema": [
+      "continent",
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4
+    },
+    {
+     "subschema": 96,
+     "schema": [
+      "continent",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4
+    },
+    {
+     "subschema": 96,
+     "schema": [
+      "continent",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 1.2
+    },
+    {
+     "subschema": 102,
+     "schema": [
+      "extreme_poverty",
+      "diabetes_prevalence",
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "lhs": [
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "rhs": "diabetes_prevalence",
+     "heat": 1,
+     "mean_group": 8.2
+    },
+    {
+     "subschema": 90,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "diabetes_prevalence",
+      "human_development_index"
+     ],
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "diabetes_prevalence",
+     "heat": 1,
+     "mean_group": 3.9
+    },
+    {
+     "subschema": 115,
+     "schema": [
+      "reproduction_rate",
+      "new_vaccinations_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 123,
+     "schema": [
+      "new_deaths_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 130,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "aged_65_older",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 87,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 101,
+     "schema": [
+      "extreme_poverty",
+      "human_development_index",
+      "total_deaths_per_million",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 57,
+     "schema": [
+      "reproduction_rate",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 76,
+     "schema": [
+      "stringency_index",
+      "new_deaths_smoothed_per_million",
+      "extreme_poverty",
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 86,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 74,
+     "schema": [
+      "new_deaths_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "median_age",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 89,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "median_age",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "median_age",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 91,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 3.9
+    },
+    {
+     "subschema": 91,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "stringency_index",
+      "new_vaccinations_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 1.3
+    },
+    {
+     "subschema": 58,
+     "schema": [
+      "stringency_index",
+      "new_vaccinations_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "female_smokers",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 59,
+     "schema": [
+      "reproduction_rate",
+      "stringency_index",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "female_smokers",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 75,
+     "schema": [
+      "stringency_index",
+      "new_deaths_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "female_smokers",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 120,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "new_deaths_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "female_smokers",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 58,
+     "schema": [
+      "stringency_index",
+      "new_vaccinations_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "life_expectancy",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 59,
+     "schema": [
+      "reproduction_rate",
+      "stringency_index",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "life_expectancy",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 75,
+     "schema": [
+      "stringency_index",
+      "new_deaths_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "life_expectancy",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 120,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "new_deaths_smoothed_per_million",
+      "life_expectancy",
+      "human_development_index",
+      "female_smokers"
+     ],
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "life_expectancy",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 116,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "lhs": [
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 94,
+     "schema": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "human_development_index"
+     ],
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 3.9
+    }
+   ],
+   "rules": [
+    {
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "human_development_index",
+     "heat": 52006,
+     "mean_group": 660.7,
+     "subschemata": 6
+    },
+    {
+     "lhs": [
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 8.2,
+     "subschemata": 2
+    },
+    {
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 3.9,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "total_deaths_per_million",
+      "male_smokers"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 8.2,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "life_expectancy",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 4
+    },
+    {
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "female_smokers",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 4
+    },
+    {
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 3
+    },
+    {
+     "lhs": [
+      "life_expectancy",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 3
+    },
+    {
+     "lhs": [
+      "human_development_index",
+      "female_smokers"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 2
+    },
+    {
+     "lhs": [
+      "median_age",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 2
+    },
+    {
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4,
+     "subschemata": 2
+    },
+    {
+     "lhs": [
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "human_development_index",
+      "total_cases_per_million"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.1,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "human_development_index",
+      "total_deaths_per_million"
+     ],
+     "rhs": "diabetes_prevalence",
+     "heat": 1,
+     "mean_group": 8.2,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "life_expectancy",
+      "male_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 1.2,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "diabetes_prevalence",
+     "heat": 1,
+     "mean_group": 3.9,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 3.9,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 3.9,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "stringency_index",
+      "new_vaccinations_smoothed_per_million",
+      "human_development_index"
+     ],
+     "rhs": "extreme_poverty",
+     "heat": 1,
+     "mean_group": 1.3,
+     "subschemata": 1
+    }
+   ],
+   "stored": {
+    "hospital_beds_per_thousand": 28,
+    "location": 2,
+    "aged_65_older": 15,
+    "population_density": 2,
+    "gdp_per_capita": 2,
+    "cardiovasc_death_rate": 2,
+    "human_development_index": 82
+   },
+   "as_nonkey": {
+    "hospital_beds_per_thousand": 4,
+    "human_development_index": 6
+   }
+  },
+  "SO": {
+   "variant": "hottest",
+   "order": "h+c+",
+   "size": 141,
+   "hmax": 1976,
+   "htot": 1979,
+   "hot_nonkey": [
+    {
+     "subschema": 3,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "hospital_beds_per_thousand",
+      "male_smokers"
+     ],
+     "lhs": [
+      "median_age",
+      "male_smokers"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 2,
+     "schema": [
+      "continent",
+      "new_deaths_smoothed_per_million",
+      "aged_65_older",
+      "total_cases_per_million"
+     ],
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 0,
+     "schema": [
+      "continent",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "extreme_poverty",
+      "hospital_beds_per_thousand"
+     ],
+     "lhs": [
+      "extreme_poverty",
+      "hospital_beds_per_thousand"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7
+    },
+    {
+     "subschema": 1,
+     "schema": [
+      "continent",
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4
+    }
+   ],
+   "rules": [
+    {
+     "lhs": [
+      "median_age",
+      "male_smokers"
+     ],
+     "rhs": "hospital_beds_per_thousand",
+     "heat": 1976,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "aged_65_older"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "extreme_poverty",
+      "hospital_beds_per_thousand"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "human_development_index"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4,
+     "subschemata": 1
+    }
+   ],
+   "stored": {
+    "hospital_beds_per_thousand": 37,
+    "human_development_index": 39,
+    "aged_65_older": 23,
+    "location": 3,
+    "population_density": 3,
+    "gdp_per_capita": 3,
+    "cardiovasc_death_rate": 3
+   },
+   "as_nonkey": {
+    "hospital_beds_per_thousand": 1
+   }
+  },
+  "HA": {
+   "variant": "priced_best",
+   "order": "haswap164",
+   "size": 131,
+   "hmax": 1,
+   "htot": 4,
+   "hot_nonkey": [
+    {
+     "subschema": 2,
+     "schema": [
+      "continent",
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "extreme_poverty"
+     ],
+     "lhs": [
+      "median_age",
+      "extreme_poverty"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 668.2
+    },
+    {
+     "subschema": 3,
+     "schema": [
+      "continent",
+      "stringency_index",
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "female_smokers"
+     ],
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "female_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4
+    },
+    {
+     "subschema": 1,
+     "schema": [
+      "continent",
+      "new_deaths_smoothed_per_million",
+      "total_cases_per_million",
+      "female_smokers"
+     ],
+     "lhs": [
+      "total_cases_per_million",
+      "female_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.1
+    },
+    {
+     "subschema": 0,
+     "schema": [
+      "new_cases_smoothed_per_million",
+      "new_vaccinations_smoothed_per_million",
+      "median_age",
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "lhs": [
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 660.7
+    }
+   ],
+   "rules": [
+    {
+     "lhs": [
+      "hospital_beds_per_thousand",
+      "human_development_index"
+     ],
+     "rhs": "median_age",
+     "heat": 1,
+     "mean_group": 660.7,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "median_age",
+      "extreme_poverty"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 668.2,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "new_cases_smoothed_per_million",
+      "extreme_poverty",
+      "female_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.4,
+     "subschemata": 1
+    },
+    {
+     "lhs": [
+      "total_cases_per_million",
+      "female_smokers"
+     ],
+     "rhs": "continent",
+     "heat": 1,
+     "mean_group": 7.1,
+     "subschemata": 1
+    }
+   ],
+   "stored": {
+    "hospital_beds_per_thousand": 24,
+    "human_development_index": 19,
+    "aged_65_older": 2,
+    "cardiovasc_death_rate": 1,
+    "gdp_per_capita": 1,
+    "population_density": 2,
+    "location": 4
+   },
+   "as_nonkey": {}
+  }
+ },
+ "priced_attrs": {
+  "location": {
+   "refreshes": 626,
+   "updates": 1
+  },
+  "population_density": {
+   "refreshes": 53498,
+   "updates": 81
+  },
+  "aged_65_older": {
+   "refreshes": 55183,
+   "updates": 83
+  },
+  "gdp_per_capita": {
+   "refreshes": 53515,
+   "updates": 81
+  },
+  "cardiovasc_death_rate": {
+   "refreshes": 54120,
+   "updates": 82
+  },
+  "hospital_beds_per_thousand": {
+   "refreshes": 1976,
+   "updates": 3
+  },
+  "human_development_index": {
+   "refreshes": 52006,
+   "updates": 78
+  }
+ }
+}

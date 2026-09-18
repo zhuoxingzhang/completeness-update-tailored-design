@@ -1,0 +1,422 @@
+{
+ "owid:3NF=priced_worst,SO=hottest,HA=priced_best": {
+  "dataset": "owid",
+  "slice": "refresh",
+  "scope": 58802,
+  "events": 523965,
+  "updates": 253450,
+  "groups": 409,
+  "reps": 3,
+  "batch": 1000,
+  "picked": {
+   "3NF": {
+    "variant": "priced_worst",
+    "order": "keep7_3"
+   },
+   "SO": {
+    "variant": "hottest",
+    "order": "h+c+"
+   },
+   "HA": {
+    "variant": "priced_best",
+    "order": "haswap164"
+   }
+  },
+  "priced_updates": 409,
+  "designs": {
+   "3NF": {
+    "size": 133,
+    "hmax": 52006,
+    "htot": 319940,
+    "issued": {
+     "statements": 4086530,
+     "rows": 5746253,
+     "charged_rows": 170655,
+     "charged_stmts": 480,
+     "priced_stmts": 8215,
+     "priced_rows": 1667938,
+     "updated": 3924679,
+     "inserted": 906253,
+     "deleted": 915321
+    },
+    "static": {
+     "statements": 5656230,
+     "rows": 7302983,
+     "charged_rows": 169188,
+     "pred_s": 784.9701844
+    },
+    "rounds_s": [
+     1647.5,
+     1674.4,
+     1608.1
+    ],
+    "repair_s": [
+     29.989,
+     38.609,
+     36.255
+    ],
+    "repair_rows": [
+     170655,
+     170655,
+     170655
+    ],
+    "matched_rows": [
+     5746253,
+     5746253,
+     5746253
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "release_broke": 20,
+    "position": [
+     1,
+     3,
+     2
+    ],
+    "repair_stmts": [
+     480,
+     480,
+     480
+    ],
+    "priced_s": [
+     315.422,
+     301.19,
+     297.976
+    ],
+    "priced_rows": [
+     1667938,
+     1667938,
+     1667938
+    ],
+    "priced_stmts": [
+     8215,
+     8215,
+     8215
+    ],
+    "slowest": [
+     [
+      72.8,
+      220057,
+      220057,
+      132
+     ],
+     [
+      35.6,
+      54979,
+      154697,
+      125
+     ],
+     [
+      35.3,
+      95256,
+      102190,
+      124
+     ],
+     [
+      34.4,
+      49803,
+      93342,
+      90
+     ],
+     [
+      34.0,
+      116346,
+      123675,
+      128
+     ],
+     [
+      32.6,
+      49337,
+      94238,
+      116
+     ]
+    ]
+   },
+   "SO": {
+    "size": 141,
+    "hmax": 1976,
+    "htot": 1976,
+    "issued": {
+     "statements": 4241936,
+     "rows": 5116248,
+     "charged_rows": 1830,
+     "charged_stmts": 3,
+     "priced_stmts": 5804,
+     "priced_rows": 880116,
+     "updated": 3232443,
+     "inserted": 937503,
+     "deleted": 946302
+    },
+    "static": {
+     "statements": 5766541,
+     "rows": 6640156,
+     "charged_rows": 1830,
+     "pred_s": 794.8033908
+    },
+    "rounds_s": [
+     1204.9,
+     1189.9,
+     1203.8
+    ],
+    "repair_s": [
+     0.083,
+     0.086,
+     0.071
+    ],
+    "repair_rows": [
+     1830,
+     1830,
+     1830
+    ],
+    "matched_rows": [
+     5116248,
+     5116248,
+     5116248
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "release_broke": 1,
+    "position": [
+     2,
+     1,
+     3
+    ],
+    "repair_stmts": [
+     3,
+     3,
+     3
+    ],
+    "priced_s": [
+     99.944,
+     103.711,
+     96.646
+    ],
+    "priced_rows": [
+     880116,
+     880116,
+     880116
+    ],
+    "priced_stmts": [
+     5804,
+     5804,
+     5804
+    ],
+    "slowest": [
+     [
+      61.0,
+      220057,
+      220057,
+      140
+     ],
+     [
+      26.2,
+      97563,
+      105338,
+      2
+     ],
+     [
+      26.1,
+      112907,
+      120630,
+      137
+     ],
+     [
+      24.5,
+      102216,
+      102216,
+      118
+     ],
+     [
+      24.2,
+      116351,
+      124046,
+      139
+     ],
+     [
+      24.0,
+      54899,
+      105159,
+      130
+     ]
+    ]
+   },
+   "HA": {
+    "size": 131,
+    "hmax": 0,
+    "htot": 0,
+    "issued": {
+     "statements": 4138795,
+     "rows": 4505819,
+     "charged_rows": 0,
+     "charged_stmts": 0,
+     "priced_stmts": 2056,
+     "priced_rows": 369080,
+     "updated": 2634462,
+     "inserted": 931470,
+     "deleted": 939887
+    },
+    "static": {
+     "statements": 5660826,
+     "rows": 6027571,
+     "charged_rows": 0,
+     "pred_s": 776.8948627999999
+    },
+    "rounds_s": [
+     1076.8,
+     1125.0,
+     1123.1
+    ],
+    "repair_s": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "repair_rows": [
+     0,
+     0,
+     0
+    ],
+    "matched_rows": [
+     4505819,
+     4505819,
+     4505819
+    ],
+    "violations": [
+     [],
+     [],
+     []
+    ],
+    "release_broke": 1,
+    "position": [
+     3,
+     2,
+     1
+    ],
+    "repair_stmts": [
+     0,
+     0,
+     0
+    ],
+    "priced_s": [
+     50.382,
+     51.547,
+     49.325
+    ],
+    "priced_rows": [
+     369080,
+     369080,
+     369080
+    ],
+    "priced_stmts": [
+     2056,
+     2056,
+     2056
+    ],
+    "slowest": [
+     [
+      53.0,
+      220057,
+      220057,
+      130
+     ],
+     [
+      25.5,
+      97480,
+      97480,
+      1
+     ],
+     [
+      24.5,
+      101210,
+      101210,
+      54
+     ],
+     [
+      24.3,
+      102216,
+      102216,
+      51
+     ],
+     [
+      23.4,
+      116268,
+      116268,
+      41
+     ],
+     [
+      22.7,
+      113078,
+      113078,
+      42
+     ]
+    ]
+   }
+  },
+  "priced_attrs": {
+   "population_density": {
+    "events": 53498,
+    "updates": 81,
+    "via": [
+     "location"
+    ]
+   },
+   "aged_65_older": {
+    "events": 55183,
+    "updates": 83,
+    "via": [
+     "cardiovasc_death_rate"
+    ]
+   },
+   "gdp_per_capita": {
+    "events": 53515,
+    "updates": 81,
+    "via": [
+     "population_density"
+    ]
+   },
+   "cardiovasc_death_rate": {
+    "events": 54120,
+    "updates": 82,
+    "via": [
+     "location"
+    ]
+   },
+   "human_development_index": {
+    "events": 52006,
+    "updates": 78,
+    "via": [
+     "cardiovasc_death_rate"
+    ]
+   },
+   "hospital_beds_per_thousand": {
+    "events": 1976,
+    "updates": 3,
+    "via": [
+     "location"
+    ]
+   },
+   "location": {
+    "events": 626,
+    "updates": 1,
+    "via": [
+     "cardiovasc_death_rate"
+    ]
+   }
+  },
+  "priced_events": 270924,
+  "plan_events": 523965,
+  "relation": {
+   "tuples": 168655,
+   "attrs": 23,
+   "E": 21,
+   "reduct": 1614,
+   "keys": 1
+  }
+ }
+}
