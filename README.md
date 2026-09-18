@@ -162,7 +162,11 @@ differ most.
 19 August 2024 of the COVID table of Our World in Data: the relation is the
 earlier edition, the constraints are mined on it, and the workload is the
 difference between the two editions, coalesced into the updates that produce
-it. Each subschema is kept equal to the projection of the edited relation,
+it. The heat of a rule `X -> A` is the number of cells of `A` the window
+refreshes inside the scope, and a rule the window does not refresh keeps the
+default heat 1, since heats are positive (`HEAT_FLOOR` in the scripts; 0
+reproduces the runs recorded before 18 September 2026). Each subschema is
+kept equal to the projection of the edited relation,
 since the release splits and merges stored rows as well as rewriting them.
 Every subschema indexes its minimal keys and no other attributes. A non-key FD
 `X -> A` whose groups the window rewrites whole, without splitting or merging
