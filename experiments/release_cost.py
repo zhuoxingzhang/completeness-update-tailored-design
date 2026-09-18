@@ -26,6 +26,7 @@ import json
 import os
 import pickle
 import sys
+import time
 
 import numpy as np
 
@@ -36,7 +37,6 @@ import config as CFG
 import synthesis as B
 
 B.HEAT = "all"
-import real_workload as RW
 
 ORDER = ["3NF", "SO", "HA"]
 MODE_OF = {"3NF": "3nf", "SO": "so", "HA": "ha"}
@@ -54,6 +54,42 @@ BETA = 6.8e-6
 # cannot declare a rule away.  HEAT_FLOOR=0 reproduces the runs recorded before that convention,
 # which gave such a rule heat 0.
 HEAT_FLOOR = int(os.environ.get("HEAT_FLOOR", "1"))
+
+
+def settle(cur, limit=100, timeout=300):
+    """Drain InnoDB dirty pages so every timed batch starts from the same quiesced state,
+    instead of inheriting the checkpoint pressure of the preceding build or batch."""
+    end = time.time() + timeout
+    while time.time() < end:
+        cur.execute("SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_pages_dirty'")
+        if int(cur.fetchone()[1]) <= limit:
+            break
+        time.sleep(5)
+
+
+def choose_E(data, m, frac=1 / 3, min_cols=3):
+    """Completeness requirement: add columns by ascending NULL rate while the E-complete
+    share of the data stays above `frac`."""
+    nulls = [sum(1 for r in data if r[c] is None) for c in range(m)]
+    order = sorted(range(m), key=lambda c: nulls[c])
+    E, mask = [], [True] * len(data)
+    for c in order:
+        nm = [ok and data[i][c] is not None for i, ok in enumerate(mask)]
+        if len(E) >= min_cols and sum(nm) < frac * len(data):
+            continue
+        E.append(c)
+        mask = nm
+    return sorted(E)
+
+
+def col_lens(data, m):
+    """The widest value of each column, for the column definitions of a materialization."""
+    L = [1] * m
+    for r in data:
+        for c, v in enumerate(r):
+            if v is not None and len(v) > L[c]:
+                L[c] = len(v)
+    return L
 
 
 def floor(theta):
@@ -97,7 +133,7 @@ class Rel:
             raise SystemExit(f"{path} is missing: run release_build.py first")
         d = pickle.load(open(path, "rb"))
         attrs, data, events = d["attrs"], d["data"], d["events"]
-        E = RW.choose_E(data, len(attrs))
+        E = choose_E(data, len(attrs))
         self.E = frozenset(E)
         pos, scope = {}, []
         for i, r in enumerate(data):

@@ -521,7 +521,7 @@ def main_mixed(depth=3000, ops=200, reps=3, gammas=(0.0, 0.10, 0.25, 0.50),
     return res
 
 
-def main(tiny=False, out=result("rq7_window.json")):
+def main(tiny=False, out=result("rq6_window.json")):
     depths = (192,) if tiny else (192, 768, 3072)
     res = []
     set_pool(POOL_BIG)

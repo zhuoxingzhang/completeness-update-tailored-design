@@ -70,6 +70,5 @@ for name, (tbl, jb) in DATASETS.items():
     print(f"{name:10s} |R|={ncols:3d} rows={nrows:7,d} null={100*nullrate:5.1f}%"
           f"  fds_eq={feq}  fds_un={fun}")
 
-json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-          "dataset_stats.json"), "w"), indent=1)
-print("wrote dataset_stats.json")
+json.dump(out, open(os.path.join(config.RESULTS, "datasets.json"), "w"), indent=1)
+print("wrote results/datasets.json")

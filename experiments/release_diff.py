@@ -32,7 +32,6 @@ sys.path.insert(0, HERE)
 import synthesis as B
 
 B.HEAT = "all"
-import real_workload as RW
 import release_cost as W
 
 
@@ -42,7 +41,7 @@ class Window:
     def __init__(self, tag, decl=None):
         d = pickle.load(open(W.relpath(tag), "rb"))
         self.attrs, data = d["attrs"], d["data"]
-        E = RW.choose_E(data, len(self.attrs))
+        E = W.choose_E(data, len(self.attrs))
         self.scope = [r for r in data if all(r[a] is not None for a in E)]
         self.R = R = W.Rel(tag)
         assert R.n == len(self.scope), f"scope disagrees: {R.n} vs {len(self.scope)}"

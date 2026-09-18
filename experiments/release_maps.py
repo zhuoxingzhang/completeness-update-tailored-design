@@ -449,7 +449,7 @@ def drain():
         kept = sum(int(r[1]) for r in acur.fetchall())
     t0 = time.time()
     cur.execute("SET GLOBAL innodb_max_dirty_pages_pct = 0")
-    RW.settle(cur, limit=100, timeout=900)
+    W.settle(cur, limit=100, timeout=900)
     t1 = time.time()
     hist = -1
     while True:
@@ -460,7 +460,7 @@ def drain():
         time.sleep(5)
     t2 = time.time()
     time.sleep(QUIET_PAUSE)
-    RW.settle(cur, limit=100, timeout=900)
+    W.settle(cur, limit=100, timeout=900)
     cur.execute("SET GLOBAL innodb_max_dirty_pages_pct = 90")
     print(f"        {time.strftime('%H:%M:%S')} quiet: binary logs {held / 2**30:.1f} -> {kept / 2**30:.1f} GiB, "
           f"dirty pages flushed in {t1 - t0:.0f}s, undo history {hist} after {t2 - t1:.0f}s, "

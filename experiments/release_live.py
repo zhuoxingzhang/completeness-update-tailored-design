@@ -50,7 +50,6 @@ import config as CFG
 import synthesis as B
 
 B.HEAT = "all"
-import real_workload as RW
 import release_cost as W
 
 ARGS = [x for x in sys.argv[1:] if not x.startswith("--")]
@@ -67,7 +66,7 @@ SAMPLE_CHECK = 2000
 # ---------- relation, declaration, designs -----------------------------------
 d = pickle.load(open(W.relpath(TAG), "rb"))
 ATTRS, data = d["attrs"], d["data"]
-E = RW.choose_E(data, len(ATTRS))
+E = W.choose_E(data, len(ATTRS))
 scope = [r for r in data if all(r[a] is not None for a in E)]
 R = W.Rel(TAG)
 assert R.n == len(scope), f"scope disagrees: {R.n} vs {len(scope)}"
@@ -79,7 +78,7 @@ for a, j, _ in R.ev:
 theta = W.floor({fd: (int(nev[next(iter(fd[1]))].sum()) if next(iter(fd[1])) in nev else 0)
                  for fd in R.reduct})
 prep = B.prepare(R.reduct)
-lens = RW.col_lens(scope, len(ATTRS))
+lens = W.col_lens(scope, len(ATTRS))
 
 PICK = os.environ.get("PICK", os.path.join(CFG.RESULTS, "rq7_real_picks.json"))
 if PICK.lower() in ("", "none", "plain"):
@@ -497,7 +496,7 @@ if PROBE:
 def drain():
     """Leave InnoDB with a clean buffer pool, so a pass does not inherit the last one's work."""
     cur.execute("SET GLOBAL innodb_max_dirty_pages_pct = 0")
-    RW.settle(cur, limit=100, timeout=900)
+    W.settle(cur, limit=100, timeout=900)
     cur.execute("SET GLOBAL innodb_max_dirty_pages_pct = 90")
 
 

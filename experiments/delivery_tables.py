@@ -10,8 +10,8 @@ hand.  Blocks are written one file each under `blocks/`, and the paper splices t
     fig_curves   the window as the traffic and the scope move        rq4_rq5_curves.json
     tab_decl     what each way of declaring heat costs                rq4_rq5_curves.json
     tab_side     the read side and what it costs to store            rq3_reads.json
-    tab_window   one window under three rate profiles                rq7_window.json
-    fig_window   the window as the group grows                       rq7_window.json
+    tab_window   one window under three rate profiles                rq6_window.json
+    fig_window   the window as the group grows                       rq6_window.json
 
 Usage: python delivery_tables.py
 """
@@ -349,7 +349,7 @@ def fig_mixed():
 
 # ---- RQ7 --------------------------------------------------------------------
 def _win(depth):
-    d = load("rq7_window.json")
+    d = load("rq6_window.json")
     out = {}
     for mix in ("desk", "mixed", "fleet"):
         r = {x["design"]: x for x in d if x["depth"] == depth and x["mix"] == mix}
@@ -359,7 +359,7 @@ def _win(depth):
 
 
 def tab_window():
-    d = load("rq7_window.json")
+    d = load("rq6_window.json")
     depth = max(x["depth"] for x in d)
     n = max(x["n"] for x in d if x["depth"] == depth)
     w = _win(depth)
@@ -387,7 +387,7 @@ window & \Dstr{{}} & \Dupd{{}} & ratio & \Dstr{{}} & \Dupd{{}} & ratio\\
 
 
 def fig_window():
-    d = load("rq7_window.json")
+    d = load("rq6_window.json")
     depths = sorted({x["depth"] for x in d})
     pts = lambda mix, k: [(p, med([x["secs"] for x in d
                                    if x["depth"] == p and x["mix"] == mix

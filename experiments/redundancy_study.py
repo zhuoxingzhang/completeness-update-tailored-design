@@ -341,11 +341,10 @@ def main():
     ap.add_argument("--only")
     args = ap.parse_args()
 
-    rq2 = json.load(open(os.path.join(HERE, "rq2_draft.json")))
-    runs = [k for k in rq2 if k != "_skipped"]
+    rq2 = json.load(open(os.path.join(config.RESULTS, "rq2_reducts.json")))["reducts"]
 
     jobs = []
-    for tag in runs:
+    for tag in rq2:
         ds, sem = tag.rsplit(":", 1)
         path = os.path.join(FD_BASE, SEMS[sem], "FD", ds + ".json")
         cost = rq2[tag]["fds"] * (17_000_000 if ds == "pdbx" else 1)

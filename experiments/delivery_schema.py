@@ -663,7 +663,7 @@ def run_window(inst, comp, mix, reps, channel, cache=None, name=""):
     return out
 
 
-def main_window(out=result("rq7_window_model.json")):
+def main_window(out=result("rq6_window_model.json")):
     """The window on each criterion, over the zone's group, the mix and the declaration."""
     res, days = [], (16, 32, 64, 128)
     depths = []

@@ -43,7 +43,7 @@ Environment: SLICE as in release_cost.py, SHUFFLES (random orders added to the n
              ones), SWAPS (search steps, default 300), HA_SWAPS (search steps on HA's ties,
              default 0), TARGET (charged or priced), A_ROW and B_ENTRY (seconds per row and per
              index entry), OUTDIR (another directory for the two files, named after the tag)
-Writes results/rq7_real_classes.json and results/rq7_real_orders.json (in the format
+Writes results/rq7_real_classes.json and results/rq7_real_picks.json (in the format
        release_live.py reads with PICK)
 """
 import collections
@@ -68,7 +68,6 @@ import config as CFG
 import synthesis as B
 
 B.HEAT = "all"
-import real_workload as RW
 import release_cost as W
 import release_pool as WB
 
@@ -80,7 +79,7 @@ A_ROW = float(os.environ.get("A_ROW", "7.74e-5"))
 B_ENTRY = float(os.environ.get("B_ENTRY", "2.706e-5"))
 MODES = [("3NF", "3nf"), ("SO", "so"), ("HA", "ha")]
 OUT = os.path.join(CFG.RESULTS, "rq7_real_classes.json")
-ORD = os.path.join(CFG.RESULTS, "rq7_real_orders.json")
+ORD = os.path.join(CFG.RESULTS, "rq7_real_picks.json")
 if os.environ.get("OUTDIR"):             # one file per window, so that windows can run in parallel
     OUT = os.path.join(os.environ["OUTDIR"], f"so_worst_{TAG}.json")
     ORD = os.path.join(os.environ["OUTDIR"], f"so_worst_orders_{TAG}.json")
@@ -88,9 +87,9 @@ t00 = time.time()
 
 # ---------- the window, as release_live.py and release_pool.py read it ---------
 raw = pickle.load(open(W.relpath(TAG), "rb"))
-E = RW.choose_E(raw["data"], len(raw["attrs"]))
+E = W.choose_E(raw["data"], len(raw["attrs"]))
 scope = [r for r in raw["data"] if all(r[a] is not None for a in E)]
-lens = RW.col_lens(scope, len(raw["attrs"]))
+lens = W.col_lens(scope, len(raw["attrs"]))
 del raw
 R = W.Rel(TAG)
 assert R.n == len(scope), f"scope disagrees: {R.n} vs {len(scope)}"
