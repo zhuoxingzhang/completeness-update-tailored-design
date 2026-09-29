@@ -42,8 +42,9 @@ def inst_of(depth):
 def two_designs():
     """The two families, taken from the declaration that reaches each.
 
-    The closure admits four designs in two families whose costs differ by 0.4%, so the two
-    the canonical listing returns stand for the families throughout.
+    The closure admits four designs in two families.  The two the canonical listing returns,
+    the pair of Fig. 1, stand for the families throughout; the other variant of each changes
+    the rows of a window by at most 2.3% at a group of 3,072.
     """
     out = {}
     for a in ("c", "v"):

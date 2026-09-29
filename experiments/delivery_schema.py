@@ -18,8 +18,11 @@ zones are served from either branch, so neither the zone nor the van alone fixes
 the courier, and round numbers are reused, so a round identifies nobody by itself.  The
 closure admits four designs in two families, and the families part in opposite directions:
 one keeps the zone's courier under a key, the other keeps the branch's van under one, and
-which is cheaper is decided by which of the two reassignments the window carries.  Two designs
-in one family differ by 0.4% over a window, so it is the family a criterion has to reach.
+which is cheaper is decided by which of the two reassignments the window carries.  The two
+designs of a family differ by at most 2.3% in the rows of a window at a group of 3,072 and by
+up to 22% at a group of 192 (the family of bcdz at the fleet office, where brz is cheaper than
+bvz and rvz), and the family decides which design is cheaper at every group, so it is the
+family a criterion has to reach.
 
 Exactness is not assumed.  The bulk satisfies the seven rules by construction; Armstrong
 witnesses are appended in a disjoint value range, refuting every dependency the rules do not
