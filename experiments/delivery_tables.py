@@ -95,7 +95,7 @@ def fig_kappa():
 \legend{{\Dstr{{}}, \Dupd{{}}}}
 \nextgroupplot[
   title={{(b) completion}},
-  ylabel={{ms per tuple}},
+  ylabel={{time (ms)}},
 ]
 \addplot[serD, mark=*, nodes near coords, point meta=explicit symbolic,
          nodes near coords style={{font=\tiny, serD!60!black, anchor=south east,

@@ -429,14 +429,17 @@ def one_kind(inst, named, op, reps, seed=0):
     return stream(inst, named, {op: 1.0}, reps, seed)
 
 
-def main_ops(depths=(3, 30, 300, 3000, 30000), reps=3,
+def main_ops(depths=(3, 30, 300, 3000), reps=3, per=200,
              out=result("rq1_operations.json")):
     """What one update of each kind costs on each design, as the group it ranges over grows.
 
     The window studies price everything a maintenance period writes.  This one isolates a
     single update instead, which is what Prop. amplification bounds, and grows the group the
     hot rule ranges over while the number of groups stays fixed.  Designs are rebuilt and
-    timed round-robin inside each repetition, as everywhere else here.
+    timed round-robin inside each repetition, as everywhere else here.  The `per` updates of
+    a kind go to the server in one client call and the time is divided by `per`, so the
+    client's start-up (about 56 ms) is spread over the same number of updates at every
+    depth.
     """
     kinds = ("reassign", "swap", "completion_conflict", "completion_clean", "insert_total")
     res = []
@@ -445,7 +448,7 @@ def main_ops(depths=(3, 30, 300, 3000, 30000), reps=3,
         for depth in depths:
             inst, named = C.inst_of(depth), C.two_designs()
             base = list(inst.rows())
-            n = 200 if inst.depth <= 30 else 20
+            n = per
             drawn = {op: one_kind(inst, named, op, n)[0] for op in kinds}
             print(f"  group {inst.depth}, {inst.n:,} tuples, {n} updates of each kind",
                   flush=True)
@@ -461,7 +464,7 @@ def main_ops(depths=(3, 30, 300, 3000, 30000), reps=3,
                                       for op in kinds), flush=True)
             for op in kinds:
                 r = {k: sorted(v)[len(v) // 2] for k, v in secs[op].items()}
-                res.append({"depth": inst.depth, "n": inst.n, "op": op,
+                res.append({"depth": inst.depth, "n": inst.n, "op": op, "updates": n,
                             "rows": {k: sum(x for _, x in drawn[op][k]) / n
                                      for k in named},
                             "secs": r,

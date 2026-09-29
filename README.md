@@ -149,7 +149,8 @@ every minimal key a unique index; non-key FDs are maintained by the workload's
 own statements rather than by triggers, so that the two designs differ only in
 what they store. Heat values are verified against brute force.
 
-**Workloads.** `delivery_live.py --ops` issues one update of each kind at a time;
+**Workloads.** `delivery_live.py --ops` issues one update of each kind at a time,
+200 of a kind in one client call at every group, and divides the time by 200;
 `--mixed` interleaves refreshes with completions drawn from an all-clean or an
 all-conflicting pool at a share `gamma`; the default run issues whole maintenance
 windows of 1,000 updates under the three rate profiles of Table 2. Every window
@@ -360,11 +361,11 @@ SO is the structure-optimal design and HA the heat-aware one:
 
 | update | rows SO | rows HA | SO / HA | time SO (ms) | time HA (ms) | SO / HA |
 |---|---:|---:|---:|---:|---:|---:|
-| reassignment | 6,006 | 8 | 751× | 164 | 5.76 | 29× |
-| van swap | 7 | 2,005 | 0.0035× | 7.86 | 36.6 | 0.21× |
-| completion, conflicting | 6,011.6 | 13.6 | 444× | 167 | 8.92 | 19× |
-| completion, clean | 4 | 4 | 1.00× | 5.46 | 5.53 | 0.99× |
-| insert | 3 | 3 | 1.00× | 5.32 | 5.50 | 0.97× |
+| reassignment | 6,006 | 8 | 751× | 159 | 3.14 | 51× |
+| van swap | 7 | 2,005 | 0.0035× | 4.54 | 62.1 | 0.073× |
+| completion, conflicting | 6,026.2 | 28.2 | 214× | 162 | 5.92 | 27× |
+| completion, clean | 4 | 4 | 1.00× | 2.74 | 2.97 | 0.92× |
+| insert | 3 | 3 | 1.00× | 2.71 | 2.61 | 1.04× |
 
 ### The sweep over the share `p` of hot rules (RQ2)
 
