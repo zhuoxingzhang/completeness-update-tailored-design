@@ -25,8 +25,8 @@ ROWS = [
     ("t2", "South", "Maggie", "Mon", "Telco-B", "R2", "V9", "Z1"),
     ("t3", "North", "Maggie", "Wed", "Telco-A", "R1", "V7", "Z1"),
     ("t4", "North", "Maggie", "Tue", "Telco-A", "R1", "V7", "Z2"),
-    ("t5", "North", "Ravi", "Mon", "Telco-B", "R2", "V4", "Z3"),
-    ("t6", "South", "Ravi", "Tue", NUL, "R2", "V4", "Z1"),
+    ("t5", "North", "Omar", "Mon", "Telco-B", "R2", "V4", "Z3"),
+    ("t6", "East", "Ravi", "Tue", NUL, "R3", "V8", "Z1"),
 ]
 SCOPE = [r[1:] for r in ROWS if NUL not in r]
 PENDING = [r[1:] for r in ROWS if NUL in r]
@@ -52,7 +52,7 @@ def main():
         print(f"  {r[0]:<4}" + "".join(f"{v:>10}" for v in r[1:])
               + ("    pending" if NUL in r else ""))
     net = {t[S.AID["v"]]: t[S.AID["g"]] for t in SCOPE}
-    filled = [tuple(net[t[S.AID["v"]]] if i == S.AID["g"] else v
+    filled = [tuple(net.get(t[S.AID["v"]], "Telco-C") if i == S.AID["g"] else v
                     for i, v in enumerate(t)) for t in PENDING]
     shared = sorted(set.intersection(*({S.nm(XA) for XA, _, _ in D}
                                        for D in C.two_designs().values())))
