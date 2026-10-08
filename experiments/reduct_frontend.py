@@ -22,7 +22,7 @@ synthesis call.  Times measured under parallel workers are inflated by
 contention; the time column of Table 3 was measured with CUTD_WORKERS=1.
 
 Tasks are (reduct, p) pairs run in parallel.  Closures above CAP atomic FDs
-(pathological ones such as diabetic, 40k-144k atomic FDs) are reported, not run.
+are reported, not run.
 Partial results land in rq2_parts/ and are merged into results/rq2_reducts.json;
 rerun with --merge to rebuild the merged file from the parts alone.
 """

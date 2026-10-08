@@ -46,7 +46,7 @@ BIOCASE_JSON = "t_biocase_identification_r91800_c38"
 TABLES = {"routes": "routes", "claims": "claims", "breast": "breast",
           "pdbx": "pdbx", "hospital": "hospital", "bridges": "bridges",
           "echo": "echo", "ncvoter": "ncvoter", "china_weather": "china_weather",
-          "dblp10k": "dblp10k", "uniprot": "uniprot", "hepatitis": "hepatitis"}
+          "dblp10k": "dblp10k", "hepatitis": "hepatitis"}
 
 SCALE = 10        # theta scale, matches baselines.SCALE
 TOP = 8           # theta >= TOP counts as "hot" in the split

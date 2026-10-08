@@ -177,19 +177,6 @@
   },
   "so_uniform_hmax": 4
  },
- "uniprot:nulleq": {
-  "rules": 3703,
-  "candidates": 111,
-  "capped": false,
-  "separations": 29,
-  "best": {
-   "rule": "[2, 17, 20, 23]->15",
-   "3nf": 14,
-   "so": 14,
-   "ha": 5
-  },
-  "so_uniform_hmax": 5
- },
  "hepatitis:nulluc": {
   "rules": 4513,
   "candidates": 166,

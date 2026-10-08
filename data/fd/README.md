@@ -1,10 +1,10 @@
 # Declared constraint sets
 
-Atomic closures of functional dependencies mined from the benchmark relations,
-under the two NULL readings the paper compares:
+Atomic closures of functional dependencies mined from the twelve benchmark
+relations of the paper, under two NULL readings:
 
-- `null-equality/FD/` — null markers compare equal (`eq` in the paper)
-- `null-uncertainty/FD/` — null markers are pairwise uncertain (`un` in the paper)
+- `null-equality/FD/`: null markers compare equal
+- `null-uncertainty/FD/`: null markers are pairwise uncertain, the reading the paper reports
 
 Each file is one relation. In the framework of the paper, a mined set is read as
 the reduct `Sigma[E]` on which design operates, so the two directories bracket
@@ -21,6 +21,5 @@ not part of these files; rules are identified by attribute index, in the paper a
 well. `src/synthesis.py::load` splits every entry into single-right-hand-side
 atomic FDs and computes the minimal keys.
 
-Not every relation is profiled under both readings; `uniprot` under equality is
-profiled on a nearly complete 512,000-row sample. Table 2 of the paper records
-which readings exist per relation.
+Not every relation is profiled under both readings; `results/datasets.json`
+records which readings exist per relation.

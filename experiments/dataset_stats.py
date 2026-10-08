@@ -41,8 +41,7 @@ DATASETS = {  # paper name -> (benchmark table base, json base name)
     "pdbx": ("pdbx", "pdbx"), "hospital": ("hospital", "hospital"),
     "bridges": ("bridges", "bridges"), "echo": ("echo", "echo"),
     "ncvoter": ("ncvoter", "ncvoter"), "weather": ("china_weather", "china_weather"),
-    "dblp10k": ("dblp10k", "dblp10k"), "uniprot": ("uniprot", "uniprot"),
-    "hepatitis": ("hepatitis", "hepatitis"), "diabetic": ("diabetic", "diabetic"),
+    "dblp10k": ("dblp10k", "dblp10k"), "hepatitis": ("hepatitis", "hepatitis"),
 }
 
 out = {}

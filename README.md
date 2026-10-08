@@ -78,7 +78,7 @@ steps of 0.1, with twenty draws each. About two hours on 18 workers, dominated
 by hepatitis under equality; set `CUTD_WORKERS` to match your machine. The per-synthesis times it records are
 inflated by parallel contention; the synthesis times quoted in the paper were measured with
 `CUTD_WORKERS=1`. Writes `results/rq2_reducts.json`. The paper reports the
-uncertainty reading (`nulluc`) of the fourteen relations only; the shipped
+uncertainty reading (`nulluc`) of the twelve relations only; the shipped
 constraint sets, the scripts, and the result files carry both readings, so the
 equality rows can be restored without a rerun.
 
@@ -275,18 +275,15 @@ no-information reading (`dataset_stats.py`, `results/datasets.json`):
 | bridges | 14 | 108 | 5.1 | 67 |
 | claims | 14 | 96,131 | 5.9 | 17 |
 | dblp10k | 35 | 4,837 | 38.2 | 708 |
-| diabetic | 31 | 101,766 | 6.1 | 97,341 |
 | echo | 14 | 132 | 7.1 | 91 |
 | hepatitis | 21 | 155 | 5.1 | 2,995 |
 | hospital | 16 | 114,919 | 0.8 | 42 |
 | ncvoter | 20 | 1,000 | 14.3 | 271 |
 | pdbx | 14 | 17,305,799 | 0.8 | 37 |
 | routes | 10 | 67,663 | 7.8 | 15 |
-| uniprot | 31 | 96,996 | 23.7 | 5,794 |
 | weather | 19 | 262,920 | 8.4 | 2,955 |
 
-diabetic and uniprot, whose atomic closures exceed 10,000 FDs, are left out of
-the paper's tables; the other twelve are its reducts. To run the scripts marked †,
+These twelve relations are the reducts of the paper. To run the scripts marked †,
 load them into the database named by `CUTD_MYSQL_DB`, one table per relation.
 
 The operational studies expect the two NULL readings as separate tables, named

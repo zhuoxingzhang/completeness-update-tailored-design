@@ -98,15 +98,6 @@
   "R_eq": null,
   "R_un": 34
  },
- "uniprot": {
-  "attrs": 31,
-  "rows": 96996,
-  "null": 23.7,
-  "fds_eq": 3036,
-  "fds_un": 5794,
-  "R_eq": 30,
-  "R_un": 30
- },
  "hepatitis": {
   "attrs": 21,
   "rows": 155,
@@ -115,14 +106,5 @@
   "fds_un": 2995,
   "R_eq": 20,
   "R_un": 20
- },
- "diabetic": {
-  "attrs": 31,
-  "rows": 101766,
-  "null": 6.1,
-  "fds_eq": 38037,
-  "fds_un": 97341,
-  "R_eq": 30,
-  "R_un": 30
  }
 }

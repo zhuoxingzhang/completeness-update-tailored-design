@@ -332,12 +332,10 @@ DATASETS = {
     "breast":    _os.path.join(_NULLUC, "breast.json"),
     "bridges":   _os.path.join(_NULLUC, "bridges.json"),
     "weather":   _os.path.join(_NULLUC, "china_weather.json"),
-    "diabetic":  _os.path.join(_NULLUC, "diabetic.json"),
     "echo":      _os.path.join(_NULLUC, "echo.json"),
     "hepatitis": _os.path.join(_NULLUC, "hepatitis.json"),
     "ncvoter":   _os.path.join(_NULLUC, "ncvoter.json"),
     "pdbx":      _os.path.join(_NULLUC, "pdbx.json"),
-    "uniprot":   _os.path.join(_NULLUC, "uniprot.json"),
 }
 
 def levels(sigma_a, p, seed=0, scale=SCALE):
