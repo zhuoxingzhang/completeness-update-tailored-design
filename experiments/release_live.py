@@ -72,11 +72,7 @@ R = W.Rel(TAG)
 assert R.n == len(scope), f"scope disagrees: {R.n} vs {len(scope)}"
 M = len(ATTRS)
 plan = W.coalesce(R)
-nev = {}
-for a, j, _ in R.ev:
-    nev.setdefault(a, np.zeros(R.n, dtype=np.int64))[j] += 1
-theta = W.floor({fd: (int(nev[next(iter(fd[1]))].sum()) if next(iter(fd[1])) in nev else 0)
-                 for fd in R.reduct})
+theta = W.declare(R, plan)
 prep = B.prepare(R.reduct)
 lens = W.col_lens(scope, len(ATTRS))
 

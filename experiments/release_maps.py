@@ -10,7 +10,8 @@ serves.  A rule whose refresh would split or merge stored rows, or reach a group
 cannot move through G; it keeps release_live.py's statements, and the record lists it.
 
 Maps.  An attribute some determinant of the reduct reaches is graded 1 + min(9, floor(9 n / top))
-by the refreshes n it receives in the scope, and a map phi issues each of its updates
+by the number n of priced updates it receives in the scope (on this window the same levels as by
+the refreshes those updates rewrite), and a map phi issues each of its updates
 1 + 2 floor(g / 2) times, g = phi(l) / (l phi(1)): the update, then round trips back to the value
 the earlier edition holds and forward again, so the window still ends in the released state.  The
 designs are the ones release_live.py runs.
@@ -94,8 +95,9 @@ MAPS = {"obs": lambda l: l, "sq": lambda l: l ** 2, "exp2": lambda l: 2 ** l, "c
 assert MAP in MAPS, MAP
 PRICED = sorted(a for a, p in plan.items() if p["X"])
 NREF = {a: int(plan[a]["events"]) for a in PRICED}
-TOP = max(NREF.values())
-LEVEL = {a: (1 + min(9, int(9 * n / TOP))) if n else 1 for a, n in NREF.items()}
+NUPD = {a: int(plan[a]["updates"]) for a in PRICED}
+TOP = max(NUPD.values())
+LEVEL = {a: (1 + min(9, int(9 * n / TOP))) if n else 1 for a, n in NUPD.items()}
 
 
 def issues(m, l):

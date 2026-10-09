@@ -47,8 +47,8 @@
     {
      "order": "fcnt",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -119,8 +119,8 @@
     {
      "order": "survivor1",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 52011,
+     "hmax": 79,
+     "htot": 83,
      "so_obj": [
       2,
       6
@@ -143,8 +143,8 @@
     {
      "order": "survivor2",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 52011,
+     "hmax": 79,
+     "htot": 83,
      "so_obj": [
       2,
       6
@@ -167,8 +167,8 @@
     {
      "order": "survivor5",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 52011,
+     "hmax": 79,
+     "htot": 83,
      "so_obj": [
       2,
       6
@@ -191,8 +191,8 @@
     {
      "order": "last7",
      "subschemata": 128,
-     "hmax": 52007,
-     "htot": 215957,
+     "hmax": 79,
+     "htot": 353,
      "so_obj": [
       2,
       37
@@ -215,8 +215,8 @@
     {
      "order": "keep7_0",
      "subschemata": 125,
-     "hmax": 1976,
-     "htot": 5955,
+     "hmax": 3,
+     "htot": 36,
      "so_obj": [
       2,
       30
@@ -239,8 +239,8 @@
     {
      "order": "keep7_1",
      "subschemata": 126,
-     "hmax": 1976,
-     "htot": 7930,
+     "hmax": 3,
+     "htot": 38,
      "so_obj": [
       2,
       30
@@ -263,8 +263,8 @@
     {
      "order": "keep7_2",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 317994,
+     "hmax": 79,
+     "htot": 507,
      "so_obj": [
       2,
       39
@@ -287,8 +287,8 @@
     {
      "order": "keep7_3",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 319969,
+     "hmax": 79,
+     "htot": 509,
      "so_obj": [
       2,
       39
@@ -311,8 +311,8 @@
     {
      "order": "rand2",
      "subschemata": 126,
-     "hmax": 52007,
-     "htot": 161988,
+     "hmax": 79,
+     "htot": 285,
      "so_obj": [
       2,
       48
@@ -335,8 +335,8 @@
     {
      "order": "rand3",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 267976,
+     "hmax": 79,
+     "htot": 444,
      "so_obj": [
       2,
       51
@@ -359,8 +359,8 @@
     {
      "order": "rand4",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 165939,
+     "hmax": 79,
+     "htot": 290,
      "so_obj": [
       2,
       49
@@ -383,8 +383,8 @@
     {
      "order": "rand15",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 213989,
+     "hmax": 79,
+     "htot": 358,
      "so_obj": [
       2,
       44
@@ -407,8 +407,8 @@
     {
      "order": "rand17",
      "subschemata": 128,
-     "hmax": 52007,
-     "htot": 161993,
+     "hmax": 79,
+     "htot": 290,
      "so_obj": [
       2,
       53
@@ -431,8 +431,8 @@
     {
      "order": "rand26",
      "subschemata": 131,
-     "hmax": 52006,
-     "htot": 109981,
+     "hmax": 78,
+     "htot": 206,
      "so_obj": [
       2,
       46
@@ -455,8 +455,8 @@
     {
      "order": "rand28",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 163955,
+     "hmax": 79,
+     "htot": 279,
      "so_obj": [
       2,
       40
@@ -479,8 +479,8 @@
     {
      "order": "rand31",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 111958,
+     "hmax": 79,
+     "htot": 210,
      "so_obj": [
       2,
       48
@@ -503,8 +503,8 @@
     {
      "order": "rand37",
      "subschemata": 132,
-     "hmax": 52007,
-     "htot": 215973,
+     "hmax": 79,
+     "htot": 369,
      "so_obj": [
       2,
       53
@@ -527,8 +527,8 @@
     {
      "order": "rand38",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 213990,
+     "hmax": 79,
+     "htot": 359,
      "so_obj": [
       2,
       45
@@ -551,8 +551,8 @@
     {
      "order": "rand40",
      "subschemata": 132,
-     "hmax": 52007,
-     "htot": 111954,
+     "hmax": 79,
+     "htot": 206,
      "so_obj": [
       2,
       44
@@ -575,8 +575,8 @@
     {
      "order": "rand54",
      "subschemata": 128,
-     "hmax": 52007,
-     "htot": 165943,
+     "hmax": 79,
+     "htot": 294,
      "so_obj": [
       2,
       53
@@ -599,8 +599,8 @@
     {
      "order": "rand61",
      "subschemata": 127,
-     "hmax": 52007,
-     "htot": 161982,
+     "hmax": 79,
+     "htot": 279,
      "so_obj": [
       2,
       42
@@ -623,8 +623,8 @@
     {
      "order": "rand66",
      "subschemata": 129,
-     "hmax": 52007,
-     "htot": 111960,
+     "hmax": 79,
+     "htot": 212,
      "so_obj": [
       2,
       50
@@ -647,8 +647,8 @@
     {
      "order": "rand70",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 165933,
+     "hmax": 79,
+     "htot": 284,
      "so_obj": [
       2,
       43
@@ -671,8 +671,8 @@
     {
      "order": "rand89",
      "subschemata": 129,
-     "hmax": 52007,
-     "htot": 160015,
+     "hmax": 79,
+     "htot": 285,
      "so_obj": [
       2,
       50
@@ -695,8 +695,8 @@
     {
      "order": "rand91",
      "subschemata": 132,
-     "hmax": 52007,
-     "htot": 161985,
+     "hmax": 79,
+     "htot": 282,
      "so_obj": [
       2,
       45
@@ -719,8 +719,8 @@
     {
      "order": "rand92",
      "subschemata": 132,
-     "hmax": 52007,
-     "htot": 160006,
+     "hmax": 79,
+     "htot": 276,
      "so_obj": [
       2,
       41
@@ -743,8 +743,8 @@
     {
      "order": "rand96",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 265988,
+     "hmax": 79,
+     "htot": 429,
      "so_obj": [
       2,
       38
@@ -767,8 +767,8 @@
     {
      "order": "rand99",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 109982,
+     "hmax": 79,
+     "htot": 207,
      "so_obj": [
       2,
       47
@@ -791,8 +791,8 @@
     {
      "order": "rand108",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 266006,
+     "hmax": 79,
+     "htot": 447,
      "so_obj": [
       2,
       56
@@ -815,8 +815,8 @@
     {
      "order": "rand110",
      "subschemata": 128,
-     "hmax": 52007,
-     "htot": 113933,
+     "hmax": 79,
+     "htot": 212,
      "so_obj": [
       2,
       48
@@ -839,8 +839,8 @@
     {
      "order": "rand112",
      "subschemata": 134,
-     "hmax": 52007,
-     "htot": 163961,
+     "hmax": 79,
+     "htot": 285,
      "so_obj": [
       2,
       46
@@ -863,8 +863,8 @@
     {
      "order": "rand115",
      "subschemata": 130,
-     "hmax": 52007,
-     "htot": 160016,
+     "hmax": 79,
+     "htot": 286,
      "so_obj": [
       2,
       51
@@ -887,8 +887,8 @@
     {
      "order": "rand121",
      "subschemata": 129,
-     "hmax": 52007,
-     "htot": 215973,
+     "hmax": 79,
+     "htot": 369,
      "so_obj": [
       2,
       53
@@ -911,8 +911,8 @@
     {
      "order": "rand135",
      "subschemata": 131,
-     "hmax": 52007,
-     "htot": 163965,
+     "hmax": 79,
+     "htot": 289,
      "so_obj": [
       2,
       50
@@ -935,8 +935,8 @@
     {
      "order": "rand137",
      "subschemata": 132,
-     "hmax": 52007,
-     "htot": 111955,
+     "hmax": 79,
+     "htot": 207,
      "so_obj": [
       2,
       45
@@ -959,8 +959,8 @@
     {
      "order": "rand142",
      "subschemata": 129,
-     "hmax": 52007,
-     "htot": 215965,
+     "hmax": 79,
+     "htot": 361,
      "so_obj": [
       2,
       45
@@ -983,8 +983,8 @@
     {
      "order": "rand153",
      "subschemata": 133,
-     "hmax": 52007,
-     "htot": 212012,
+     "hmax": 79,
+     "htot": 354,
      "so_obj": [
       2,
       42
@@ -1009,8 +1009,8 @@
     {
      "order": "cold",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1057,8 +1057,8 @@
     {
      "order": "lex",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1081,8 +1081,8 @@
     {
      "order": "lex_rev",
      "subschemata": 141,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1105,8 +1105,8 @@
     {
      "order": "level",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1129,8 +1129,8 @@
     {
      "order": "level_rev",
      "subschemata": 140,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1153,8 +1153,8 @@
     {
      "order": "wcost",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1201,8 +1201,8 @@
     {
      "order": "h+c+",
      "subschemata": 141,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1273,8 +1273,8 @@
     {
      "order": "keep0_2",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1321,8 +1321,8 @@
     {
      "order": "keep1_2",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1345,8 +1345,8 @@
     {
      "order": "keep2_1",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1393,8 +1393,8 @@
     {
      "order": "last3",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1417,8 +1417,8 @@
     {
      "order": "keep3_0",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1441,8 +1441,8 @@
     {
      "order": "first4",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1465,8 +1465,8 @@
     {
      "order": "last4",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1489,8 +1489,8 @@
     {
      "order": "keep4_0",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1537,8 +1537,8 @@
     {
      "order": "first5",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1561,8 +1561,8 @@
     {
      "order": "last5",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1585,8 +1585,8 @@
     {
      "order": "keep5_0",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1633,8 +1633,8 @@
     {
      "order": "first6",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1657,8 +1657,8 @@
     {
      "order": "last6",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1681,8 +1681,8 @@
     {
      "order": "keep6_0",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1729,8 +1729,8 @@
     {
      "order": "first7",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1873,8 +1873,8 @@
     {
      "order": "keep03",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1897,8 +1897,8 @@
     {
      "order": "keep13",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1921,8 +1921,8 @@
     {
      "order": "keep23",
      "subschemata": 142,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1969,8 +1969,8 @@
     {
      "order": "rand1",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -1993,8 +1993,8 @@
     {
      "order": "rand2",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2041,8 +2041,8 @@
     {
      "order": "rand4",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2065,8 +2065,8 @@
     {
      "order": "rand5",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2113,8 +2113,8 @@
     {
      "order": "rand7",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2161,8 +2161,8 @@
     {
      "order": "rand9",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2233,8 +2233,8 @@
     {
      "order": "rand12",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2281,8 +2281,8 @@
     {
      "order": "rand14",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2329,8 +2329,8 @@
     {
      "order": "rand16",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2377,8 +2377,8 @@
     {
      "order": "rand18",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2401,8 +2401,8 @@
     {
      "order": "rand19",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2425,8 +2425,8 @@
     {
      "order": "rand20",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2449,8 +2449,8 @@
     {
      "order": "rand21",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2473,8 +2473,8 @@
     {
      "order": "rand22",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2521,8 +2521,8 @@
     {
      "order": "rand24",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2545,8 +2545,8 @@
     {
      "order": "rand25",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2569,8 +2569,8 @@
     {
      "order": "rand26",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2593,8 +2593,8 @@
     {
      "order": "rand27",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2641,8 +2641,8 @@
     {
      "order": "rand29",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2665,8 +2665,8 @@
     {
      "order": "rand30",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2713,8 +2713,8 @@
     {
      "order": "rand32",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2737,8 +2737,8 @@
     {
      "order": "rand33",
      "subschemata": 139,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2761,8 +2761,8 @@
     {
      "order": "rand34",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2857,8 +2857,8 @@
     {
      "order": "rand38",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2881,8 +2881,8 @@
     {
      "order": "rand39",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2905,8 +2905,8 @@
     {
      "order": "rand40",
      "subschemata": 128,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2929,8 +2929,8 @@
     {
      "order": "rand41",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2953,8 +2953,8 @@
     {
      "order": "rand42",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -2977,8 +2977,8 @@
     {
      "order": "rand43",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3001,8 +3001,8 @@
     {
      "order": "rand44",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3025,8 +3025,8 @@
     {
      "order": "rand45",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3049,8 +3049,8 @@
     {
      "order": "rand46",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3073,8 +3073,8 @@
     {
      "order": "rand47",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3097,8 +3097,8 @@
     {
      "order": "rand48",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3145,8 +3145,8 @@
     {
      "order": "rand50",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3169,8 +3169,8 @@
     {
      "order": "rand51",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3193,8 +3193,8 @@
     {
      "order": "rand52",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3241,8 +3241,8 @@
     {
      "order": "rand54",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3265,8 +3265,8 @@
     {
      "order": "rand55",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3313,8 +3313,8 @@
     {
      "order": "rand57",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3337,8 +3337,8 @@
     {
      "order": "rand58",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3361,8 +3361,8 @@
     {
      "order": "rand59",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3409,8 +3409,8 @@
     {
      "order": "rand61",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3457,8 +3457,8 @@
     {
      "order": "rand63",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3481,8 +3481,8 @@
     {
      "order": "rand64",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3505,8 +3505,8 @@
     {
      "order": "rand65",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3529,8 +3529,8 @@
     {
      "order": "rand66",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3601,8 +3601,8 @@
     {
      "order": "rand69",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3625,8 +3625,8 @@
     {
      "order": "rand70",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3649,8 +3649,8 @@
     {
      "order": "rand71",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3721,8 +3721,8 @@
     {
      "order": "rand74",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3745,8 +3745,8 @@
     {
      "order": "rand75",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3769,8 +3769,8 @@
     {
      "order": "rand76",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3817,8 +3817,8 @@
     {
      "order": "rand78",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3841,8 +3841,8 @@
     {
      "order": "rand79",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3865,8 +3865,8 @@
     {
      "order": "rand80",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3889,8 +3889,8 @@
     {
      "order": "rand81",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3961,8 +3961,8 @@
     {
      "order": "rand84",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -3985,8 +3985,8 @@
     {
      "order": "rand85",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4033,8 +4033,8 @@
     {
      "order": "rand87",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4057,8 +4057,8 @@
     {
      "order": "rand88",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4081,8 +4081,8 @@
     {
      "order": "rand89",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4129,8 +4129,8 @@
     {
      "order": "rand91",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4153,8 +4153,8 @@
     {
      "order": "rand92",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4201,8 +4201,8 @@
     {
      "order": "rand94",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4249,8 +4249,8 @@
     {
      "order": "rand96",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4273,8 +4273,8 @@
     {
      "order": "rand97",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4393,8 +4393,8 @@
     {
      "order": "rand102",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4441,8 +4441,8 @@
     {
      "order": "rand104",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4465,8 +4465,8 @@
     {
      "order": "rand105",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4489,8 +4489,8 @@
     {
      "order": "rand106",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4513,8 +4513,8 @@
     {
      "order": "rand107",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4537,8 +4537,8 @@
     {
      "order": "rand108",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4561,8 +4561,8 @@
     {
      "order": "rand109",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4609,8 +4609,8 @@
     {
      "order": "rand111",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4657,8 +4657,8 @@
     {
      "order": "rand113",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4705,8 +4705,8 @@
     {
      "order": "rand115",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4729,8 +4729,8 @@
     {
      "order": "rand116",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4777,8 +4777,8 @@
     {
      "order": "rand118",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4801,8 +4801,8 @@
     {
      "order": "rand119",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4849,8 +4849,8 @@
     {
      "order": "rand121",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4873,8 +4873,8 @@
     {
      "order": "rand122",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4897,8 +4897,8 @@
     {
      "order": "rand123",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4969,8 +4969,8 @@
     {
      "order": "rand126",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -4993,8 +4993,8 @@
     {
      "order": "rand127",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5017,8 +5017,8 @@
     {
      "order": "rand128",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5089,8 +5089,8 @@
     {
      "order": "rand131",
      "subschemata": 131,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5113,8 +5113,8 @@
     {
      "order": "rand132",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5137,8 +5137,8 @@
     {
      "order": "rand133",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5161,8 +5161,8 @@
     {
      "order": "rand134",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5185,8 +5185,8 @@
     {
      "order": "rand135",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5209,8 +5209,8 @@
     {
      "order": "rand136",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5233,8 +5233,8 @@
     {
      "order": "rand137",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5257,8 +5257,8 @@
     {
      "order": "rand138",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5281,8 +5281,8 @@
     {
      "order": "rand139",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5305,8 +5305,8 @@
     {
      "order": "rand140",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5353,8 +5353,8 @@
     {
      "order": "rand142",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5377,8 +5377,8 @@
     {
      "order": "rand143",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5401,8 +5401,8 @@
     {
      "order": "rand144",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5449,8 +5449,8 @@
     {
      "order": "rand146",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5473,8 +5473,8 @@
     {
      "order": "rand147",
      "subschemata": 137,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5545,8 +5545,8 @@
     {
      "order": "rand150",
      "subschemata": 132,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5593,8 +5593,8 @@
     {
      "order": "rand152",
      "subschemata": 134,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5617,8 +5617,8 @@
     {
      "order": "rand153",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5689,8 +5689,8 @@
     {
      "order": "rand156",
      "subschemata": 136,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5713,8 +5713,8 @@
     {
      "order": "rand157",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5737,8 +5737,8 @@
     {
      "order": "rand158",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5785,8 +5785,8 @@
     {
      "order": "rand160",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5833,8 +5833,8 @@
     {
      "order": "rand162",
      "subschemata": 133,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5881,8 +5881,8 @@
     {
      "order": "rand164",
      "subschemata": 130,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5953,8 +5953,8 @@
     {
      "order": "rand167",
      "subschemata": 135,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4
@@ -5977,8 +5977,8 @@
     {
      "order": "rand168",
      "subschemata": 138,
-     "hmax": 1976,
-     "htot": 1979,
+     "hmax": 3,
+     "htot": 6,
      "so_obj": [
       1,
       4

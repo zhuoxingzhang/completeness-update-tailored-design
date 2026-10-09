@@ -99,7 +99,10 @@ nev = {}
 for a, j, _ in R.ev:
     nev.setdefault(a, np.zeros(R.n, dtype=np.int64))[j] += 1
 ev = {a: int(v.sum()) for a, v in nev.items()}
-theta = W.floor({fd: ev.get(next(iter(fd[1])), 0) for fd in R.reduct})
+theta = W.declare(R, plan)
+# The heat is declared by updates (W.declare); the price heuristic of the search and the named orders
+# below rank attributes and schemata by the refreshes those updates rewrite, which is what a statement
+# and a row cost, and on this window rank the attributes as the updates do.
 prep = B.prepare(R.reduct)
 proj, mkeys = prep["proj"], prep["mkeys"]
 crit, noncrit = set(prep["crit"]), set(prep["noncrit"])

@@ -51,8 +51,8 @@ class Window:
         for a, j, _ in R.ev:
             nev.setdefault(a, np.zeros(R.n, dtype=np.int64))[j] += 1
         self.events = {a: int(v.sum()) for a, v in nev.items()}
-        self.theta = W.floor({fd: (decl.get(next(iter(fd[1])), 0) if decl is not None
-                                   else self.events.get(next(iter(fd[1])), 0)) for fd in R.reduct})
+        self.theta = (W.floor({fd: decl.get(next(iter(fd[1])), 0) for fd in R.reduct}) if decl is not None
+                      else W.declare(R, self.plan))
         self.prep = B.prepare(R.reduct)
         self.col0 = [list(c) for c in zip(*self.scope)]
         self._groups = {}

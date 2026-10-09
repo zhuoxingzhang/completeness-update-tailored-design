@@ -10,8 +10,11 @@ update and the distinct stored rows that update rewrites: the determinant group 
 attribute sits away from a key, the tuple's own row otherwise.
 
 The calibration is the one fitted on this server for the whole window, 0.13 ms per statement
-inside a transaction and 6.8 microseconds per further row of a group rewrite.  The other
-release_*.py scripts import the relation, the coalescing and the price from here.
+inside a transaction and 6.8 microseconds per further row of a group rewrite.  The heat of a rule
+is the number of these coalesced updates that refresh its right-hand side inside the scope
+(declare), the number of applications of the mode and not the number of cells they rewrite.  The
+other release_*.py scripts import the relation, the coalescing, the declaration and the price from
+here.
 
 Usage: python release_cost.py [<tag> ...]          default owid
 Environment: REFONLY=1 keeps only the attributes whose changes all coalesce, which is the
@@ -95,6 +98,17 @@ def col_lens(data, m):
 def floor(theta):
     """The heat vector under the floor of the paper."""
     return {fd: max(HEAT_FLOOR, v) for fd, v in theta.items()}
+
+
+def declare(R, plan):
+    """The heat map the window declares: a rule X -> a receives the number of the coalesced updates that
+    refresh a inside the scope, whatever its determinant (the co-refresh lemma of the paper), and a rule
+    the window does not refresh keeps the floor.  This is the number of applications of the mode; the
+    number of cells those applications rewrite is that number times the size of their groups, which a
+    declaration does not carry (Sec. 3.4 of the paper).  On this window the three designs of Table 8 and
+    the levels of release_maps.py are the same under either count."""
+    n = {a: int(p["updates"]) for a, p in plan.items()}
+    return floor({fd: n.get(next(iter(fd[1])), 0) for fd in R.reduct})
 
 
 def relpath(tag):
@@ -234,11 +248,7 @@ def run(tag):
               f"{'{' + ','.join(R.attrs[c] for c in p['X']) + '}' if p['X'] else '-':38s}"
               f" {w:7,} whole groups, {len(p['left_rows']):8,} single", flush=True)
 
-    nev = {}
-    for a, j, _ in R.ev:
-        nev.setdefault(a, np.zeros(R.n, dtype=np.int64))[j] += 1
-    theta = floor({fd: (int(nev[next(iter(fd[1]))].sum()) if next(iter(fd[1])) in nev else 0)
-                   for fd in R.reduct})
+    theta = declare(R, plan)
     prep = B.prepare(R.reduct)
 
     out = {}

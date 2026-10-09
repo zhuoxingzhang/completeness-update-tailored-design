@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 """Figure 7 of the paper: the refreshes that every rule of the reduct receives in the real release.
 
-A rule X -> a of the reduct has the heat theta = the number of refreshes of a inside the scope, so
-every rule that determines an attribute receives that attribute's count, whether a design maintains
-the rule through a key or as a non-key FD (the co-refresh lemma of the paper).  The script reads the
+A rule X -> a of the reduct is declared at the number of coalesced updates that refresh a inside the
+scope (release_cost.declare), so every rule that determines an attribute receives that attribute's
+count, whether a design maintains the rule through a key or as a non-key FD (the co-refresh lemma of
+the paper); the figure plots the refreshes those updates rewrite, which rank the attributes as the
+updates do.  The script reads the
 inputs of the timed runs and does not load the relation:
   - the reduct, from the orders the designs are synthesized from (results/rq7_real_picks.json);
   - the attribute names, from the constraint set (data/release/<tag>_fds.json);
   - the refreshes and priced updates of every priced attribute, from the run record in
     results/rq7_real_live.json.
-release_cost.coalesce counts the events of an attribute exactly as theta does, and it gives every
+release_cost.coalesce counts the events and the updates of every attribute, and it gives every
 refreshed attribute that some rule determines a non-empty determinant, so an attribute that a rule
 determines but that priced_attrs lacks is never refreshed in the scope (asserted below: no rule has
 an empty determinant).  The rules that determine one attribute receive one count and take

@@ -173,10 +173,15 @@ differ most.
 19 August 2024 of the COVID table of Our World in Data: the relation is the
 earlier edition, the constraints are mined on it, and the workload is the
 difference between the two editions, coalesced into the updates that produce
-it. The heat of a rule `X -> A` is the number of cells of `A` the window
-refreshes inside the scope, and a rule the window does not refresh keeps the
-default heat 1, since heats are positive (`HEAT_FLOOR` in the scripts; 0
-reproduces the runs recorded before 18 September 2026). Each subschema is
+it. The heat of a rule `X -> A` is the number of these coalesced updates that
+refresh `A` inside the scope (`release_cost.declare`), and a rule the window
+does not refresh keeps the default heat 1, since heats are positive
+(`HEAT_FLOOR` in the scripts; 0 reproduces the runs recorded before
+18 September 2026). The runs recorded before 9 October 2026 declared a rule at
+the number of cells its updates rewrite, which is the number of updates times
+the size of their groups; under the update count the three designs of Table 8
+and the levels below are the same, and only the heats change
+(`results/rq7_real_rules.json`). Each subschema is
 kept equal to the projection of the edited relation,
 since the release splits and merges stored rows as well as rewriting them.
 Every subschema indexes its minimal keys, and no other attributes; the indexes
@@ -192,9 +197,9 @@ and its priced updates are timed. Under the observed levels the three designs ru
 three times, round-robin, and the reported time is the mean over the three
 repetitions, since the round-robin puts each design once in every position; under
 each of the three re-numbered levels they run once.
-Under the observed levels, a priced attribute refreshed `n` times in the scope
-receives the level `l = 1 + min(9, floor(9 n / n_max))`, where `n_max` is the
-largest such count. To multiply the priced updates, one of the maps `l^2`,
+Under the observed levels, a priced attribute with `n` priced updates in the
+scope receives the level `l = 1 + min(9, floor(9 n / n_max))`, where `n_max` is
+the largest such count. To multiply the priced updates, one of the maps `l^2`,
 `2^l` and `l^3` re-numbers these levels: under a map `phi`, a priced update of
 an attribute at level `l` is issued `1 + 2 floor(g / 2)` times, where
 `g = phi(l) / (l phi(1))`, alternating between the released value and the
@@ -212,15 +217,15 @@ three timed designs as the server does: at 191.40, 81.39 and 40.71 s it predicts
 4.70 and 2.00 times the price of HA for 3NF and SO, against the 4.75 and 1.83
 the runs of Table 8 measure.
 
-The timed runs predate the heat floor of 1, and the shipped search was run under
-it, which is why its heats start at 4 rather than 0. Under the floor the search
-returns the same designs for 3NF and SO, and for HA the order `haswap239` prices
-0.15 per cent below the 40.71 s of the timed design; the order `haswap164`
-itself exchanges two cold subschemata under the floor, and no priced update
-touches either, so the priced statements and rows of
-Table 8 hold for both twins, while the whole-window statements differ from
-`results/rq7_real_live.json` by 1.2 per cent. `HEAT_FLOOR=0` rebuilds the timed
-designs exactly.
+The timed runs predate the heat floor of 1 and the declaration by updates, and
+the shipped search was run under both, which is why its heats start at 4 rather
+than 0 and end at 509 rather than 319,969. Under them the search returns the
+same designs for 3NF and SO, and for HA the order `haswap239` prices 0.15 per
+cent below the 40.71 s of the timed design; the order `haswap164` itself
+exchanges two cold subschemata under the floor, and no priced update touches
+either, so the priced statements and rows of Table 8 hold for both twins, while
+the whole-window statements differ from `results/rq7_real_live.json` by 1.2 per
+cent. `HEAT_FLOOR=0` rebuilds the timed designs exactly, under either count.
 
 ## Setup
 

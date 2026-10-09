@@ -39,11 +39,7 @@ MODE_OF = {"3NF": "3nf", "SO": "so", "HA": "ha"}
 
 R = W.Rel(TAG)
 plan = W.coalesce(R)
-nev = {}
-for a, j, _ in R.ev:
-    nev.setdefault(a, np.zeros(R.n, dtype=np.int64))[j] += 1
-theta = W.floor({fd: (int(nev[next(iter(fd[1]))].sum()) if next(iter(fd[1])) in nev else 0)
-                 for fd in R.reduct})
+theta = W.declare(R, plan)
 prep = B.prepare(R.reduct)
 picks = json.load(open(PICK))[TAG]
 priced = {a for a, p in plan.items() if p["X"]}
