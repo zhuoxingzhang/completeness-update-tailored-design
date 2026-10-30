@@ -1,5 +1,11 @@
 # Completeness- and Update-Tailored Database Design — Artifact
 
+> ## Full version of the paper: [`full-version.pdf`](full-version.pdf)
+>
+> **The paper together with its appendix, which gives all proofs.**
+> The file is replaced with every revision of the paper.
+> Last updated: 31 October 2026.
+
 Implementation, declared constraint sets, workload generators, and result files
 for the paper *Completeness- and Update-Tailored Database Design*.
 
