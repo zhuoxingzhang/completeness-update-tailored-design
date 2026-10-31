@@ -146,9 +146,7 @@ each design runs once per map.
 The timed designs come from the elimination orders `keep7_3` (3NF), `h+c+` (SO)
 and `haswap164` (HA) in `rq7_real_picks.json`. A criterion fixes a design only up
 to the elimination order; `release_classes.py` (`POOL=250 SWAPS=300 HA_SWAPS=300
-TARGET=priced`) searches those orders and prices what they return. The offline
-model ranks the timed designs as the server does: it predicts 4.70 and 2.00 times
-HA's price for 3NF and SO, against the measured 4.75 and 1.83.
+TARGET=priced`) searches those orders and prices what they return.
 
 The timed runs predate the heat floor of 1 and the declaration by updates (they
 declared the cells the updates rewrite); under the current declaration the
