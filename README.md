@@ -43,7 +43,7 @@ python experiments/delivery_schema.py --orders   # 200 shuffles of the closure: 
 python experiments/reduct_frontend.py            # Table 3 and the sweep over p below
 ```
 
-`reduct_frontend.py` sweeps `p` from 0.1 to 1 with 20 draws each, about two hours
+`reduct_frontend.py` sweeps `p` from 0.1 to 1 with 20 draws each, about an hour
 on 18 workers (`CUTD_WORKERS`); the synthesis times in the paper were measured with
 `CUTD_WORKERS=1`. The paper reports the uncertainty reading of nulls (`nulluc`);
 constraint sets and results also carry the equality reading (`nulleq`).
@@ -64,7 +64,7 @@ All under `experiments/`; result files under `results/`. † needs MySQL.
 | `delivery_curves.py` | RQ4, RQ5: Figure 5, Table 6 (`rq4_rq5_curves.json`) |
 | `delivery_tables.py` | the delivery tables and figures as LaTeX |
 | `reduct_frontend.py` | RQ2: Table 3, Figure 3(a), the sweep below (`rq2_reducts.json`) |
-| `sweep_skew.py` | RQ2: Figure 3(b) (`rq2_worst_single_rule.json`) |
+| `sweep_skew.py` | RQ2: Figure 3(b) (`rq2_worst_single_attribute.json`) |
 | `redundancy_study.py` † | RQ2: Table 4 (`rq2_redundant_occurrences.json`) |
 | `release_build.py` | RQ7: relation and workload of the real release |
 | `release_mine.py` | RQ7: `data/release/owid_fds.json` |
@@ -111,10 +111,13 @@ completions from an all-clean or an all-conflicting pool at share `gamma`; the
 default run issues windows of 1,000 updates under the three profiles of Table 2.
 Each window is drawn once and issued against every design.
 
-**Benchmark reducts.** Under the graded declaration, modes not drawn hot keep heat
-1. The adversarial declaration searches up to 300 candidate rules per reduct and
-keeps the one on which the two optimizing designs differ most. Table 4 counts
-redundant value occurrences on deduplicated subschema projections.
+**Benchmark reducts.** Heat is declared per attribute, and every rule carries the
+heat of the attribute it determines (`synthesis.attribute_heat`). Under the graded
+declaration, attributes not drawn hot keep heat 1. The adversarial declaration
+tries every attribute of a reduct and keeps the one on which the two optimizing
+designs differ most. The data-derived declaration maps the redundant value
+occurrences of each attribute onto the scale. Table 4 counts redundant value
+occurrences on deduplicated subschema projections.
 
 **Real release (RQ7).** The relation and its constraints come from the edition of
 30 June 2024 of the OWID COVID table; the workload is its difference to the
@@ -242,7 +245,7 @@ round-robin repetitions (`rq1_operations.json`); Figure 2 plots the times over `
 | completion, clean | 4 | 4 | 1.00× | 2.74 | 2.97 | 0.92× |
 | insert | 3 | 3 | 1.00× | 2.71 | 2.61 | 1.04× |
 
-## The sweep over the share `p` of hot rules (RQ2)
+## The sweep over the share `p` of hot attributes (RQ2)
 
 On how many of the 12 reducts HA is strictly cooler than each baseline under the
 graded declaration (means over 20 draws), and its largest excess in subschemata
@@ -250,11 +253,11 @@ over SO; HA is never hotter than either baseline (`rq2_reducts.json`):
 
 | | | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| HA cooler than SO | maximum | 6 | 7 | 6 | 6 | 6 | 6 | 5 | 6 | 6 | 5 |
-| | total | 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 | 7 |
-| HA cooler than 3NF | maximum | 7 | 8 | 7 | 7 | 7 | 8 | 7 | 7 | 8 | 7 |
-| | total | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
-| HA subschemata over SO (%) | | 1.1 | 1.1 | 1.2 | 1.2 | 1.3 | 1.5 | 1.3 | 1.3 | 1.3 | 1.3 |
+| HA cooler than SO | maximum | 4 | 5 | 5 | 6 | 5 | 5 | 6 | 4 | 5 | 5 |
+| | total | 4 | 5 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 |
+| HA cooler than 3NF | maximum | 5 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 7 |
+| | total | 7 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
+| HA subschemata over SO (%) | | 0.4 | 0.8 | 0.7 | 0.5 | 0.6 | 0.6 | 0.9 | 1.4 | 1.4 | 1.0 |
 
 ## License
 

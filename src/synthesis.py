@@ -101,14 +101,18 @@ SCALE = 10            # heat is a 10-level ordinal scale {1,...,10}
 HEAT = os.environ.get("HEAT_READING", "all")
 
 def fd_hot(fd, hot):
-    # heat of an atomic FD = the declared update frequency of its MODE X->A, bound to the FD
-    # itself and NOT to its RHS attribute: two FDs with the same RHS but different determinants
-    # (e.g. bd->v and dv->b need not be refreshed alike) may carry different heat. `fd` is the
-    # (lhs, rhs) pair; `hot` maps an FD (lhs, rhs) -> level in {1..SCALE}, or is None (every mode
-    # at the cold baseline, level 1).
+    # heat of an atomic FD X->a under the aggregated map of the paper. `fd` is the (lhs, rhs) pair;
+    # `hot` maps an FD (lhs, rhs) -> heat, or is None (every attribute at the default heat 1).
+    # A refresh of a moves a group of every rule that determines a (Lem. corefresh), so the
+    # declarations below give all members with right-hand side a the heat of a (attribute_heat).
     if hot is None:
         return 1
     return hot.get(fd, 1)
+
+def attribute_heat(sigma_a, heat_of):
+    # the aggregated map: every member X->a of the closure carries the heat of its attribute a;
+    # `heat_of` maps an attribute -> heat, and an attribute it does not name has the default heat 1
+    return {fd: heat_of.get(next(iter(fd[1])), 1) for fd in sigma_a}
 
 def mixed_nonkey_fds(XA, proj_XA, keys_XA):
     # GREEDY nonredundant non-key FD set: keep the FDs not implied by the minimal keys together
@@ -339,15 +343,14 @@ DATASETS = {
 }
 
 def levels(sigma_a, p, seed=0, scale=SCALE):
-    # graded update-MODE skew on the 10-level scale: each atomic FD X->A is an update mode that is
-    # "active" (subject to skewed, heavier update load) with probability p and then draws a heat
-    # level uniformly from {1..scale}; inactive modes stay at the cold baseline (level 1). Heat is
-    # bound to the mode X->A, NOT to the attribute A, so two FDs sharing an RHS may differ.
-    # p=0 -> uniform load, where the heat-aware objective degenerates onto the structure-optimal
-    # one; p=1 -> every mode graded over the full scale.
+    # graded declaration on the 10-level scale: each attribute that some member of the closure
+    # determines is hot with probability p and then draws its heat uniformly from {1..scale};
+    # the others keep the default heat 1. Every rule that determines an attribute carries its heat
+    # (attribute_heat). p=0 -> uniform load, where the heat-aware objective degenerates onto the
+    # structure-optimal one; p=1 -> every attribute graded over the full scale.
     rnd = random.Random(seed)
-    key = lambda f: (tuple(sorted(f[0])), tuple(sorted(f[1]))) if isinstance(f, tuple) else (f,)
-    return {fd: (rnd.randint(1, scale) if rnd.random() < p else 1) for fd in sorted(sigma_a, key=key)}
+    attrs = sorted({a for _, rhs in sigma_a for a in rhs})
+    return attribute_heat(sigma_a, {a: (rnd.randint(1, scale) if rnd.random() < p else 1) for a in attrs})
 
 def exp(names, ps=(0.25, 0.5, 0.75), seed=0):
     # debug helper: report each objective's output max E-heat and #(critical schemata)

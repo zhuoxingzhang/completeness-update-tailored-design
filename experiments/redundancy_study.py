@@ -164,7 +164,8 @@ def count_redundancy(rows, atomic, sem, mark=None, theta=None):
     """Count redundant value occurrences caused by the atomic FDs.
 
     atomic: list of (lhs_tuple, rhs_col) in DATA coordinates.
-    Returns (occurrence-level red count, per-fd red dict).  When `mark` is
+    Returns (occurrence-level red count, hot count, per-fd red dict, per-column red
+    dict, the redundant occurrences of each attribute).  When `mark` is
     given (dict (row,col)->level) it records max theta of a causing FD instead
     of a plain set, using theta[fd] (default 1)."""
     red = {}                                  # (row,col) -> max theta
@@ -195,7 +196,10 @@ def count_redundancy(rows, atomic, sem, mark=None, theta=None):
             fd_red[(lhs, a)] = n_red
     total = len(red)
     hot = sum(1 for th in red.values() if th >= TOP)
-    return total, hot, fd_red
+    col_red = defaultdict(int)
+    for _, a in red:
+        col_red[a] += 1
+    return total, hot, fd_red, dict(col_red)
 
 
 # ---------------- designs over the data --------------------------------------
@@ -296,14 +300,15 @@ def run_one(ds, sem, json_path):
     atomic = [(tuple(sorted(lhs)), next(iter(rhs))) for lhs, rhs in sigma]
 
     t0 = time.perf_counter()
-    red, _, fd_red = count_redundancy(data, atomic, sem)
+    red, _, fd_red, col_red = count_redundancy(data, atomic, sem)
     t_count = time.perf_counter() - t0
 
-    red_max = max(fd_red.values(), default=0)
-    theta_data = {}
-    for (lhs, a), r_ in fd_red.items():
-        fd = (frozenset(lhs), frozenset({a}))
-        theta_data[fd] = 1 if (r_ == 0 or red_max == 0) else max(1, math.ceil(SCALE * r_ / red_max))
+    # data-derived heat per attribute: the redundant occurrences of an attribute, mapped
+    # proportionally onto the scale; every rule that determines the attribute carries its heat
+    red_max = max(col_red.values(), default=0)
+    level = {a: (1 if (r_ == 0 or red_max == 0) else max(1, math.ceil(SCALE * r_ / red_max)))
+             for a, r_ in col_red.items()}
+    theta_data = B.attribute_heat(sigma, level)
     hist = defaultdict(int)
     for v in theta_data.values():
         hist[v] += 1
@@ -331,7 +336,7 @@ def run_one(ds, sem, json_path):
             "complete": complete, "red": red,
             "pct_red": round(100 * red / complete, 2) if complete else 0.0,
             "t_count": round(t_count, 3),
-            "fd_red_max": red_max, "theta_hist": dict(hist),
+            "col_red_max": red_max, "theta_hist": dict(hist),
             "channels": channels,
             "ck_nullable": {"per_sub": ckn, "max": max(ckn) if ckn else 0}}
 

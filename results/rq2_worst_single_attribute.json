@@ -21,7 +21,7 @@
   "capped": false,
   "separations": 1,
   "best": {
-   "rule": "[0, 1, 5]->3",
+   "attribute": 3,
    "3nf": 10,
    "so": 10,
    "ha": 1
@@ -34,7 +34,7 @@
   "capped": false,
   "separations": 1,
   "best": {
-   "rule": "[0, 1, 5]->3",
+   "attribute": 3,
    "3nf": 10,
    "so": 10,
    "ha": 1
@@ -75,11 +75,11 @@
  },
  "bridges:nulluc": {
   "rules": 128,
-  "candidates": 6,
+  "candidates": 4,
   "capped": false,
   "separations": 1,
   "best": {
-   "rule": "[1, 5, 9]->12",
+   "attribute": 12,
    "3nf": 10,
    "so": 10,
    "ha": 1
@@ -88,89 +88,69 @@
  },
  "bridges:nulleq": {
   "rules": 142,
-  "candidates": 14,
+  "candidates": 4,
   "capped": false,
-  "separations": 3,
-  "best": {
-   "rule": "[1, 5, 8, 10, 12]->7",
-   "3nf": 10,
-   "so": 10,
-   "ha": 3
-  },
+  "separations": 0,
+  "best": null,
   "so_uniform_hmax": 3
  },
  "echo:nulluc": {
   "rules": 355,
-  "candidates": 7,
+  "candidates": 6,
   "capped": false,
-  "separations": 3,
-  "best": {
-   "rule": "[8, 12]->1",
-   "3nf": 10,
-   "so": 10,
-   "ha": 2
-  },
+  "separations": 0,
+  "best": null,
   "so_uniform_hmax": 2
  },
  "echo:nulleq": {
   "rules": 527,
-  "candidates": 12,
+  "candidates": 5,
   "capped": false,
-  "separations": 3,
-  "best": {
-   "rule": "[2, 4, 5]->3",
-   "3nf": 3,
-   "so": 10,
-   "ha": 2
-  },
+  "separations": 0,
+  "best": null,
   "so_uniform_hmax": 2
  },
  "ncvoter:nulleq": {
   "rules": 758,
-  "candidates": 33,
+  "candidates": 10,
   "capped": false,
-  "separations": 10,
+  "separations": 3,
   "best": {
-   "rule": "[3, 12, 17]->6",
-   "3nf": 12,
-   "so": 12,
-   "ha": 3
+   "attribute": 10,
+   "3nf": 13,
+   "so": 20,
+   "ha": 11
   },
   "so_uniform_hmax": 3
  },
  "china_weather:nulleq": {
   "rules": 918,
-  "candidates": 94,
+  "candidates": 7,
   "capped": false,
-  "separations": 11,
-  "best": {
-   "rule": "[0, 7, 9, 11, 12]->6",
-   "3nf": 12,
-   "so": 12,
-   "ha": 6
-  },
+  "separations": 0,
+  "best": null,
   "so_uniform_hmax": 6
  },
  "ncvoter:nulluc": {
   "rules": 1249,
-  "candidates": 21,
+  "candidates": 9,
   "capped": false,
-  "separations": 9,
+  "separations": 2,
   "best": {
-   "rule": "[2, 3]->10",
-   "3nf": 5,
-   "so": 13,
-   "ha": 5
+   "attribute": 10,
+   "3nf": 23,
+   "so": 31,
+   "ha": 23
   },
   "so_uniform_hmax": 4
  },
  "dblp10k:nulluc": {
   "rules": 1377,
-  "candidates": 39,
+  "candidates": 10,
   "capped": false,
-  "separations": 2,
+  "separations": 1,
   "best": {
-   "rule": "[9, 14]->6",
+   "attribute": 6,
    "3nf": 10,
    "so": 10,
    "ha": 4
@@ -179,36 +159,41 @@
  },
  "hepatitis:nulluc": {
   "rules": 4513,
-  "candidates": 166,
+  "candidates": 13,
   "capped": false,
-  "separations": 27,
+  "separations": 3,
   "best": {
-   "rule": "[10, 15, 16]->14",
-   "3nf": 18,
-   "so": 18,
+   "attribute": 14,
+   "3nf": 27,
+   "so": 27,
    "ha": 12
   },
   "so_uniform_hmax": 12
  },
  "china_weather:nulluc": {
   "rules": 6582,
-  "candidates": 382,
-  "capped": true,
-  "separations": 54,
+  "candidates": 10,
+  "capped": false,
+  "separations": 1,
   "best": {
-   "rule": "[2, 3, 6, 7, 8, 14, 15]->17",
-   "3nf": 16,
-   "so": 16,
-   "ha": 7
+   "attribute": 16,
+   "3nf": 87,
+   "so": 32,
+   "ha": 10
   },
   "so_uniform_hmax": 7
  },
  "hepatitis:nulleq": {
   "rules": 8250,
-  "candidates": 26,
+  "candidates": 12,
   "capped": false,
-  "separations": 0,
-  "best": null,
+  "separations": 3,
+  "best": {
+   "attribute": 9,
+   "3nf": 21,
+   "so": 33,
+   "ha": 21
+  },
   "so_uniform_hmax": 17
  }
 }

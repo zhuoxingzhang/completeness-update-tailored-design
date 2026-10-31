@@ -1,12 +1,13 @@
-"""Single-hot-rule sweep over every RQ2 reduct: for each atomic rule, declare
-it the sole hot rule (theta 10 vs 1) and ask whether heat-aware synthesis can
-land strictly below the structure-optimal design.
+"""Worst-single-attribute sweep over every RQ2 reduct: for each attribute, declare
+it the sole hot attribute (heat 10 vs 1, carried by every rule that determines it)
+and ask whether heat-aware synthesis can land strictly below the structure-optimal
+design.
 
 Pruning: 3NF and SO are frequency-blind, so their designs are synthesized once
-(uniform heat); under a single-hot theta only tables containing the hot rule
-can change their heat, so the swept SO hmax is recomputed
-incrementally per rule.  Rules that lift the SO hmax above its uniform level
-are candidates; only candidates trigger a fresh SO and HA synthesis (the SO
+(uniform heat); under a single hot attribute only tables storing one of its rules
+as non-key can change their heat, so the swept SO hmax is recomputed
+incrementally per attribute.  Attributes that lift the SO hmax above its uniform
+level are candidates; only candidates trigger a fresh SO and HA synthesis (the SO
 resynthesis guards against theta-dependent tie-breaking).
 Results -> sweep_skew.json (incremental).
 """
@@ -42,28 +43,26 @@ def sweep(tag, path):
     base = max((h for *_, h in tables), default=0)
 
     cands = []
-    for fd in sigma:
-        X, A = fd[0], next(iter(fd[1]))
-        theta = dict(ones); theta[fd] = 10
+    for A in sorted({a for _, rhs in sigma for a in rhs}):
+        theta = B.attribute_heat(sigma, {A: 10})
         hot_h = base
         for XA, proj, mkeys, h0 in tables:
-            if X <= XA and A in XA:
+            if A in XA:
                 hot_h = max(hot_h, table_heat(XA, proj, mkeys, theta))
         if hot_h > base:
-            cands.append((hot_h, fd))
+            cands.append((hot_h, A))
     cands.sort(key=lambda t: -t[0])
     capped = len(cands) > RESYNTH_CAP
     n_sep, best = 0, None
-    for est, fd in cands[:RESYNTH_CAP]:
-        theta = dict(ones); theta[fd] = 10
+    for est, A in cands[:RESYNTH_CAP]:
+        theta = B.attribute_heat(sigma, {A: 10})
         hso = B.decomp_metrics(B.synthesize(R, sigma, keys, "so", hot=theta, prep=prep), theta)["hmax"]
         hha = B.decomp_metrics(B.synthesize(R, sigma, keys, "ha", hot=theta, prep=prep), theta)["hmax"]
         if hha < hso:
             n_sep += 1
             if best is None or hso - hha > best["so"] - best["ha"]:
                 h3 = B.decomp_metrics(B.synthesize(R, sigma, keys, "3nf", hot=theta, prep=prep), theta)["hmax"]
-                best = {"rule": f"{sorted(fd[0])}->{next(iter(fd[1]))}",
-                        "3nf": h3, "so": hso, "ha": hha}
+                best = {"attribute": A, "3nf": h3, "so": hso, "ha": hha}
     return {"rules": len(sigma), "candidates": len(cands), "capped": capped,
             "separations": n_sep, "best": best, "so_uniform_hmax": base}
 

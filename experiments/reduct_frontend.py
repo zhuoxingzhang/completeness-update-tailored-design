@@ -11,8 +11,9 @@ Compared synthesizers (all on the same reduct, same keys):
   so         structure-optimal (fewest procedurally maintained FDs), frequency-blind
   ha         heat-aware (Algorithm 1 of the paper)
 
-Heat protocol: every atomic FD is one update mode, hot with probability p, a hot
-mode drawing its level uniformly from {1..SCALE}.  p is swept over ten values
+Heat protocol: every attribute is hot with probability p, a hot attribute drawing
+its heat uniformly from {1..SCALE}, and every rule that determines an attribute
+carries its heat (synthesis.levels).  p is swept over ten values
 from 0.1 to 1 in steps of 0.1 and every configuration is repeated over twenty
 draws.  Table 3 of the paper is the p = 0.5 slice and Table 4 summarizes the
 sweep.  Per-draw values
