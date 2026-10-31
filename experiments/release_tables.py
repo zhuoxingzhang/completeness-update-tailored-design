@@ -135,7 +135,6 @@ if "obs" not in ready or (len(ready) < len(MAPS) and not PARTIAL):
 def table():
     d, pa, rel = e2e["designs"], e2e["priced_attrs"], e2e["relation"]
     assert maps["obs"]["priced_updates"] == e2e["priced_updates"]
-    obs = maps["obs"]["designs"]
     window = [("tuples", rel["tuples"]), ("tuples in the scope", e2e["scope"]),
               ("atomic FDs of the reduct", rel["reduct"]), ("minimal keys", rel["keys"]),
               (f"refreshes of the {len(pa)} priced attributes", e2e["priced_events"]),
@@ -143,15 +142,10 @@ def table():
     sec = lambda x: f"{x:,.1f}".replace(",", "{,}")
     rows = [("subschemata", {k: d[k]["size"] for k in ORDER}, th, False),
             ("total heat", {k: d[k]["htot"] for k in ORDER}, th, True),
-            r"\emph{the " + th(e2e["priced_updates"]) + " priced updates}",
-            ("statements", {k: obs[k]["statements"] for k in ORDER}, th, True),
-            ("rows written", {k: obs[k]["rows"] for k in ORDER}, th, True),
-            ("group rows", {k: obs[k]["group_rows"] for k in ORDER}, th, True),
-            ("refresh time (s)", {k: one(obs[k]["mean_s"]) for k in ORDER}, sec, True)]
-    if len(ready) > 1:
-        rows.append(r"\emph{refresh time (s) under re-numbered levels}")
-        rows += [(f"{TEX[m]}, {th(maps[m]['priced_updates'])} priced updates",
-                  {k: one(maps[m]["designs"][k]["mean_s"]) for k in ORDER}, sec, True) for m in ready[1:]]
+            r"\emph{refresh time (s) of the priced updates}"]
+    # besides the heat, the table reports only the time of the priced updates, one line per numbering
+    rows += [(f"{TEX[m]}, {th(maps[m]['priced_updates'])} priced updates",
+              {k: one(maps[m]["designs"][k]["mean_s"]) for k in ORDER}, sec, True) for m in ready]
     # two tabulars across the column, the window's counts in two label-value columns, then the
     # designs, joined by \nointerlineskip
     L = [r"\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l r l r@{}}", r"\toprule",
