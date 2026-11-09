@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.scratch/
+*.bak
+# the repository holds the code and the constraint sets of the benchmark
+# relations and of the real release; the result files and the LaTeX blocks
+# generated from them stay local
+data/*
+!data/fd/
+!data/release/
+data/fd/*.md
+data/release/*
+!data/release/owid_fds.json
+results/
+*.json
+!data/fd/null-*/FD/*.json
+!data/release/owid_fds.json
+*.jsonl
+*.csv
+*.pkl
+experiments/*.md
+!experiments/README.md
+experiments/rq2_parts/
