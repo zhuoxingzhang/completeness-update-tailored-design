@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 """The curves the experiment section reports, on the delivery schema, priced offline.
 
-Four questions the paper asks of a synthetic schema, each a sweep over one quantity with the
+Three questions the paper asks of a synthetic schema, each a sweep over one quantity with the
 others held fixed.  Everything here is a row count from the model `delivery_schema` calibrated,
 so a curve that does not separate here will not separate on a server either; the timings are
 measured only for the sweeps that do.
 
     redundancy   what one update of each kind costs as the group a rule ranges over grows
-    skew         what a whole window costs as the traffic moves from one hot operation to
-                 the other, and where the two designs cross
-    drift        the same window as the fraction of tuples that are in the scope grows
+    drift        a whole window as the fraction of tuples that are in the scope grows
     misestimate  the window on the design each declaration returns, when the declaration is
                  right, blind, read off the data, or wrong
 
@@ -86,30 +84,8 @@ def redundancy():
     return res
 
 
-def skew_mixes(w, base="desk"):
-    """A window whose two hot operations split a fixed budget in the ratio `w` to one."""
-    mix = dict(S.MIXES[base])
-    hot = mix["reassign"] + mix["swap"]
-    mix["reassign"], mix["swap"] = hot * w / (w + 1), hot / (w + 1)
-    return mix
-
-
-def skew(depth=192, reps=1000, ws=(1 / 16, 1 / 8, 1 / 4, 1 / 2, 1, 2, 4, 8, 16)):
-    """RQ4: the window on each design as the traffic moves between the hot operations."""
-    inst = inst_of(depth)
-    rows = list(inst.rows())
-    comp = {a: S.components(rows, S.AID[a]) for a in S.REFRESH.values()}
-    named = two_designs()
-    res = []
-    for w in ws:
-        got, _ = S.window(inst, named, skew_mixes(w), reps)
-        r = {k: got[k]["total"]["rows"] for k in named}
-        res.append({"depth": inst.depth, "w": w, **r})
-    return res
-
-
 def drift(depth=192, reps=1000, fracs=(0.25, 0.5, 0.75, 1.0)):
-    """RQ5a: the same window as the fraction of tuples that are in the scope grows.
+    """RQ4: a whole window as the fraction of tuples that are in the scope grows.
 
     A tuple whose tracker is not yet registered sits outside the scope, so it is neither
     stored by the design nor counted by any rule; the sweep takes the first `frac` of each
@@ -132,7 +108,7 @@ def drift(depth=192, reps=1000, fracs=(0.25, 0.5, 0.75, 1.0)):
 
 
 def misestimate(depth=192, reps=1000):
-    """RQ5b: the window on the design each way of declaring the operations returns."""
+    """RQ4: the window on the design each way of declaring the operations returns."""
     inst = inst_of(depth)
     rows = list(inst.rows())
     comp = {a: S.components(rows, S.AID[a]) for a in S.REFRESH.values()}
@@ -149,7 +125,7 @@ def misestimate(depth=192, reps=1000):
 
 
 def main():
-    out = {"redundancy": redundancy(), "skew": skew(), "drift": drift(),
+    out = {"redundancy": redundancy(), "drift": drift(),
            "misestimate": misestimate()}
     print("  redundancy: rows one update writes, by the group its rule ranges over")
     keys = [k for k in out["redundancy"][0] if k.startswith("cheap")]
@@ -160,15 +136,7 @@ def main():
         print(f"    {r['depth']:>6}  {r['op']:<22}" + "".join(f"{x:>16,}" for x in v)
               + f"   {max(v) / min(v):7.2f}x")
 
-    print("\n  skew: rows one window of 1,000 updates writes, by the ratio of the two")
-    print(f"    {'reassign:swap':>14}" + "".join(f"{k:>16}" for k in keys) + "     ratio")
-    for r in out["skew"]:
-        v = [r[k] for k in keys]
-        w = f"{r['w']:.3g}:1" if r["w"] >= 1 else f"1:{1 / r['w']:.3g}"
-        print(f"    {w:>14}" + "".join(f"{x:>16,}" for x in v)
-              + f"   {v[0] / v[1]:7.2f}x")
-
-    print("\n  drift: the same window, by the fraction of tuples that are in the scope")
+    print("\n  drift: one window of 1,000 updates, by the fraction of tuples that are in the scope")
     print(f"    {'in scope':>10}{'tuples':>10}" + "".join(f"{k:>16}" for k in keys)
           + "     ratio")
     for r in out["drift"]:
@@ -191,7 +159,7 @@ def main():
     if "--json" in sys.argv:
         p = sys.argv[sys.argv.index("--json") + 1]
     else:
-        p = result("rq4_rq5_curves.json")
+        p = result("rq4_curves.json")
     json.dump(out, open(p, "w"), indent=1)
     print(f"\n  written {p}")
 

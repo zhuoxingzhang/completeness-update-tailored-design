@@ -7,8 +7,8 @@ hand.  Blocks are written one file each under `blocks/`, and the paper splices t
 
     tab_mix      what one window of each profile holds                the rates below
     fig_kappa    one update of each kind, over group depths          rq1_operations.json
-    fig_curves   the window as the traffic and the scope move        rq4_rq5_curves.json
-    tab_decl     what each way of declaring heat costs                rq4_rq5_curves.json
+    fig_curves   the window as the scope fills                       rq4_curves.json
+    tab_decl     what each way of declaring heat costs                rq4_curves.json
     tab_side     the read side and what it costs to store            rq3_reads.json
     tab_window   one window under three rate profiles                rq6_window.json
     fig_window   the window as the group grows                       rq6_window.json
@@ -159,56 +159,37 @@ update & \Dstr{{}} & \Dupd{{}} & \Dstr{{}}/\Dupd{{}} & \Dstr{{}} & \Dupd{{}} & \
 \end{{table}}"""
 
 
-# ---- RQ4 and RQ5a -----------------------------------------------------------
+# ---- RQ4 ----------------------------------------------------------------------
 def fig_curves():
-    d = load("rq4_rq5_curves.json")
-    sk, dr = d["skew"], d["drift"]
+    dr = load("rq4_curves.json")["drift"]
     return rf"""\begin{{figure}}
 \centering
 \begin{{tikzpicture}}
-\begin{{groupplot}}[
-  group style={{group size=2 by 1, horizontal sep=11mm}},
-  height=2.8cm, width=0.545\columnwidth,
+\begin{{axis}}[
+  height=3.4cm, width=0.7\columnwidth,
   ymode=log,
   label style={{font=\scriptsize}}, tick label style={{font=\scriptsize}},
-  xticklabel style={{text height=0.72em, text depth=0.28em}},
-  xlabel style={{text height=0.72em, text depth=0.28em}},
-  title style={{font=\scriptsize, yshift=-3pt}},
-  legend style={{font=\tiny, fill=none, draw=none}},
+  legend style={{font=\tiny, fill=none, draw=none, at={{(0.5,1.02)}}, anchor=south}},
+  legend columns=2,
   every axis plot/.append style={{line width=0.7pt, mark size=1.1pt}},
   log ticks with fixed point,
-]
-\nextgroupplot[
-  title={{(a) skew (\ref{{rq:skew}})}},
-  xmode=log, log basis x=2,
-  xlabel={{reassignments per van swap}}, ylabel={{rows written}},
-  xtick={{0.0625,0.25,1,4,16}},
-  xticklabels={{$1/16$,$1/4$,1,4,16}},
-  ytick={{10000,30000,100000}}, yticklabels={{10k,30k,100k}},
-  legend to name=leg:curves, legend columns=2,
-]
-\addplot[serD, mark=*] coordinates {{{coords([(x['w'], x[B]) for x in sk])}}};
-\addplot[serA, mark=square*] coordinates {{{coords([(x['w'], x[A]) for x in sk])}}};
-\legend{{\Dstr{{}}, \Dupd{{}}}}
-\nextgroupplot[
-  title={{(b) drift (\ref{{rq:robust}})}},
   xlabel={{scope filled}}, ylabel={{rows written}},
   xtick={{25,50,75,100}}, xticklabels={{25\%,50\%,75\%,100\%}},
   ytick={{1000,10000,100000}}, yticklabels={{1k,10k,100k}},
 ]
 \addplot[serD, mark=*] coordinates {{{coords([(x['frac'] * 100, x[B]) for x in dr])}}};
 \addplot[serA, mark=square*] coordinates {{{coords([(x['frac'] * 100, x[A]) for x in dr])}}};
-\end{{groupplot}}
-\end{{tikzpicture}}\\[2pt]
-\ref{{leg:curves}}
-\caption{{Robustness (\ref{{rq:skew}}, \ref{{rq:robust}}), rows one window of $1{{,}}000$ updates writes: (a) as its traffic moves from van swaps to reassignments, at a group of $192$; (b) as the scope fills, at a full group of $192$.}}
+\legend{{\Dstr{{}}, \Dupd{{}}}}
+\end{{axis}}
+\end{{tikzpicture}}
+\caption{{Rows that one window of $1{{,}}000$ updates writes at the delivery desk as the scope fills, up to a full group of $192$ (\ref{{rq:robust}}).}}
 \label{{fig:curves}}
 \end{{figure}}"""
 
 
 def tab_decl():
     """What heat-aware synthesis pays under each declaration, per profile."""
-    d = load("rq4_rq5_curves.json")["misestimate"]
+    d = load("rq4_curves.json")["misestimate"]
     mixes = ("desk", "mixed", "fleet")
     names = {"desk": "delivery desk", "mixed": "split", "fleet": "fleet office"}
     chans = [("rate", "by the measured rates"),
@@ -270,7 +251,7 @@ def tab_mix(reps=1000):
         LABEL[op] + "".join(f" & {n(op, m)}" for m in mixes) + r"\\" for op in ops)
 
     return rf"""\begin{{table}}
-\caption{{The three declared workloads (\ref{{rq:skew}}, \ref{{rq:robust}}, \ref{{rq:window}}): the updates of one window of ${reps // 1000}{{,}}{reps % 1000:03d}$, by kind.
+\caption{{The three declared workloads (\ref{{rq:robust}}, \ref{{rq:window}}): the updates of one window of ${reps // 1000}{{,}}{reps % 1000:03d}$, by kind.
 The six refreshes are one per attribute that a rule of Ex.~\ref{{ex:courier}} determines.}}
 \label{{tab:mix}}
 \scriptsize
@@ -347,7 +328,7 @@ def fig_mixed():
 \end{{figure}}"""
 
 
-# ---- RQ7 --------------------------------------------------------------------
+# ---- RQ5 --------------------------------------------------------------------
 def _win(depth):
     d = load("rq6_window.json")
     out = {}

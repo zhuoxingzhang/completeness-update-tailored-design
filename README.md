@@ -13,7 +13,7 @@ src/synthesis.py   FDs, minimal keys, non-key FDs, schema heat, and the three sy
 src/config.py      paths and database credentials, read from environment variables
 experiments/       one script per study (table below)
 data/fd/           constraint sets of the twelve benchmark relations
-data/release/      the constraint set of the real release (RQ7)
+data/release/      the constraint set of the real release (RQ6)
 ```
 
 The three synthesizers share one front end (the reduct, its atomic closure, the
@@ -47,20 +47,20 @@ own, so use a scratch server.
 | `delivery_live.py --ops` † | RQ1: Figure 2 and the table below |
 | `delivery_live.py --mixed` † | RQ3: Figure 4, first row of Table 4 |
 | `delivery_live.py --reads` † | RQ3: Table 4 |
-| `delivery_live.py` † | RQ6: Table 6, Figure 6 |
-| `delivery_curves.py` | RQ4, RQ5: Figure 5, Table 5 |
+| `delivery_live.py` † | RQ5: Table 6, Figure 6 |
+| `delivery_curves.py` | RQ4: Figure 5, Table 5 |
 | `delivery_tables.py` | the delivery tables and figures as LaTeX |
 | `reduct_frontend.py` | RQ2: Table 3, Figure 3(a), the sweep below |
 | `sweep_skew.py` | RQ2: Figure 3(b) |
 | `total_heat_search.py` | RQ2: least total heat over the elimination orders, against HA |
 | `separation_criterion.py` | RQ2: the separation criterion on SO's design, per reduct |
-| `release_build.py` | RQ7: the mining window and the release window |
-| `release_mine.py` | RQ7: `data/release/owid_fds.json` |
-| `release_rules.py` | RQ7: the non-key rules and the heat of each design in Table 7 |
-| `release_live.py` † | RQ7: the whole release window run live; window statistics of Table 7 |
-| `release_maps.py` † | RQ7: the timed priced updates of Table 7 and Figure 8 |
-| `release_tables.py` | RQ7: Table 7 and Figure 8 as LaTeX |
-| `release_skew.py` | RQ7: Figure 7 |
+| `release_build.py` | RQ6: the mining window and the release window |
+| `release_mine.py` | RQ6: `data/release/owid_fds.json` |
+| `release_rules.py` | RQ6: the non-key rules and the heat of each design in Table 7 |
+| `release_live.py` † | RQ6: the whole release window run live; window statistics of Table 7 |
+| `release_maps.py` † | RQ6: the timed priced updates of Table 7 and Figure 8 |
+| `release_tables.py` | RQ6: Table 7 and Figure 8 as LaTeX |
+| `release_skew.py` | RQ6: Figure 7 |
 | `dataset_stats.py` † | the benchmark table below |
 
 `delivery_live.py --dry` gives the row counts without a server, and `--tiny` runs
@@ -136,7 +136,7 @@ Offline, run `release_rules.py` and then `release_skew.py`. With a server,
 round-robin; each design is rebuilt, analyzed, timed and dropped. The buffer pool
 is raised for a run and restored afterwards.
 
-**Delivery (RQ1, RQ3 to RQ6).** The instances satisfy the declared rules by
+**Delivery (RQ1, RQ3 to RQ5).** The instances satisfy the declared rules by
 construction, and the designs are synthesized from the declared rules. A design
 stores deduplicated subschema projections with a unique index per minimal key;
 non-key FDs are maintained by the workload's own statements. `--ops` issues 200
@@ -150,7 +150,7 @@ carries the heat of the attribute it determines. Under the graded declaration,
 attributes not drawn hot keep heat 1. The worst single attribute tries every
 attribute of a reduct and keeps the one on which SO and HA differ most.
 
-**Real release (RQ7).** The mining window runs from the edition of 31 March 2024
+**Real release (RQ6).** The mining window runs from the edition of 31 March 2024
 to the base edition of 30 June 2024. The constraints are mined on its earlier
 edition, and the heat of a rule `X -> A` is the number of its coalesced updates
 that refresh `A` inside the scope, at least 1 (`release_cost.declare`). The
